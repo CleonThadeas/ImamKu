@@ -1,0 +1,51 @@
+{
+  "tech_stack": [
+    "PHP",
+    "Laravel",
+    "MySQL",
+    "Vanilla JS",
+    "Blade Templates"
+  ],
+  "features": [
+    {
+      "name": "Admin Management",
+      "description": "Admin functions including managing Imams, Season configurations, prayer times overrides, generating schedules, and exporting data.",
+      "files": [
+        "app/Http/Controllers/Admin/DashboardController.php",
+        "app/Http/Controllers/Admin/ScheduleController.php",
+        "app/Http/Controllers/Admin/ExportController.php",
+        "routes/web.php"
+      ]
+    },
+    {
+      "name": "Imam Features",
+      "description": "Imam specific tools: view upcoming schedules, checking attendance, monitoring fees, swapping schedules.",
+      "files": [
+        "app/Http/Controllers/Imam/DashboardController.php",
+        "app/Http/Controllers/Imam/AttendanceController.php",
+        "app/Http/Controllers/Imam/FeeController.php",
+        "app/Http/Controllers/Imam/SwapController.php"
+      ]
+    },
+    {
+      "name": "Notification System",
+      "description": "System for sending push/whatsapp/email notifications contextually, including schedule reminders.",
+      "files": [
+        "app/Services/NotificationService.php",
+        "app/Console/Commands/SendPrayerReminders.php",
+        "app/Models/NotificationLog.php",
+        "app/Models/NotificationConfig.php"
+      ]
+    },
+    {
+      "name": "Fee and Attendance Automation",
+      "description": "Tracking mosque attendance and calculating scheduled fee income dynamically.",
+      "files": [
+        "app/Console/Commands/ProcessAutoAttendances.php",
+        "app/Services/FeeService.php",
+        "app/Models/Attendance.php",
+        "app/Models/FeeConfig.php"
+      ]
+    }
+  ]
+}
