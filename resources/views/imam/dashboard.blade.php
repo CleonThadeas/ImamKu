@@ -6,11 +6,6 @@
     <div>
         <h2>Assalamu'alaikum, {{ auth()->user()->name }} <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:middle;color:var(--clr-accent)"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></h2>
         <div class="breadcrumb">{{ now()->translatedFormat('l, d F Y') }}</div>
-        @if(isset($totalFee) && $totalFee > 0)
-            <div style="margin-top:12px; display:inline-block; padding:6px 14px; background:rgba(255,215,0,0.15); border:1px solid rgba(255,215,0,0.4); border-radius:8px; color:var(--clr-gold); font-weight:600; font-size:0.95rem;">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:bottom;margin-right:4px"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> Fee Terkumpul: Rp{{ number_format($totalFee, 0, ',', '.') }}
-            </div>
-        @endif
         @if($season)
             <div style="margin-top:12px; display:inline-block;">
                 <span class="badge badge-gold">{{ $season->name }}</span>

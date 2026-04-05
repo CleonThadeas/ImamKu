@@ -82,7 +82,7 @@ Route::middleware(['auth'])->prefix('imam')->name('imam.')->group(function () {
     // Notifications
     Route::get('notifications', [Imam\NotificationController::class, 'index'])->name('notifications.index');
     
-    Route::prefix('swaps')->name('swaps.')->group(function() {
+    Route::name('swaps.')->prefix('swaps')->group(function() {
         Route::get('/', [Imam\SwapController::class, 'index'])->name('index');
         Route::get('create', [Imam\SwapController::class, 'create'])->name('create');
         Route::post('/', [Imam\SwapController::class, 'store'])->name('store');
