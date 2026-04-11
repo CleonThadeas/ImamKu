@@ -901,6 +901,12 @@
                     <a href="{{ route('admin.swaps.index') }}" class="{{ request()->routeIs('admin.swaps.*') ? 'active' : '' }}">
                         <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 21l6-6M9 8l-6 6M4 14v5h5M4 19l6-6M3 3l6 6"/></svg></span> Monitoring Swap
                     </a>
+                    <a href="{{ route('admin.mosque-config.index') }}" class="{{ request()->routeIs('admin.mosque-config.*') ? 'active' : '' }}">
+                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span> Lokasi Masjid
+                    </a>
+                    <a href="{{ route('admin.penalties.index') }}" class="{{ request()->routeIs('admin.penalties.*') ? 'active' : '' }}">
+                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"/></svg></span> Penalty & Ranking
+                    </a>
 
                     <div class="nav-section">Keuangan</div>
                     <a href="{{ route('admin.fees.index') }}" class="{{ request()->routeIs('admin.fees.index') ? 'active' : '' }}">
@@ -911,6 +917,9 @@
                     </a>
 
                     <div class="nav-section">Lainnya</div>
+                    <a href="{{ route('guidelines') }}" class="{{ request()->routeIs('guidelines') ? 'active' : '' }}">
+                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> Panduan & Ketentuan
+                    </a>
                     <a href="{{ route('admin.exports.index') }}" class="{{ request()->routeIs('admin.exports.*') ? 'active' : '' }}">
                         <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span> Pusat Export
                     </a>
@@ -934,6 +943,9 @@
                     <a href="{{ route('imam.fees.index') }}" class="{{ request()->routeIs('imam.fees.*') ? 'active' : '' }}">
                         <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span> Laporan Pendapatan
                     </a>
+                    <a href="{{ route('imam.points.index') }}" class="{{ request()->routeIs('imam.points.*') ? 'active' : '' }}">
+                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span> Poin & Performa
+                    </a>
                     <a href="{{ route('imam.notifications.index') }}" class="{{ request()->routeIs('imam.notifications.*') ? 'active' : '' }}">
                         <span class="nav-icon" style="position:relative">
                             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
@@ -941,6 +953,11 @@
                                 <span style="position:absolute;top:-2px;right:-2px;width:6px;height:6px;background:var(--clr-danger);border-radius:50%"></span>
                             @endif
                         </span> Kotak Masuk
+                    </a>
+                    
+                    <div class="nav-section">Pusat Informasi</div>
+                    <a href="{{ route('guidelines') }}" class="{{ request()->routeIs('guidelines') ? 'active' : '' }}">
+                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> Panduan & Ketentuan
                     </a>
                 @endif
             </nav>
@@ -1021,9 +1038,136 @@
             @endif
         </script>
 
-        @if(auth()->check() && auth()->user()->unreadNotifications->count() > 0)
-            <!-- Auto-play notification sound if there are unread notifications -->
+        @if(auth()->check() && auth()->user()->role === 'imam' && auth()->user()->unreadNotifications->count() > 0)
+            <!-- Auto-play notification sound if there are unread notifications (Imam only) -->
             <audio id="notification-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" autoplay></audio>
+        @endif
+
+        @if(auth()->check())
+            <!-- Mandatory Permission Check Modal -->
+            <div id="globalPermissionModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(10,15,26,0.95); z-index:99999; justify-content:center; align-items:center; backdrop-filter:blur(10px);">
+                <div class="card" style="width:100%; max-width:450px; margin:20px; padding:30px; text-align:center; border:1px solid var(--clr-accent);">
+                    <div style="background:var(--clr-surface-light); width:80px; height:80px; border-radius:50%; display:flex; justify-content:center; align-items:center; margin:0 auto 20px;">
+                        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--clr-accent)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h.01"/></svg>
+                    </div>
+                    
+                    <h2 style="margin-bottom:10px; color:var(--clr-text)">Izin Sistem Diperlukan</h2>
+                    <p style="font-size:0.9rem; color:var(--clr-text-muted); margin-bottom:24px; line-height:1.5;">Untuk menggunakan sistem ImamKu dengan lancar, terutama saat melakukan absensi, sistem membutuhkan akses wajib ke beberapa fitur perangkat Anda.</p>
+                    
+                    <div style="text-align:left; margin-bottom:24px; background:var(--clr-bg); padding:16px; border-radius:8px;">
+                        <div id="check-loc" style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                            <span class="status-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span> <strong>Lokasi (GPS)</strong> <span style="font-size:0.75rem;color:var(--clr-text-muted);margin-left:auto">Wajib untuk validasi radius</span>
+                        </div>
+                        <div id="check-cam" style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                            <span class="status-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></span> <strong>Kamera</strong> <span style="font-size:0.75rem;color:var(--clr-text-muted);margin-left:auto">Wajib untuk foto bukti</span>
+                        </div>
+                        <div id="check-notif" style="display:flex; align-items:center; gap:10px;">
+                            <span class="status-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg></span> <strong>Notifikasi</strong> <span style="font-size:0.75rem;color:var(--clr-text-muted);margin-left:auto">Wajib untuk peringatan swap</span>
+                        </div>
+                    </div>
+
+                    <button id="btnGrantPermissions" class="btn btn-primary" style="width:100%; padding:14px; font-size:1rem; display:flex; justify-content:center; gap:8px;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> 
+                        Berikan Semua Izin
+                    </button>
+                    
+                    <p id="permissionErrorHelp" style="display:none; color:var(--clr-danger); font-size:0.8rem; margin-top:16px;">Jika pop-up tidak muncul, klik ikon "Gembok" (Lock) di address bar browser Anda, lalu pastikan Lokasi, Kamera, dan Notifikasi diubah menjadi "Allow/Izinkan", kemudian muat ulang halaman (Refresh).</p>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const modal = document.getElementById('globalPermissionModal');
+                    const btn = document.getElementById('btnGrantPermissions');
+                    const errHelp = document.getElementById('permissionErrorHelp');
+
+                    let permLoc = false, permCam = false, permNotif = false;
+
+                    function updateUI(id, granted) {
+                        const el = document.getElementById(id).querySelector('.status-icon');
+                        if (granted) {
+                            el.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>';
+                            el.style.color = 'var(--clr-success)';
+                        } else {
+                            el.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+                            el.style.color = 'var(--clr-danger)';
+                        }
+                    }
+
+                    async function checkAllPermissions() {
+                        // Check Notification
+                        if ("Notification" in window) {
+                            permNotif = (Notification.permission === 'granted');
+                            updateUI('check-notif', permNotif);
+                        } else { permNotif = true; } // ignore if browser doesn't support
+
+                        // For Location & Camera, we usually just have to prompt.
+                        // We can check using permissions API where supported
+                        try {
+                            const pLoc = await navigator.permissions.query({name: 'geolocation'});
+                            permLoc = (pLoc.state === 'granted');
+                            updateUI('check-loc', permLoc);
+                        } catch(e) {}
+
+                        try {
+                            const pCam = await navigator.permissions.query({name: 'camera'});
+                            permCam = (pCam.state === 'granted');
+                            updateUI('check-cam', permCam);
+                        } catch(e) {}
+
+                        // Force modal if any essential permission is missing
+                        if (!permLoc || !permCam || !permNotif) {
+                            modal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                        } else {
+                            modal.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                        }
+                    }
+
+                    checkAllPermissions(); // Initial check
+
+                    btn.addEventListener('click', async function() {
+                        btn.innerHTML = 'Memproses izin aplikasi...';
+                        btn.disabled = true;
+                        errHelp.style.display = 'block';
+
+                        // 1. Request Notification
+                        if ("Notification" in window && Notification.permission !== "granted") {
+                            await Notification.requestPermission();
+                        }
+
+                        // 2. Request Camera
+                        try {
+                            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                            stream.getTracks().forEach(track => track.stop()); // close immediately
+                            permCam = true;
+                            updateUI('check-cam', true);
+                        } catch (err) {
+                            console.error("Camera denied", err);
+                        }
+
+                        // 3. Request Location
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(
+                                function(pos) {
+                                    permLoc = true;
+                                    updateUI('check-loc', true);
+                                    btn.innerHTML = 'Berikan Semua Izin';
+                                    btn.disabled = false;
+                                    checkAllPermissions(); // Re-evaluate and close if all good
+                                },
+                                function(err) {
+                                    console.error("Location denied", err);
+                                    btn.innerHTML = 'Coba Lagi / Berikan Izin';
+                                    btn.disabled = false;
+                                },
+                                { enableHighAccuracy: true, timeout: 5000 }
+                            );
+                        }
+                    });
+                });
+            </script>
         @endif
 
         @stack('scripts')

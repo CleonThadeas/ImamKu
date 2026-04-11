@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Notifications\BroadcastMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BroadcastNotificationController extends Controller
 {
@@ -27,44 +28,62 @@ class BroadcastNotificationController extends Controller
             'channels.*' => 'string|in:database,whatsapp,mail'
         ]);
 
-        $errors = false;
+        $channels = $request->channels;
+        $message = $request->message;
         $imams = User::where('role', 'imam')->where('is_active', true)->get();
+
+        $totalSent = 0;
+        $totalFailed = 0;
+        $failedChannels = [];
+
         foreach ($imams as $imam) {
-            try {
-                $imam->notify(new BroadcastMessage($request->message, $request->channels));
-                
-                foreach ($request->channels as $channel) {
+            // Send each channel independently so one failure doesn't block others
+            foreach ($channels as $channel) {
+                try {
+                    // Send notification for this specific channel only
+                    $imam->notify(new BroadcastMessage($message, [$channel]));
+
                     \App\Models\NotificationLog::create([
                         'user_id' => $imam->id,
                         'channel' => strtolower($channel),
                         'type' => 'broadcast',
-                        'payload' => ['message' => $request->message],
+                        'payload' => ['message' => $message],
                         'status' => 'sent',
                         'sent_at' => now(),
                     ]);
-                }
-            } catch (\Exception $e) {
-                \Illuminate\Support\Facades\Log::warning('Broadcast failed for imam ' . $imam->id . ': ' . $e->getMessage());
-                
-                foreach ($request->channels as $channel) {
+
+                    $totalSent++;
+                } catch (\Exception $e) {
+                    Log::warning("Broadcast [{$channel}] failed for imam {$imam->id}: " . $e->getMessage());
+
                     \App\Models\NotificationLog::create([
                         'user_id' => $imam->id,
                         'channel' => strtolower($channel),
                         'type' => 'broadcast',
-                        'payload' => ['message' => $request->message],
+                        'payload' => ['message' => $message],
                         'status' => 'failed',
                         'error_message' => substr($e->getMessage(), 0, 255),
                         'sent_at' => now(),
                     ]);
+
+                    $totalFailed++;
+                    if (!in_array($channel, $failedChannels)) {
+                        $failedChannels[] = $channel;
+                    }
                 }
-                $errors = true;
             }
         }
 
-        if ($errors) {
-            return back()->with('success', 'Pesan berhasil di-broadcast ke beberapa imam, namun ada beberapa perangkat yang gagal dikirim (misal nomor atau chat_id tidak valid).');
+        if ($totalFailed > 0 && $totalSent > 0) {
+            $failedStr = implode(', ', $failedChannels);
+            return back()->with('warning', "Pesan berhasil di-broadcast, namun {$totalFailed} pengiriman gagal pada channel: {$failedStr}. Periksa log untuk detail.");
         }
-        
-        return back()->with('success', 'Pesan berhasil di-broadcast ke seluruh imam.');
+
+        if ($totalFailed > 0 && $totalSent === 0) {
+            return back()->with('error', 'Semua pengiriman broadcast gagal. Periksa konfigurasi channel (SMTP/Fonnte API Key).');
+        }
+
+        return back()->with('success', "Pesan berhasil di-broadcast ke {$imams->count()} imam melalui " . implode(', ', $channels) . '.');
     }
 }
+

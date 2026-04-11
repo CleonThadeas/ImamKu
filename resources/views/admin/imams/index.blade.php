@@ -5,13 +5,9 @@
 <div class="main-header">
     <div>
         <h2 style="display:flex;align-items:center;gap:10px"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Data Imam</h2>
-        <div class="breadcrumb">Kelola data imam masjid (maks. {{ $maxImams }})</div>
+        <div class="breadcrumb">Kelola data imam masjid</div>
     </div>
-    @if($imams->count() < $maxImams)
-        <a href="{{ route('admin.imams.create') }}" class="btn btn-primary">+ Tambah Imam</a>
-    @else
-        <span class="badge badge-warning">Kuota Penuh ({{ $maxImams }}/{{ $maxImams }})</span>
-    @endif
+    <a href="{{ route('admin.imams.create') }}" class="btn btn-primary">+ Tambah Imam</a>
 </div>
 
 <div class="card">

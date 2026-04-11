@@ -48,13 +48,18 @@ class AttendanceController extends Controller
         // 4. Upload foto
         $path = $request->file('proof_photo')->store('attendances', 'public');
 
-        // 5. Simpan absensi
-        $attendance = Attendance::create([
-            'schedule_id' => $schedule->id,
-            'proof_path'  => $path,
-            'status'      => 'pending',
-            'notes'       => $request->notes,
-        ]);
+        // 5. Simpan absensi melalui service sentral (termasuk validasi radius & penalti)
+        try {
+            $attendance = app(\App\Services\AttendanceService::class)->processCheckIn(
+                $schedule,
+                (float) $request->latitude,
+                (float) $request->longitude,
+                $path
+            );
+        } catch (\Exception $e) {
+            // Tangkap exception jika gagal validasi GPS / larangan lainnya
+            return $this->error($e->getMessage(), 422);
+        }
 
         // 6. Auto-approve jika setting aktif
         $feeConfig = \App\Models\FeeConfig::where('season_id', $schedule->season_id)->first();

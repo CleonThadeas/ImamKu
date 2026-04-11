@@ -21,11 +21,24 @@ class ScheduleController extends Controller
     {
         $user = auth()->user();
         $season = RamadanSeason::where('is_active', true)->first();
-        $prayerTypes = PrayerType::orderBy('sort_order')->get();
+        $prayerTypes = collect();
         $schedules = collect();
 
         if ($season) {
             $schedules = $this->scheduleService->getSeasonSchedules($season->id);
+            
+            // Get unique prayer types that actually have schedule slots in this season
+            $activeTypeIds = [];
+            foreach ($schedules as $dateSchedules) {
+                foreach ($dateSchedules as $schedule) {
+                    $activeTypeIds[$schedule->prayer_type_id] = true;
+                }
+            }
+
+            if (!empty($activeTypeIds)) {
+                $prayerTypes = PrayerType::whereIn('id', array_keys($activeTypeIds))
+                    ->orderBy('sort_order')->get();
+            }
         }
 
         return view('imam.schedules.index', compact('season', 'schedules', 'prayerTypes', 'user'));

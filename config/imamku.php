@@ -44,4 +44,33 @@ return [
     |--------------------------------------------------------------------------
     */
     'swap_min_hours' => 2,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Swap Auto-Expiry (minutes before prayer time to expire pending swaps)
+    |--------------------------------------------------------------------------
+    */
+    'swap_expiry_minutes_before' => 60,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auto-Assignment Configuration (Hybrid System)
+    |--------------------------------------------------------------------------
+    | After emergency broadcast, wait this many minutes before auto-assigning.
+    */
+    'enable_auto_assignment' => false,
+    'auto_assign_delay_minutes' => 15,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Penalty Point System
+    |--------------------------------------------------------------------------
+    */
+    'penalty' => [
+        'attendance_ontime'     => 10,
+        'attendance_late'       => -5,
+        'no_show'               => -20,
+        'swap_expired'          => -10,
+        'restriction_threshold' => -30,
+    ],
 ];

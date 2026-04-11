@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PrayerTime extends Model
 {
-    protected $fillable = ['season_id', 'date', 'prayer_type_id', 'api_time', 'override_time'];
+    protected $fillable = ['season_id', 'date', 'prayer_type_id', 'api_time', 'override_time', 'is_manual'];
 
     protected function casts(): array
     {
         return [
             'date' => 'date',
+            'is_manual' => 'boolean',
         ];
     }
 

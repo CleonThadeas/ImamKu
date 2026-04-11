@@ -65,6 +65,10 @@ class SwapController extends Controller
         }
 
         return $this->success([
+            'user_standing' => [
+                'penalty_points' => $user->penalty_points,
+                'is_restricted'  => $user->is_restricted,
+            ],
             'available_swaps'     => SwapResource::collection($availableSwaps),
             'my_swaps'            => SwapResource::collection($mySwaps),
             'my_swappable_schedules' => ScheduleResource::collection($mySwappableSchedules),

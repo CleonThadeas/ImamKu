@@ -27,11 +27,25 @@ class ScheduleController extends Controller
 
         $selectedSeason = $selectedSeasonId ? RamadanSeason::find($selectedSeasonId) : null;
         $schedules = collect();
-        $prayerTypes = PrayerType::orderBy('sort_order')->get();
+        $prayerTypes = collect();
         $imams = User::where('role', 'imam')->where('is_active', true)->get();
 
         if ($selectedSeason) {
             $schedules = $this->scheduleService->getSeasonSchedules($selectedSeason->id);
+
+            // Get unique prayer types that actually have schedule slots in this season
+            $activeTypeIds = [];
+            foreach ($schedules as $dateSchedules) {
+                foreach ($dateSchedules as $schedule) {
+                    $activeTypeIds[$schedule->prayer_type_id] = true;
+                }
+            }
+
+            if (!empty($activeTypeIds)) {
+                $prayerTypes = PrayerType::whereIn('id', array_keys($activeTypeIds))
+                    ->orderBy('sort_order')
+                    ->get();
+            }
         }
 
         return view('admin.schedules.index', compact('seasons', 'selectedSeason', 'schedules', 'prayerTypes', 'imams'));

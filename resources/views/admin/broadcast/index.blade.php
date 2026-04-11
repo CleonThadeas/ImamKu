@@ -23,6 +23,12 @@
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
+        @if(session('warning'))
+            <div class="alert alert-success" style="border-color: var(--clr-accent); background: rgba(255,193,7,0.1); color: var(--clr-accent);">{{ session('warning') }}</div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-success" style="border-color: var(--clr-danger); background: rgba(244,67,54,0.1); color: var(--clr-danger);">{{ session('error') }}</div>
+        @endif
 
         <form action="{{ route('admin.broadcast.send') }}" method="POST">
             @csrf

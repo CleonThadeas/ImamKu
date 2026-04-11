@@ -25,6 +25,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // Peraturan & Ketentuan Page
+    Route::get('/guidelines', function() {
+        return view('guidelines');
+    })->name('guidelines');
 });
 
 // ── Admin Routes ────────────────────────────────────────────────
@@ -46,8 +51,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     // Prayer Times
     Route::get('prayer-times', [Admin\PrayerTimeController::class, 'index'])->name('prayer-times.index');
+    Route::post('prayer-times', [Admin\PrayerTimeController::class, 'store'])->name('prayer-times.store');
     Route::post('prayer-times/sync', [Admin\PrayerTimeController::class, 'syncFromApi'])->name('prayer-times.sync');
     Route::patch('prayer-times/{prayerTime}/override', [Admin\PrayerTimeController::class, 'override'])->name('prayer-times.override');
+    Route::post('prayer-times/{prayerTime}/reset', [Admin\PrayerTimeController::class, 'resetOverride'])->name('prayer-times.reset');
+    Route::delete('prayer-times/{prayerTime}', [Admin\PrayerTimeController::class, 'destroy'])->name('prayer-times.destroy');
 
     // Fee Management
     Route::get('fees', [Admin\FeeController::class, 'index'])->name('fees.index');
@@ -72,6 +80,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     
     // Monitoring Swaps
     Route::get('swaps', [Admin\SwapController::class, 'index'])->name('swaps.index');
+
+    // Mosque Configuration (GPS)
+    Route::get('mosque-config', [Admin\MosqueConfigController::class, 'index'])->name('mosque-config.index');
+    Route::post('mosque-config', [Admin\MosqueConfigController::class, 'store'])->name('mosque-config.store');
+
+    // Penalty System
+    Route::get('penalties', [Admin\PenaltyController::class, 'index'])->name('penalties.index');
+    Route::get('penalties/{user}/history', [Admin\PenaltyController::class, 'history'])->name('penalties.history');
+    Route::post('penalties/{user}/lift', [Admin\PenaltyController::class, 'liftRestriction'])->name('penalties.lift');
 });
 
 // ── Imam Routes ─────────────────────────────────────────────────
@@ -94,6 +111,9 @@ Route::middleware(['auth'])->prefix('imam')->name('imam.')->group(function () {
     
     // Income/Fee
     Route::get('fees', [Imam\FeeController::class, 'index'])->name('fees.index');
+    
+    // Points / Penalties
+    Route::get('points', [Imam\PenaltyController::class, 'index'])->name('points.index');
 });
 
 

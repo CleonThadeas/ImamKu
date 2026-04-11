@@ -13,23 +13,36 @@ use Illuminate\Support\Facades\DB;
 class ScheduleService
 {
     /**
-     * Generate empty schedule slots for all dates × prayer types in a season.
+     * Generate schedule slots only for prayer types that have active prayer_times on each date.
+     * Also removes orphaned slots whose prayer_type no longer has a prayer_time entry.
      */
     public function bulkGenerate(int $seasonId): int
     {
         $season = RamadanSeason::findOrFail($seasonId);
-        $prayerTypes = PrayerType::orderBy('sort_order')->get();
         $count = 0;
+        $validSlotKeys = []; // track date_prayerTypeId combos that should exist
 
         $startDate = $season->start_date->copy();
         $endDate = $season->end_date->copy();
 
+        // Pre-load all prayer_times for this season grouped by date
+        $allPrayerTimes = \App\Models\PrayerTime::where('season_id', $seasonId)
+            ->get()
+            ->groupBy(fn ($pt) => $pt->date->toDateString());
+
         while ($startDate->lte($endDate)) {
-            foreach ($prayerTypes as $prayerType) {
+            $dateStr = $startDate->toDateString();
+            $datePrayerTimes = $allPrayerTimes->get($dateStr, collect());
+
+            // Only create schedule slots for prayer types that have a prayer_time entry
+            foreach ($datePrayerTimes as $prayerTime) {
+                $key = $dateStr . '_' . $prayerTime->prayer_type_id;
+                $validSlotKeys[] = $key;
+
                 Schedule::firstOrCreate([
                     'season_id' => $seasonId,
-                    'date' => $startDate->toDateString(),
-                    'prayer_type_id' => $prayerType->id,
+                    'date' => $dateStr,
+                    'prayer_type_id' => $prayerTime->prayer_type_id,
                 ], [
                     'user_id' => null,
                     'notes' => null,
@@ -37,6 +50,23 @@ class ScheduleService
                 $count++;
             }
             $startDate->addDay();
+        }
+
+        // Remove orphaned schedule slots that don't have matching prayer_times
+        $existingSchedules = Schedule::where('season_id', $seasonId)->get();
+        $orphanIds = [];
+        foreach ($existingSchedules as $schedule) {
+            $key = $schedule->date->toDateString() . '_' . $schedule->prayer_type_id;
+            if (!in_array($key, $validSlotKeys)) {
+                // Only remove if unassigned (don't delete assigned schedules)
+                if (!$schedule->user_id) {
+                    $orphanIds[] = $schedule->id;
+                }
+            }
+        }
+
+        if (!empty($orphanIds)) {
+            Schedule::whereIn('id', $orphanIds)->delete();
         }
 
         return $count;
@@ -53,6 +83,11 @@ class ScheduleService
             // Check if slot already assigned to another imam
             if ($schedule->user_id && $schedule->user_id !== $userId) {
                 throw new \Exception("Slot ini sudah diisi oleh imam lain.");
+            }
+
+            $user = User::find($userId);
+            if ($user && $user->is_restricted) {
+                throw new \Exception("Imam {$user->name} saat ini dibatasi (restricted) karena penalti, tidak bisa ditugaskan.");
             }
 
             // Validate consecutive rule
@@ -190,5 +225,51 @@ class ScheduleService
             ->select('schedules.*')
             ->get()
             ->groupBy(fn ($s) => $s->date->toDateString());
+    }
+
+    /**
+     * Find the best available imam for a schedule slot.
+     * Criteria: (1) active + not restricted, (2) passes consecutive rule,
+     * (3) fewest schedules in current season, (4) highest penalty points.
+     */
+    public function findBestAvailableImam(Schedule $schedule): ?User
+    {
+        $imams = User::where('role', 'imam')
+            ->where('is_active', true)
+            ->get();
+
+        // Filter by consecutive rule
+        $eligible = $imams->filter(function ($imam) use ($schedule) {
+            // Check restriction (penalty system — Phase 4, graceful fallback)
+            if (method_exists($imam, 'getAttribute') && $imam->is_restricted) {
+                return false;
+            }
+
+            return $this->validateConsecutiveRule(
+                $schedule->date,
+                $schedule->prayer_type_id,
+                $imam->id
+            );
+        });
+
+        if ($eligible->isEmpty()) {
+            return null;
+        }
+
+        // Count schedules per imam in the active season
+        $seasonId = $schedule->season_id;
+        $scheduleCounts = Schedule::where('season_id', $seasonId)
+            ->whereNotNull('user_id')
+            ->selectRaw('user_id, COUNT(*) as total')
+            ->groupBy('user_id')
+            ->pluck('total', 'user_id');
+
+        // Sort by: fewest schedules first, then highest penalty_points (for future Phase 4)
+        return $eligible->sortBy(function ($imam) use ($scheduleCounts) {
+            $count = $scheduleCounts->get($imam->id, 0);
+            $points = $imam->penalty_points ?? 0;
+            // Lower schedule count = better, higher points = better (negate for ascending sort)
+            return [$count, -$points];
+        })->first();
     }
 }

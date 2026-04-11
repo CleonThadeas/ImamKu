@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PrayerType extends Model
 {
-    protected $fillable = ['name', 'group_code', 'sort_order'];
+    protected $fillable = ['name', 'group_code', 'sort_order', 'is_default', 'api_key'];
+
+    protected function casts(): array
+    {
+        return [
+            'is_default' => 'boolean',
+        ];
+    }
 
     public function prayerTimes(): HasMany
     {

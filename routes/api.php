@@ -44,4 +44,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/notifications', [Api\NotificationController::class, 'index']);
     Route::post('/notifications/read-all', [Api\NotificationController::class, 'readAll']);
     Route::post('/notifications/{id}/read', [Api\NotificationController::class, 'read']);
+
+    // Penalti & Ranking
+    Route::get('/penalties', [Api\PenaltyController::class, 'index']);
+    Route::get('/penalties/ranking', [Api\PenaltyController::class, 'ranking']);
+
+    // Panduan & Ketentuan
+    Route::get('/guidelines', [Api\GuidelineController::class, 'index']);
 });

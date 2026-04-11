@@ -29,6 +29,10 @@ class SwapService
             throw new \Exception("Anda hanya bisa meminta swap untuk jadwal Anda sendiri.");
         }
 
+        if ($schedule->user->is_restricted) {
+            throw new \Exception("Akun Anda dibatasi (restricted) karena poin penalti. Anda tidak dapat melakukan swap jadwal.");
+        }
+
         $this->validateMinimumTime($schedule);
 
         // Check for existing pending swap request for same schedule
@@ -70,6 +74,10 @@ class SwapService
 
             if ($targetSchedule->user_id !== $accepterId) {
                 throw new \Exception("Jadwal tawaran harus milik Anda sendiri.");
+            }
+
+            if ($targetSchedule->user->is_restricted) {
+                throw new \Exception("Akun Anda dibatasi (restricted). Anda tidak dapat menerima swap jadwal.");
             }
 
             $this->validateMinimumTime($targetSchedule);

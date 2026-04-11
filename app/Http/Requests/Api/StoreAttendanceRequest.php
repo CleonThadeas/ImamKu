@@ -17,6 +17,8 @@ class StoreAttendanceRequest extends FormRequest
     {
         return [
             'proof_photo' => ['required', 'image', 'max:5120'], // max 5MB
+            'latitude'    => ['required', 'numeric', 'between:-90,90'],
+            'longitude'   => ['required', 'numeric', 'between:-180,180'],
             'notes'       => ['nullable', 'string', 'max:500'],
         ];
     }
@@ -27,6 +29,8 @@ class StoreAttendanceRequest extends FormRequest
             'proof_photo.required' => 'Foto bukti kehadiran wajib diunggah.',
             'proof_photo.image'    => 'File harus berupa gambar.',
             'proof_photo.max'      => 'Ukuran foto maksimal 5MB.',
+            'latitude.required'    => 'Data titik lokasi (latitude) wajib disertakan.',
+            'longitude.required'   => 'Data titik lokasi (longitude) wajib disertakan.',
         ];
     }
 

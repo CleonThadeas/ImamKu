@@ -15,7 +15,8 @@ class ExportController extends Controller
     public function index()
     {
         $seasons = RamadanSeason::latest()->get();
-        return view('admin.exports.index', compact('seasons'));
+        $imams = User::where('role', 'imam')->orderBy('name')->get();
+        return view('admin.exports.index', compact('seasons', 'imams'));
     }
 
     public function download(Request $request)
@@ -24,19 +25,31 @@ class ExportController extends Controller
         $seasonId = $request->input('season_id');
 
         if ($type === 'imams') {
-            return $this->exportImams();
+            return $this->exportImams($request);
         } elseif ($type === 'schedules') {
-            return $this->exportSchedules($seasonId);
+            return $this->exportSchedules($request);
         } elseif ($type === 'attendances') {
-            return $this->exportAttendances($seasonId);
+            return $this->exportAttendances($request);
         }
 
         return redirect()->back()->with('error', 'Tipe export tidak ditemukan.');
     }
 
-    private function exportImams()
+    private function exportImams(Request $request)
     {
-        $imams = User::where('role', 'imam')->get();
+        $query = User::where('role', 'imam');
+        
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+        if ($request->filled('is_active') && $request->is_active !== 'all') {
+            $query->where('is_active', $request->is_active);
+        }
+
+        $imams = $query->get();
 
         $headers = [
             'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
@@ -72,12 +85,31 @@ class ExportController extends Controller
         return new StreamedResponse($callback, 200, $headers);
     }
 
-    private function exportSchedules($seasonId)
+    private function exportSchedules(Request $request)
     {
+        $seasonId = $request->input('season_id');
         $query = Schedule::with(['user', 'prayerType', 'season']);
+        
         if ($seasonId && $seasonId !== 'all') {
             $query->where('season_id', $seasonId);
         }
+        if ($request->filled('start_date')) {
+            $query->whereDate('date', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('date', '<=', $request->end_date);
+        }
+        if ($request->filled('imam_id') && $request->imam_id !== 'all') {
+            $query->where('user_id', $request->imam_id);
+        }
+        if ($request->filled('status_assign') && $request->status_assign !== 'all') {
+            if ($request->status_assign === 'terisi') {
+                $query->whereNotNull('user_id');
+            } elseif ($request->status_assign === 'kosong') {
+                $query->whereNull('user_id');
+            }
+        }
+
         $schedules = $query->orderBy('date')->get();
 
         $headers = [
@@ -110,14 +142,40 @@ class ExportController extends Controller
         return new StreamedResponse($callback, 200, $headers);
     }
 
-    private function exportAttendances($seasonId)
+    private function exportAttendances(Request $request)
     {
+        $seasonId = $request->input('season_id');
         $query = Attendance::with(['schedule.user', 'schedule.prayerType', 'schedule.season']);
-        if ($seasonId && $seasonId !== 'all') {
-            $query->whereHas('schedule', function ($q) use ($seasonId) {
+        
+        $query->whereHas('schedule', function ($q) use ($seasonId, $request) {
+            if ($seasonId && $seasonId !== 'all') {
                 $q->where('season_id', $seasonId);
-            });
+            }
+            if ($request->filled('start_date')) {
+                $q->whereDate('date', '>=', $request->start_date);
+            }
+            if ($request->filled('end_date')) {
+                $q->whereDate('date', '<=', $request->end_date);
+            }
+            if ($request->filled('imam_id') && $request->imam_id !== 'all') {
+                $q->where('user_id', $request->imam_id);
+            }
+        });
+
+        if ($request->filled('attendance_status') && $request->attendance_status !== 'all') {
+            $query->where('status', $request->attendance_status);
         }
+
+        if ($request->filled('fee_status') && $request->fee_status !== 'all') {
+            if ($request->fee_status === 'cair') {
+                $query->where('status', 'approved');
+            } elseif ($request->fee_status === 'batal') {
+                $query->whereIn('status', ['rejected', 'expired']);
+            } elseif ($request->fee_status === 'pending') {
+                $query->where('status', 'pending');
+            }
+        }
+
         $attendances = $query->latest()->get();
 
         $headers = [

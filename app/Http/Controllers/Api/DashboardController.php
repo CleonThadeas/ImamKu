@@ -71,6 +71,10 @@ class DashboardController extends Controller
                 'id'   => $season->id,
                 'name' => $season->name,
             ],
+            'user_standing' => [
+                'penalty_points' => $user->penalty_points,
+                'is_restricted'  => $user->is_restricted,
+            ],
             'upcoming_schedules'  => ScheduleResource::collection($schedules),
             'pending_swaps_count' => $pendingSwaps,
             'total_fee'           => $report['total'] ?? 0,

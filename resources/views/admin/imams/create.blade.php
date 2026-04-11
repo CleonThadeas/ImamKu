@@ -18,11 +18,13 @@
         </div>
         <div class="form-group">
             <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-input" value="{{ old('email') }}" required>
+            <input type="email" name="email" class="form-input" value="{{ old('email') }}" placeholder="contoh@gmail.com" required>
+            <small style="color:var(--clr-text-muted);font-size:0.7rem">Hanya @gmail.com atau @yahoo.com</small>
         </div>
         <div class="form-group">
             <label class="form-label">No. HP (WhatsApp)</label>
-            <input type="text" name="phone" class="form-input" value="{{ old('phone') }}" placeholder="628xxxxxxxxxx">
+            <input type="tel" name="phone" class="form-input" value="{{ old('phone') }}" placeholder="628xxxxxxxxxx" pattern="[0-9]*" inputmode="numeric" minlength="10" maxlength="15">
+            <small style="color:var(--clr-text-muted);font-size:0.7rem">Hanya angka, 10-15 digit</small>
         </div>
         <div class="form-group">
             <label class="form-label">Password</label>

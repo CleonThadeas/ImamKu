@@ -16,12 +16,30 @@
         <span style="font-size:1.5rem; color:var(--clr-accent)"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
         <div>
             <div id="realtime-clock" style="font-size:1.2rem; font-weight:700; color:var(--clr-accent); font-variant-numeric: tabular-nums;">--:--:-- WIB</div>
-            <div style="font-size:0.7rem; color:var(--clr-text-muted); text-transform:uppercase; letter-spacing:1px">Waktu Server Terkini</div>
+            <p id="locationStatus" style="font-size: 0.8rem; color: var(--clr-text-muted); margin-top: 12px; font-style: italic;">
+                Mencari lokasi Anda...
+            </p>
         </div>
     </div>
 </div>
-
-
+<!-- Penalty & Restriction Status -->
+@if(auth()->user()->is_restricted)
+    <div class="alert alert-danger" style="display:flex; align-items:center; gap:10px; background:var(--clr-danger); color:white; border:none; padding:15px; border-radius:8px;">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h.01"/></svg>
+        <div>
+            <strong style="display:block; font-size:1.1rem;">Akun Anda Dibatasi (Restricted)</strong>
+            <span>Total poin Anda ({{ auth()->user()->penalty_points }}) telah melewati batas bawah (-30). Anda tidak bisa memproses swap, mengambil jadwal, dan mengisi absensi baru. Hubungi Admin.</span>
+        </div>
+    </div>
+@else
+    <div style="margin-bottom: 20px; display:inline-flex; align-items:center; gap:8px; background:var(--clr-surface); padding:8px 16px; border-radius:50px; border:1px solid var(--clr-border);">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--clr-accent)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span style="font-size:0.9rem; color:var(--clr-text-muted);">Poin Performa:</span>
+        <strong style="color: {{ auth()->user()->penalty_points < 0 ? 'var(--clr-danger)' : 'var(--clr-success)' }}; font-size:1.1rem;">
+            {{ auth()->user()->penalty_points > 0 ? '+' : '' }}{{ auth()->user()->penalty_points }}
+        </strong>
+    </div>
+@endif
 
 <!-- Pending Swaps Alert -->
 @if($pendingSwaps->count() > 0)
@@ -106,10 +124,17 @@
         
         <form id="absenForm" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="latitude" id="absenLatitude" required>
+            <input type="hidden" name="longitude" id="absenLongitude" required>
+            
+            <div id="absenLocationStatus" style="font-size:0.85rem; margin-bottom:15px; padding:10px; border-radius:6px; background:var(--clr-surface-hover); color:var(--clr-warning);">
+                Mencari lokasi Anda...
+            </div>
+
             <div class="mb-3">
                 <input type="file" name="proof_photo" class="form-control" accept="image/*" required>
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;">Upload & Simpan Absen</button>
+            <button type="submit" id="btnSubmitAbsen" class="btn btn-primary" style="width:100%;" disabled>Upload & Simpan Absen</button>
         </form>
     </div>
 </div>
@@ -119,10 +144,42 @@
         document.getElementById('absenModal').style.display = 'flex';
         document.getElementById('absenPrayerName').textContent = prayerName;
         document.getElementById('absenForm').action = "/imam/schedules/" + scheduleId + "/attendance";
+        
+        const locStatus = document.getElementById('absenLocationStatus');
+        const btnSubmit = document.getElementById('btnSubmitAbsen');
+        const latInput = document.getElementById('absenLatitude');
+        const lngInput = document.getElementById('absenLongitude');
+        
+        locStatus.innerHTML = 'Mencari lokasi Anda...';
+        locStatus.style.color = 'var(--clr-warning)';
+        btnSubmit.disabled = true;
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    latInput.value = position.coords.latitude;
+                    lngInput.value = position.coords.longitude;
+                    locStatus.innerHTML = 'Lokasi berhasil didapatkan.';
+                    locStatus.style.color = 'var(--clr-success)';
+                    btnSubmit.disabled = false;
+                },
+                function(error) {
+                    locStatus.innerHTML = 'Gagal akses GPS. Pastikan izin lokasi (Location) menyala.';
+                    locStatus.style.color = 'var(--clr-danger)';
+                    btnSubmit.disabled = true;
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        } else {
+            locStatus.innerHTML = 'Browser tidak mendukung GPS.';
+            locStatus.style.color = 'var(--clr-danger)';
+        }
     }
     
     function closeAbsenModal() {
         document.getElementById('absenModal').style.display = 'none';
+        document.getElementById('absenLatitude').value = '';
+        document.getElementById('absenLongitude').value = '';
     }
 
     function updateClock() {

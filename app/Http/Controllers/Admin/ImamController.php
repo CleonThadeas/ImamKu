@@ -11,38 +11,26 @@ class ImamController extends Controller
     public function index()
     {
         $imams = User::where('role', 'imam')->latest()->get();
-        $maxImams = config('imamku.max_imams', 5);
-        return view('admin.imams.index', compact('imams', 'maxImams'));
+        return view('admin.imams.index', compact('imams'));
     }
 
     public function create()
     {
-        $currentCount = User::where('role', 'imam')->count();
-        $maxImams = config('imamku.max_imams', 5);
-
-        if ($currentCount >= $maxImams) {
-            return redirect()->route('admin.imams.index')
-                ->with('error', "Maksimal {$maxImams} imam telah tercapai.");
-        }
-
         return view('admin.imams.create');
     }
 
     public function store(Request $request)
     {
-        $currentCount = User::where('role', 'imam')->count();
-        $maxImams = config('imamku.max_imams', 5);
-
-        if ($currentCount >= $maxImams) {
-            return redirect()->route('admin.imams.index')
-                ->with('error', "Maksimal {$maxImams} imam telah tercapai.");
-        }
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'nullable|string|max:20',
+            'email' => ['required', 'email', 'unique:users,email', 'regex:/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/i'],
+            'phone' => ['nullable', 'regex:/^[0-9]+$/', 'min:10', 'max:15'],
             'password' => 'required|string|min:8|confirmed',
+        ], [
+            'email.regex' => 'Email harus menggunakan domain @gmail.com atau @yahoo.com.',
+            'phone.regex' => 'Nomor telepon harus berupa angka saja (tanpa spasi, huruf, atau karakter lain).',
+            'phone.min' => 'Nomor telepon minimal 10 digit.',
+            'phone.max' => 'Nomor telepon maksimal 15 digit.',
         ]);
 
         User::create([
@@ -67,18 +55,40 @@ class ImamController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $imam->id,
-            'phone' => 'nullable|string|max:20',
+            'email' => ['required', 'email', 'unique:users,email,' . $imam->id, 'regex:/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/i'],
+            'phone' => ['nullable', 'regex:/^[0-9]+$/', 'min:10', 'max:15'],
             'password' => 'nullable|string|min:8|confirmed',
             'is_active' => 'boolean',
+        ], [
+            'email.regex' => 'Email harus menggunakan domain @gmail.com atau @yahoo.com.',
+            'phone.regex' => 'Nomor telepon harus berupa angka saja (tanpa spasi, huruf, atau karakter lain).',
+            'phone.min' => 'Nomor telepon minimal 10 digit.',
+            'phone.max' => 'Nomor telepon maksimal 15 digit.',
         ]);
 
+        $newIsActive = $request->boolean('is_active', true);
+        
         $data = [
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'] ?? null,
-            'is_active' => $request->boolean('is_active', true),
+            'is_active' => $newIsActive,
         ];
+
+        // Jika sebelumnya nonaktif dan sekarang diaktifkan kembali
+        if (!$imam->is_active && $newIsActive) {
+            $data['penalty_points'] = 0;
+            $data['is_restricted'] = false;
+
+            if ($imam->penalty_points < 0) {
+                \App\Models\PenaltyLog::create([
+                    'user_id' => $imam->id,
+                    'event_type' => 'manual_reset',
+                    'points' => abs($imam->penalty_points),
+                    'description' => 'Poin direset ke 0 oleh Admin karena akun diaktifkan kembali.',
+                ]);
+            }
+        }
 
         if (!empty($validated['password'])) {
             $data['password'] = bcrypt($validated['password']);
