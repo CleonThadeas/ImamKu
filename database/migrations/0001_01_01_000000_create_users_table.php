@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role')->default('imam'); // PostgreSQL compatible: using string instead of enum
+            $table->enum('role', ['admin', 'imam'])->default('imam');
             $table->string('phone')->nullable();
             $table->boolean('is_active')->default(true);
             $table->rememberToken();

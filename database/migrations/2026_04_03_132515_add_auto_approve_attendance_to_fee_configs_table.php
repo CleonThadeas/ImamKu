@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('fee_configs', function (Blueprint $table) {
-            $table->boolean('is_auto_approve_attendance')->default(false); // Removed after() for PostgreSQL compatibility
+            $table->boolean('is_auto_approve_attendance')->default(false)->after('is_enabled');
         });
     }
 

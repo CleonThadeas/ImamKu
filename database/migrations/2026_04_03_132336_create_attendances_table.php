@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->cascadeOnDelete();
             $table->string('proof_path')->nullable();
-            $table->string('status')->default('pending'); // PostgreSQL compatible: using string instead of enum
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('notes')->nullable();
             $table->timestamps();
         });
