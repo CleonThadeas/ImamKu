@@ -13,9 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('schedule_id')->nullable()->constrained('schedules')->nullOnDelete();
             $table->foreignId('swap_request_id')->nullable()->constrained('swap_requests')->nullOnDelete();
-            $table->enum('event_type', [
-                'attendance_ontime', 'attendance_late', 'no_show', 'swap_expired'
-            ]);
+            $table->string('event_type', 50);
             $table->integer('points');
             $table->text('description')->nullable();
             $table->timestamps();
