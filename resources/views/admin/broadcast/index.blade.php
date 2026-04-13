@@ -2,11 +2,21 @@
 @section('title', 'Kirim Broadcast')
 
 @section('content')
-<div class="main-header">
+<div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-8">
     <div>
-        <h2 style="display:flex;align-items:center;gap:10px"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg> Kirim Broadcast</h2>
-        <div class="breadcrumb">Admin — Kirim pesan siaran ke seluruh Imam</div>
+        <h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1">Komunikasi</h2>
+        <p class="text-on-surface-variant text-sm font-medium">Kirim Broadcast dan Lihat Riwayat Notifikasi</p>
     </div>
+</div>
+
+<!-- TABS -->
+<div class="flex items-center gap-2 border-b border-outline-variant/20 mb-8 pb-4">
+    <a href="{{ route('admin.broadcast.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-primary/20 text-primary border border-primary/30">
+        <span class="material-symbols-outlined text-[18px]">campaign</span> Broadcast Pesan
+    </a>
+    <a href="{{ route('admin.notification-logs.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+        <span class="material-symbols-outlined text-[18px]">notifications_active</span> Log Notifikasi
+    </a>
 </div>
 
 <div style="display:grid; grid-template-columns:1fr; gap:24px; max-width:720px;">

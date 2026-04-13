@@ -20,19 +20,19 @@
 
         <style>
             :root {
-                --clr-primary: #1B4332;
-                --clr-primary-light: #2D6A4F;
-                --clr-primary-dark: #0F2B1F;
-                --clr-accent: #D4A843;
-                --clr-accent-light: #E8C96A;
-                --clr-accent-dark: #B8922D;
-                --clr-bg: #0A0F1A;
+                --clr-primary: #10B981;
+                --clr-primary-light: #34D399;
+                --clr-primary-dark: #047857;
+                --clr-accent: #F59E0B;
+                --clr-accent-light: #FBBF24;
+                --clr-accent-dark: #D97706;
+                --clr-bg: #0F172A;
                 --clr-surface: #111827;
                 --clr-surface-light: #1F2937;
-                --clr-surface-hover: #283343;
-                --clr-text: #F9FAFB;
+                --clr-surface-hover: #374151;
+                --clr-text: #E5E7EB;
                 --clr-text-muted: #9CA3AF;
-                --clr-border: #374151;
+                --clr-border: #1F2937;
                 --clr-success: #10B981;
                 --clr-danger: #EF4444;
                 --clr-warning: #F59E0B;
@@ -75,7 +75,6 @@
                 position: fixed;
                 left: 0; top: 0; bottom: 0;
                 width: var(--sidebar-width);
-                background: linear-gradient(180deg, var(--clr-primary-dark) 0%, var(--clr-primary) 50%, var(--clr-primary-light) 100%);
                 padding: 0;
                 z-index: 50;
                 display: flex;
@@ -246,17 +245,17 @@
 
             /* ── Cards ───────────────────────────────── */
             .card {
-                background: var(--clr-surface);
-                border: 1px solid var(--clr-border);
-                border-radius: 16px;
-                padding: 24px;
-                backdrop-filter: blur(10px);
+                background: #1F2937; /* bg-surface-container */
+                border: 1px solid rgba(75, 85, 99, 0.3); /* border-outline-variant/30 */
+                border-radius: 24px; /* rounded-3xl */
+                padding: 24px; /* px-6 py-6 */
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
                 transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             }
 
             .card:hover {
-                box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-                border-color: rgba(212,168,67,0.15);
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                border-color: rgba(16, 185, 129, 0.4);
             }
 
             .card-header {
@@ -281,19 +280,20 @@
             }
 
             .stat-card {
-                background: linear-gradient(135deg, var(--clr-surface) 0%, var(--clr-surface-light) 100%);
-                border: 1px solid var(--clr-border);
-                border-radius: 16px;
-                padding: 22px;
+                background: #1F2937;
+                border: 1px solid rgba(75, 85, 99, 0.3);
+                border-radius: 24px;
+                padding: 24px;
                 display: flex;
                 align-items: center;
                 gap: 16px;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                 transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
             }
 
             .stat-card:hover {
                 transform: translateY(-4px);
-                border-color: var(--clr-accent);
+                border-color: #10B981;
                 box-shadow: 0 12px 28px rgba(0,0,0,0.18);
             }
 
@@ -328,7 +328,8 @@
             .table-wrapper {
                 overflow-x: auto;
                 border-radius: 12px;
-                border: 1px solid var(--clr-border);
+                border: 1px solid rgba(75, 85, 99, 0.3);
+                background: #111827; /* Tailwind bg-surface */
             }
 
             table {
@@ -337,30 +338,31 @@
             }
 
             table th {
-                background: var(--clr-surface-light);
-                padding: 12px 16px;
+                background: #1F2937;
+                padding: 16px 24px;
                 text-align: left;
                 font-size: 0.75rem;
-                font-weight: 600;
-                color: var(--clr-text-muted);
+                font-weight: 700;
+                color: #9CA3AF;
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
-                border-bottom: 1px solid var(--clr-border);
+                border-bottom: 1px solid rgba(75, 85, 99, 0.3);
             }
 
             table td {
-                padding: 12px 16px;
+                padding: 16px 24px;
                 font-size: 0.875rem;
-                color: var(--clr-text);
-                border-bottom: 1px solid var(--clr-border);
+                color: #E5E7EB;
+                border-bottom: 1px solid rgba(75, 85, 99, 0.2);
             }
 
             table tbody tr {
+                background: transparent;
                 transition: background 0.2s ease;
             }
 
             table tbody tr:hover {
-                background: var(--clr-surface-hover);
+                background: rgba(31, 41, 55, 0.8); /* hover on surface variant */
             }
 
             table tbody tr:nth-child(even) {
@@ -388,14 +390,15 @@
             }
 
             .btn-primary {
-                background: linear-gradient(135deg, var(--clr-accent-dark), var(--clr-accent));
-                color: var(--clr-primary-dark);
+                background: linear-gradient(135deg, #059669, #10B981); /* Emerald 600 to 500 */
+                color: #FFFFFF;
+                box-shadow: 0 2px 4px rgba(16,185,129,0.2);
             }
 
             .btn-primary:hover {
-                background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent-light));
+                background: linear-gradient(135deg, #047857, #059669); /* Emerald 700 to 600 */
                 transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(212, 168, 67, 0.3);
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
             }
 
             .btn-secondary {
@@ -443,7 +446,7 @@
                 display: block;
                 font-size: 0.8rem;
                 font-weight: 600;
-                color: var(--clr-text-muted);
+                color: #9CA3AF;
                 margin-bottom: 6px;
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
@@ -452,10 +455,10 @@
             .form-input, .form-select, .form-control {
                 width: 100%;
                 padding: 11px 14px;
-                background: var(--clr-surface-light);
-                border: 1.5px solid var(--clr-border);
-                border-radius: 10px;
-                color: var(--clr-text);
+                background: #111827;
+                border: 1px solid #1F2937;
+                border-radius: 12px;
+                color: #E5E7EB;
                 font-size: 0.875rem;
                 font-family: inherit;
                 transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
@@ -463,9 +466,9 @@
 
             .form-input:focus, .form-select:focus, .form-control:focus {
                 outline: none;
-                border-color: var(--clr-accent);
-                box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.12);
-                background: var(--clr-surface);
+                border-color: #10B981;
+                box-shadow: 0 0 0 1px #10B981;
+                background: #111827;
             }
 
             .form-input::placeholder, .form-control::placeholder {
@@ -862,146 +865,139 @@
                 }
             }
         </style>
+        </style>
+        <!-- Tailwind CSS & Fonts -->
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: { extend: { colors: { 
+                    "primary": "#10B981",
+                    "primary-container": "#0d9467",
+                    "on-primary-container": "#d1fae5",
+                    "secondary": "#1F2937",
+                    "accent": "#F59E0B",
+                    "background": "#0F172A",
+                    "surface": "#111827",
+                    "surface-container": "#1F2937",
+                    "surface-container-low": "#111827",
+                    "surface-container-high": "#374151",
+                    "surface-container-highest": "#4B5563",
+                    "surface-container-lowest": "#060e20",
+                    "on-surface": "#E5E7EB",
+                    "on-surface-variant": "#9CA3AF",
+                    "outline-variant": "#4B5563",
+                    "error": "#EF4444",
+                    "tertiary": "#F59E0B"
+                }, fontFamily: { "headline": ["Inter"], "body": ["Inter"], "label": ["Inter"] } } }
+            }
+        </script>
+        <style>
+            .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+            .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+            .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
+            .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+            
+            /* Phase 2 Input Constraints */
+            input.form-control, input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"], select.form-select, textarea {
+                background-color: #111827 !important;
+                color: #E5E7EB !important;
+                border: 1px solid #374151 !important;
+            }
+            input:focus, select:focus, textarea:focus {
+                border-color: #10B981 !important;
+                outline: none !important;
+                box-shadow: 0 0 0 1px #10B981 !important;
+            }
+        </style>
     </head>
-    <body>
-        <!-- Mobile Toggle -->
-        <button class="mobile-toggle" onclick="toggleSidebar()" id="sidebar-toggle"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
-        <div class="mobile-overlay" id="mobile-overlay" onclick="toggleSidebar()"></div>
+    <body class="bg-background text-on-surface selection:bg-primary/30 flex w-full min-h-screen overflow-hidden font-['Inter']">
+        
+        <!-- Mobile Toggle: Fixed ID and Toggle Logic -->
+        <button class="mobile-toggle text-on-surface bg-surface-container rounded-lg p-2 flex items-center justify-center border border-outline-variant/20 shadow-sm cursor-pointer lg:hidden fixed top-4 left-4" style="z-index:90;" onclick="toggleSidebarMenu()" id="sidebar-toggle">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="mobile-overlay lg:hidden fixed inset-0 bg-black/50 hidden" style="z-index:80; transition: opacity 0.3s;" id="mobile-overlay" onclick="toggleSidebarMenu()"></div>
 
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-brand" style="padding: 24px 20px; display:flex; flex-direction:column; align-items:center;">
-                <img src="{{ asset('storage/logo/Logo.svg') }}" alt="ImamKu Logo" style="height: 48px; width: auto; object-fit: contain;">
-                <div class="brand-sub" style="margin-top: 8px;">Ramadan Schedule</div>
+        <!-- Sidebar Layout Component -->
+        <aside class="sidebar fixed left-0 top-0 h-full flex flex-col w-64 border-r border-outline-variant/15 bg-surface-container-low shadow-2xl transition-transform duration-300 -translate-x-full lg:translate-x-0" style="z-index:85;" id="sidebar">
+            <div class="px-6 py-6 flex items-center gap-3">
+                <img src="{{ asset('storage/logo/Logo.svg') }}" alt="ImamKu Logo" class="h-10 w-auto object-contain">
+                <div>
+                    <h1 class="text-xl font-bold tracking-tighter text-primary">ImamKu</h1>
+                    <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/60">Management System</p>
+                </div>
             </div>
 
-            <nav class="sidebar-nav">
-                @if(auth()->user()->isAdmin())
-                    <div class="nav-section">Menu Utama</div>
-                    <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Dashboard
-                    </a>
-                    <a href="{{ route('admin.schedules.index') }}" class="{{ request()->routeIs('admin.schedules.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span> Jadwal
-                    </a>
-                    <a href="{{ route('admin.prayer-times.index') }}" class="{{ request()->routeIs('admin.prayer-times.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span> Waktu Sholat
-                    </a>
-
-                    <div class="nav-section">Manajemen</div>
-                    <a href="{{ route('admin.imams.index') }}" class="{{ request()->routeIs('admin.imams.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> Data Imam
-                    </a>
-                    <a href="{{ route('admin.seasons.index') }}" class="{{ request()->routeIs('admin.seasons.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span> Season Ramadan
-                    </a>
-                    <a href="{{ route('admin.attendances.index') }}" class="{{ request()->routeIs('admin.attendances.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2v11z"/><circle cx="12" cy="13" r="4"/></svg></span> Validasi Absen
-                    </a>
-                    <a href="{{ route('admin.swaps.index') }}" class="{{ request()->routeIs('admin.swaps.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 21l6-6M9 8l-6 6M4 14v5h5M4 19l6-6M3 3l6 6"/></svg></span> Monitoring Swap
-                    </a>
-                    <a href="{{ route('admin.mosque-config.index') }}" class="{{ request()->routeIs('admin.mosque-config.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span> Lokasi Masjid
-                    </a>
-                    <a href="{{ route('admin.penalties.index') }}" class="{{ request()->routeIs('admin.penalties.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"/></svg></span> Penalty & Ranking
-                    </a>
-
-                    <div class="nav-section">Keuangan</div>
-                    <a href="{{ route('admin.fees.index') }}" class="{{ request()->routeIs('admin.fees.index') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span> Konfigurasi Fee
-                    </a>
-                    <a href="{{ route('admin.fees.report') }}" class="{{ request()->routeIs('admin.fees.report') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span> Laporan Fee
-                    </a>
-
-                    <div class="nav-section">Lainnya</div>
-                    <a href="{{ route('guidelines') }}" class="{{ request()->routeIs('guidelines') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> Panduan & Ketentuan
-                    </a>
-                    <a href="{{ route('admin.exports.index') }}" class="{{ request()->routeIs('admin.exports.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></span> Pusat Export
-                    </a>
-                    <a href="{{ route('admin.notification-logs.index') }}" class="{{ request()->routeIs('admin.notification-logs.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg></span> Log Notifikasi
-                    </a>
-                    <a href="{{ route('admin.broadcast.index') }}" class="{{ request()->routeIs('admin.broadcast.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span> Broadcast
-                    </a>
-                @else
-                    <div class="nav-section">Menu</div>
-                    <a href="{{ route('imam.dashboard') }}" class="{{ request()->routeIs('imam.dashboard') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span> Dashboard
-                    </a>
-                    <a href="{{ route('imam.schedules.index') }}" class="{{ request()->routeIs('imam.schedules.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span> Lihat Jadwal
-                    </a>
-                    <a href="{{ route('imam.swaps.index') }}" class="{{ request()->routeIs('imam.swaps.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg></span> Swap Jadwal
-                    </a>
-                    <a href="{{ route('imam.fees.index') }}" class="{{ request()->routeIs('imam.fees.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span> Laporan Pendapatan
-                    </a>
-                    <a href="{{ route('imam.points.index') }}" class="{{ request()->routeIs('imam.points.*') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span> Poin & Performa
-                    </a>
-                    <a href="{{ route('imam.notifications.index') }}" class="{{ request()->routeIs('imam.notifications.*') ? 'active' : '' }}">
-                        <span class="nav-icon" style="position:relative">
-                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
-                            @if(auth()->user()->unreadNotifications->count() > 0)
-                                <span style="position:absolute;top:-2px;right:-2px;width:6px;height:6px;background:var(--clr-danger);border-radius:50%"></span>
-                            @endif
-                        </span> Kotak Masuk
-                    </a>
-                    
-                    <div class="nav-section">Pusat Informasi</div>
-                    <a href="{{ route('guidelines') }}" class="{{ request()->routeIs('guidelines') ? 'active' : '' }}">
-                        <span class="nav-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span> Panduan & Ketentuan
-                    </a>
+            <nav class="sidebar-nav flex-1 overflow-y-auto custom-scrollbar px-4 space-y-2 pb-8" style="padding-top:0;">
+                @if(auth()->check())
+                    <x-sidebar-nav :role="auth()->user()->isAdmin() ? 'admin' : 'imam'" />
                 @endif
             </nav>
 
-            <div class="sidebar-user">
-                <div class="user-avatar">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div>
-                <div class="user-info">
-                    <div class="user-name">{{ auth()->user()->name }}</div>
-                    <div class="user-role">{{ auth()->user()->role }}</div>
+            @if(auth()->check())
+            <div class="sidebar-user p-4 bg-surface-container-lowest/50 border-t border-outline-variant/10 text-left" style="margin-top:auto;">
+                <div class="flex items-center gap-3 p-2 rounded-xl bg-surface-container-high/40">
+                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs uppercase">{{ substr(auth()->user()->name, 0, 1) }}</div>
+                    <div class="flex-1 overflow-hidden" style="text-align:left;">
+                        <p class="text-xs font-semibold truncate text-on-surface m-0" style="margin:0;">{{ auth()->user()->name }}</p>
+                        <p class="text-[10px] text-on-surface-variant truncate capitalize m-0" style="margin:0;">{{ auth()->user()->role }}</p>
+                    </div>
+                    <form method="POST" action="{{ route('logout') }}" class="m-0 flex items-center">
+                        @csrf
+                        <button type="submit" class="material-symbols-outlined text-sm text-on-surface-variant cursor-pointer hover:text-primary transition-colors focus:outline-none" style="background:none;border:none;" title="Logout">logout</button>
+                    </form>
                 </div>
-                <form method="POST" action="{{ route('logout') }}" style="margin:0">
-                    @csrf
-                    <button type="submit" style="background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer" title="Logout"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
-                </form>
             </div>
+            @endif
         </aside>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
+        <!-- Main Workspace -->
+        <div class="flex-1 h-screen flex flex-col bg-surface transition-all duration-300 overflow-y-auto lg:ml-64 w-full" id="main-scroll-wrapper">
+            
+            <x-top-header />
+            
+            <main class="main-content w-full flex-1" style="margin-left:0 !important; padding:24px 32px !important; min-height:auto;">
+                @if(session('success'))
+                    <div class="p-4 mb-4 rounded-xl bg-primary/10 border border-primary/20 text-primary text-sm font-medium flex items-center gap-2 alert alert-success"><span class="material-symbols-outlined text-lg">check_circle</span>{{ session('success') }}</div>
+                @endif
 
-            @if(session('error'))
-                <div class="alert alert-error">{{ session('error') }}</div>
-            @endif
+                @if(session('error'))
+                    <div class="p-4 mb-4 rounded-xl bg-error/10 border border-error/20 text-error text-sm font-medium flex items-center gap-2 alert alert-error"><span class="material-symbols-outlined text-lg">error</span>{{ session('error') }}</div>
+                @endif
 
-            @if($errors->any())
-                <div class="alert alert-error">
-                    <div>
-                        @foreach($errors->all() as $error)
-                            <div>{{ $error }}</div>
-                        @endforeach
+                @if($errors->any())
+                    <div class="p-4 mb-4 rounded-xl bg-error/10 border border-error/20 text-error text-sm font-medium alert alert-error">
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-lg mt-0.5">warning</span>
+                            <div>
+                                @foreach($errors->all() as $error)
+                                    <p>{{ $error }}</p>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @endif
+                @endif
 
-            @yield('content')
-        </main>
+                <div class="w-full pb-32">
+                    @yield('content')
+                </div>
+            </main>
+        </div>
 
         <script>
-            function toggleSidebar() {
-                document.getElementById('sidebar').classList.toggle('open');
-                document.getElementById('mobile-overlay').classList.toggle('active');
+            function toggleSidebarMenu() {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('mobile-overlay');
+                if (sidebar.classList.contains('-translate-x-full')) {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.remove('hidden');
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                }
             }
 
             @if(request()->routeIs('*.dashboard') || request()->routeIs('*.swaps.index') || request()->routeIs('*.notifications.index') || request()->routeIs('*.schedules.index'))

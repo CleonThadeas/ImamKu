@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#002113",
+                    "surface-container": "#171f33",
+                    "background": "#0b1326",
+                    "surface-tint": "#4edea3",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-surface": "#dae2fd",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-primary-fixed-variant": "#005236",
+                    "primary-fixed": "#6ffbbe",
+                    "tertiary": "#ffb95f",
+                    "on-secondary-container": "#afb9cb",
+                    "on-error-container": "#ffdad6",
+                    "inverse-surface": "#dae2fd",
+                    "on-secondary": "#27313f",
+                    "surface-container-highest": "#2d3449",
+                    "secondary-container": "#404a59",
+                    "surface-container-lowest": "#060e20",
+                    "primary": "#4edea3",
+                    "surface-container-high": "#222a3d",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#e29100",
+                    "on-tertiary": "#472a00",
+                    "on-error": "#690005",
+                    "on-background": "#dae2fd",
+                    "on-primary-container": "#00422b",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-surface-variant": "#bbcabf",
+                    "surface-variant": "#2d3449",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-secondary-fixed": "#121c2a",
+                    "surface-container-low": "#131b2e",
+                    "on-primary": "#003824",
+                    "inverse-on-surface": "#283044",
+                    "secondary": "#bdc7d9",
+                    "surface": "#0b1326",
+                    "outline-variant": "#3c4a42",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "surface-bright": "#31394d",
+                    "inverse-primary": "#006c49",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-dim": "#0b1326",
+                    "outline": "#86948a",
+                    "on-tertiary-container": "#523200",
+                    "primary-container": "#10b981",
+                    "on-secondary-fixed-variant": "#3d4756"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .glass-panel { background: rgba(23, 31, 51, 0.6); backdrop-filter: blur(20px); }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden">
+<!-- SideNavBar Component -->
+<nav class="fixed left-0 top-0 h-full w-64 bg-[#131b2e] shadow-[12px_0px_32px_rgba(0,0,0,0.2)] flex flex-col py-8 px-4 space-y-2 z-50">
+<div class="px-4 mb-8">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center shadow-[0px_0px_15px_rgba(16,185,129,0.3)]">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">mosque</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#10b981] leading-none">ImamKu Admin</h1>
+<p class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[10px] text-on-surface-variant mt-1">Operational Sanctuary</p>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 group rounded-xl" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200" data-icon="calendar_month">calendar_month</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Jadwal Management</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 group rounded-xl" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200" data-icon="verified">verified</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Validasi Absensi</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 group rounded-xl" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Swap Monitoring</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 bg-[#222a3d] text-[#10b981] rounded-xl shadow-[0px_0px_15px_rgba(16,185,129,0.1)] group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200" data-icon="warning">warning</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Conflict Alerts</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 group rounded-xl" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200" data-icon="map">map</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Attendance Detail</span>
+</a>
+</div>
+<div class="pt-6 mt-6 border-t border-outline-variant/10 space-y-1">
+<button class="w-full bg-gradient-to-br from-primary-container to-primary text-on-primary-container py-3 rounded-xl font-bold text-sm shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:brightness-110 transition-all active:scale-95 mb-4">
+                Export Reports
+            </button>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 group rounded-xl" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200" data-icon="settings">settings</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Settings</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-error/80 hover:bg-[#171f33] hover:text-error transition-all duration-300 group rounded-xl" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200" data-icon="logout">logout</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-[#0b1326] z-40">
+<div class="flex justify-between items-center px-8 h-full bg-[#131b2e] shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex items-center space-x-8">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">search</span>
+</span>
+<input class="bg-surface-container-lowest border-none rounded-xl pl-10 pr-4 py-2 text-sm text-on-surface focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Search conflicts or imams..." type="text"/>
+</div>
+<nav class="hidden md:flex items-center space-x-6">
+<a class="font-['Inter'] text-sm tracking-tight text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-['Inter'] text-sm tracking-tight text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200" href="#">Reports</a>
+<a class="font-['Inter'] text-sm tracking-tight text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/20 mx-2"></div>
+<img alt="Admin profile avatar" class="w-10 h-10 rounded-full border-2 border-primary/20 shadow-[0px_0px_10px_rgba(16,185,129,0.1)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqCiuc5xJQVw3R7doFopkjthAXHzBH9hQHUQWBMTN7XDAANCX4_3pLbq49W3aCNAbGIiMdVhOCqn0PiWyqI-L4hcimdsF_TqKoDXE5_wYCJORdGo9H5yIyDQjciH1ttXA5PtppRrdD7cD4ZrujW0jx3eQKryB6zw7kCh3Hpplhd2dcdWbMJtJDDuCfI52inqeSc3h-CmviwO39JWCajY6JdBgMi0eUVnvIg24v8vhJGfxsiNvz-mjHfHxEvlXb7L3kbkQARiMCQKg"/>
+</div>
+</div>
+</header>
+<!-- Canvas Area -->
+<div class="mt-16 p-8 max-w-7xl mx-auto">
+<!-- Conflict Alert Banner -->
+<section class="mb-10">
+<div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-r from-surface-container-low to-surface-container-high p-8 shadow-2xl border border-tertiary-container/20">
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-tertiary/10 rounded-full blur-[80px]"></div>
+<div class="absolute -bottom-8 left-1/4 w-48 h-48 bg-primary/5 rounded-full blur-[60px]"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="flex items-start gap-5">
+<div class="w-14 h-14 rounded-2xl bg-tertiary-container flex items-center justify-center shadow-[0px_0px_20px_rgba(226,145,0,0.3)] shrink-0">
+<span class="material-symbols-outlined text-on-tertiary-container text-3xl" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h2 class="text-2xl font-extrabold tracking-tight text-on-surface">Potential Scheduling Conflicts Found</h2>
+<p class="text-on-surface-variant mt-1 max-w-xl">Jadwal bentrok / imam tidak tersedia for the selected period. These issues require manual resolution to maintain the sanctity of congregational timing.</p>
+</div>
+</div>
+<button class="px-8 py-4 bg-gradient-to-br from-tertiary-container to-tertiary text-on-tertiary-container font-bold rounded-2xl shadow-[0px_12px_32px_rgba(226,145,0,0.2)] hover:scale-105 transition-all active:scale-95 whitespace-nowrap">
+                            Resolve All Conflicts
+                        </button>
+</div>
+</div>
+</section>
+<!-- Conflict Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Main Conflict List (Editorial Style) -->
+<div class="md:col-span-8 space-y-6">
+<div class="bg-surface-container-low rounded-[2rem] p-8 border border-outline-variant/5">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-xl font-bold">Active Conflict Map</h3>
+<p class="text-xs text-on-surface-variant font-medium uppercase tracking-widest mt-1">Overlap analysis: March 14, 2024</p>
+</div>
+<div class="flex items-center space-x-2 bg-surface-container-lowest px-4 py-2 rounded-xl">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="text-xs font-bold text-error">4 CRITICAL OVERLAPS</span>
+</div>
+</div>
+<div class="space-y-4">
+<!-- Conflict Card 1 -->
+<div class="group relative bg-surface-container rounded-2xl p-6 transition-all hover:bg-surface-container-high border-l-4 border-error/50">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="portrait of a bearded man in traditional middle eastern attire with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQL5YuVO2wyZubWkn1an-txcG0IMb4fZ4YiUQeuRMl68N4AAjKj0vZlQL6byJhnAKyuvOUcRgnG4jSt_gJdOmH0scDjincIUuVjazLjJt7Vrb-mU2J5dxRu3C-H8eUgz9R6HC7I09DgKB8_c2fTXRnIeJw6IbqFs8MA_j6tc5xDRBZv_HtHPqQLVrqHg0HzwBDEIXN3JjxP3mCilG3S6tQPo0OP5hXFBlXAp7tGKi4dwuCsxh_kXhV7uGJf7ZGXLjyzjXMyYSzu-w"/>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Ustadz Ahmad Fauzi</h4>
+<p class="text-sm text-error font-medium">Double Assignment: Maghrib Prayer</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Location A</p>
+<p class="text-sm font-semibold">Al-Ikhlas Mosque</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">sync_alt</span>
+<div class="text-left">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Location B</p>
+<p class="text-sm font-semibold">Baiturrahman Mosque</p>
+</div>
+</div>
+<button class="px-5 py-2 rounded-xl bg-surface-container-highest text-primary text-sm font-bold hover:bg-primary-container hover:text-on-primary-container transition-all">
+                                        Swap
+                                    </button>
+</div>
+</div>
+<!-- Conflict Card 2 -->
+<div class="group relative bg-surface-container rounded-2xl p-6 transition-all hover:bg-surface-container-high border-l-4 border-tertiary/50">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="portrait of an elderly man with wisdom in his eyes wearing religious garments dark aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPjGeXwVTIYJ5gc0PzZJsSNx-Pr2377Qa8Y4ZqrLaOm6V4BqxY79c74ItX4YW5RNTJRykXkS6O8MEZl0hICjwREwPbH-fVpfCCeov4x2o3lu5PG33JeiXgsO5Z8TJZZF5n_1DeQqdJN5RcGSSe7d9GDrGMrPoJWw6LcPcc9PIWBTKqZPYD_VKZaxtNFba27mO1cESIaRQ9I9JCwZxuh8MJibZ4plfyR9MYMJUbaRFW1NXUFWMJWPtu6982r7kA1SgSrl1BTwJnVGI"/>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">KH. Mansur Syah</h4>
+<p class="text-sm text-tertiary font-medium">Travel Conflict: Subuh Prayer</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Current</p>
+<p class="text-sm font-semibold">East District</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">directions_car</span>
+<div class="text-left">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Distance</p>
+<p class="text-sm font-semibold text-error">45 min (&gt;15 limit)</p>
+</div>
+</div>
+<button class="px-5 py-2 rounded-xl bg-surface-container-highest text-primary text-sm font-bold hover:bg-primary-container hover:text-on-primary-container transition-all">
+                                        Reassign
+                                    </button>
+</div>
+</div>
+<!-- Conflict Card 3 -->
+<div class="group relative bg-surface-container rounded-2xl p-6 transition-all hover:bg-surface-container-high border-l-4 border-error/50">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="minimalist silhouette of an educator in a clean modern library setting with moody backlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq2lLG8ZEQufEZpWoBx7g46KLiWb9otyqiXBrNhRZJL2Cl5AkQATg2rl3nS9FaXegi3ULdnZvZAZGLeqzY-Dr-0vRHkjTubBgCdWOYhsTNNn3vazheOR3khsdPZ9yW_3F66B2SH3ToIVhBsLkvIxVXLx2BvUU1Q_DLz2zI59Rfqn6a7AXyo6PvT5IkomqGYGQ2CpG50xBdyf5dG2HiYCxSZ_ZgZFNT0doYy25WVQRvztono2ER2AOWlI7NARP506xkxOMgxFsTifQ"/>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Syekh Ali Jaber</h4>
+<p class="text-sm text-error font-medium">Unavailability: Friday Prayer</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Status</p>
+<p class="text-sm font-semibold text-error">Medical Leave</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">event_busy</span>
+<div class="text-left">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Date</p>
+<p class="text-sm font-semibold">Mar 15, 12:00 PM</p>
+</div>
+</div>
+<button class="px-5 py-2 rounded-xl bg-primary text-on-primary text-sm font-bold shadow-[0px_4px_12px_rgba(78,222,163,0.3)] hover:brightness-110 transition-all">
+                                        Resolve
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Visual Sidebar -->
+<div class="md:col-span-4 space-y-6">
+<!-- Mosque Map Widget -->
+<div class="bg-surface-container-low rounded-[2rem] p-6 border border-outline-variant/5">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Proximity Radar</h3>
+<span class="material-symbols-outlined text-primary" data-icon="my_location">my_location</span>
+</div>
+<div class="relative h-48 rounded-2xl overflow-hidden mb-4 group">
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent z-10"></div>
+<img class="w-full h-full object-cover grayscale brightness-50 group-hover:scale-110 transition-transform duration-700" data-alt="night time satellite view of a city grid with glowing lights representing prayer centers and roads" data-location="Jakarta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyHnrpOfIzPpF5-dlBFgwDEHDMEPRjBWbctuI6v4Hi11C7FGKVMAGdkUmxvZhVmrow4Tg4GkajXH5Ynj6oG1_cWYc7N_ewzLXqCYj_2UQvd7PlVO1qdJR6TDmKgqVXFjBvIPaSaop3-LoXVNEcdRnjodSIZR3SAVDBGmvvSNcASCVjG2Tiz4hufl6grrGi_BNubtg_HOfYDqzlib4lrC1uAq-ekhjKev3vaip8jic5_IJLGubvOTqbrZ1BsKHqPKwS3V8wACyGdQs"/>
+<div class="absolute top-4 left-4 z-20">
+<div class="bg-error/20 backdrop-blur-md px-3 py-1 rounded-full border border-error/30 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-[10px] font-black text-error uppercase tracking-widest">Conflict Zone</span>
+</div>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">Most conflicts are clustered in the <span class="text-on-surface font-bold">Central Business District</span> due to peak traffic conditions during Maghrib hours.</p>
+</div>
+<!-- Statistics Card -->
+<div class="bg-gradient-to-br from-surface-container to-background rounded-[2rem] p-6 border border-outline-variant/5">
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-6 text-center">System Health</h3>
+<div class="flex justify-center mb-6">
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary shadow-[0px_0px_10px_rgba(16,185,129,0.5)]" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="91.1" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="text-3xl font-black text-primary">75%</span>
+<span class="text-[8px] uppercase tracking-tighter text-on-surface-variant">Validated</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Successful Slots</span>
+<span class="font-bold">142</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs pt-2">
+<span class="text-on-surface-variant">Pending Conflicts</span>
+<span class="font-bold text-error">4</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-error w-[15%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Suggestion Engine (Glassmorphism) -->
+<section class="mt-8">
+<div class="glass-panel rounded-[2rem] p-8 border border-white/5 relative">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="text-lg font-bold">ImamKu AI Resolve Suggestions</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest/50 p-6 rounded-2xl border border-white/5 hover:bg-surface-container-lowest transition-all">
+<p class="text-xs font-bold text-primary mb-2">OPTIMAL SWAP</p>
+<p class="text-sm font-medium mb-4">Swap <span class="text-on-surface underline">Ustadz Fauzi</span> with <span class="text-on-surface underline">Imam Zaid</span> for Maghrib at Al-Ikhlas.</p>
+<button class="text-xs font-black text-primary uppercase hover:tracking-widest transition-all">Apply Fix →</button>
+</div>
+<div class="bg-surface-container-lowest/50 p-6 rounded-2xl border border-white/5 hover:bg-surface-container-lowest transition-all">
+<p class="text-xs font-bold text-primary mb-2">AVAILABILITY ALERT</p>
+<p class="text-sm font-medium mb-4"><span class="text-on-surface underline">Ustadz Khalid</span> has marked himself available for Friday sub-roles.</p>
+<button class="text-xs font-black text-primary uppercase hover:tracking-widest transition-all">View Schedule →</button>
+</div>
+<div class="bg-surface-container-lowest/50 p-6 rounded-2xl border border-white/5 hover:bg-surface-container-lowest transition-all">
+<p class="text-xs font-bold text-primary mb-2">ROUTE UPDATE</p>
+<p class="text-sm font-medium mb-4">Traffic delay detected in North District. Suggesting 15m shift for <span class="text-on-surface underline">Imam Yusuf</span>.</p>
+<button class="text-xs font-black text-primary uppercase hover:tracking-widest transition-all">Adjust Window →</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Note -->
+<footer class="mt-12 mb-8 px-8 text-center">
+<p class="text-[10px] text-on-surface-variant font-medium uppercase tracking-[0.2em] opacity-40">ImamKu Operational Sanctuary • Conflict Management Protocol v2.4.0</p>
+</footer>
+</main>
+<!-- FAB (Suppressed as per rules for specialized detail views, but left as a reminder of the UI context if needed on main screens) -->
+</body></html>

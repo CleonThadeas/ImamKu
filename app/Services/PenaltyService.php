@@ -129,7 +129,29 @@ class PenaltyService
      */
     public function liftRestriction(int $userId): void
     {
-        User::where('id', $userId)->update(['is_restricted' => false]);
+        $user = User::find($userId);
+        if (!$user) return;
+
+        $currentPoints = PenaltyLog::where('user_id', $userId)->sum('points');
+
+        if ($currentPoints < 0) {
+            $offset = abs($currentPoints);
+            
+            PenaltyLog::create([
+                'user_id' => $userId,
+                'event_type' => 'admin_reset',
+                'points' => $offset,
+                'description' => 'Pemutihan poin oleh Admin',
+            ]);
+
+            $title = "Pemutihan Poin";
+            $message = "{$title}\n\nPembatasan dicabut dan poin Anda telah direset ke 0 oleh Admin.\n\nCek layar Poin untuk detail harian Anda.\n— ImamKu System";
+            $user->notify(new \App\Notifications\BroadcastMessage($message, ['database']));
+
+            $this->recalculateUserPoints($userId);
+        } else {
+            User::where('id', $userId)->update(['is_restricted' => false]);
+        }
     }
 
     /**

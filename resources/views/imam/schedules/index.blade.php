@@ -2,10 +2,14 @@
 @section('title', 'Lihat Jadwal')
 
 @section('content')
-<div class="main-header">
+<div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-8">
     <div>
-        <h2 style="display:flex;align-items:center;gap:10px"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Jadwal Lengkap</h2>
-        <div class="breadcrumb">{{ $season ? $season->name : 'Tidak ada season aktif' }} — Jadwal Anda ditandai dengan highlight</div>
+        <h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1 flex items-center gap-3">
+            Jadwal Lengkap
+        </h2>
+        <p class="text-on-surface-variant text-sm font-medium">
+            {{ $season ? $season->name : 'Tidak ada season aktif' }} — <span class="text-primary font-bold">Jadwal Anda ditandai dengan highlight penuh.</span>
+        </p>
     </div>
 </div>
 
@@ -15,31 +19,48 @@
     @endphp
 
     <!-- Legend -->
-    <div class="card" style="margin-bottom:20px;padding:14px">
-        <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-            <span style="font-size:0.75rem;color:var(--clr-text-muted);font-weight:600">LEGENDA:</span>
-            @foreach($imamsList as $i => $imam)
-                <span class="imam-tag imam-color-{{ ($i % 5) + 1 }}" style="padding:4px 10px;border-radius:6px;font-size:0.7rem;font-weight:600;border:1px solid">
-                    {{ $imam->name }} {{ $imam->id === $user->id ? '(Anda)' : '' }}
-                </span>
-            @endforeach
-        </div>
+    <div class="bg-surface-container-low p-4 rounded-2xl mb-8 flex flex-wrap gap-3 items-center border border-outline-variant/10">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-lg mr-2">Legenda Imam</span>
+        @foreach($imamsList as $i => $imam)
+            @php
+                $isMyImam = $imam->id === $user->id;
+                // Use distinct Emerald Slate colors
+                $colors = ['text-primary bg-primary/10 border border-primary/20', 'text-tertiary bg-tertiary/10 border border-tertiary/20', 'text-secondary bg-secondary/10 border border-secondary/20', 'text-[var(--clr-accent)] bg-[var(--clr-accent)]/10 border border-[var(--clr-accent)]/20', 'text-on-surface bg-surface-container-highest border border-outline-variant/30'];
+                if($isMyImam) {
+                    $c = "text-on-primary-container bg-primary border-primary font-black shadow-[0_0_15px_rgba(16,185,129,0.3)]";
+                } else {
+                    $c = $colors[$i % count($colors)];
+                }
+            @endphp
+            <span class="px-3 py-1.5 rounded-xl text-xs font-bold {{ $c }} flex items-center gap-1">
+                @if($isMyImam) <span class="material-symbols-outlined text-[14px]">person</span> @endif
+                {{ $imam->name }} {{ $isMyImam ? '(Anda)' : '' }}
+            </span>
+        @endforeach
     </div>
 
-    <!-- Schedule Grid -->
-    <div class="card" style="padding:12px;overflow-x:auto">
-        <div class="schedule-grid" style="grid-template-columns: 100px repeat({{ $prayerTypes->count() }}, 1fr)">
+    <!-- STRICT SCHEDULE UI GRID: Preserving existing logic -->
+    <div class="bg-surface-container rounded-3xl p-6 overflow-x-auto shadow-sm border border-outline-variant/10 mb-12 custom-scrollbar">
+        <style>
+            .schedule-grid { border-color: rgba(60, 74, 66, 0.2); border-radius: 16px; background: #0b1326; }
+            .schedule-cell { border-color: rgba(60, 74, 66, 0.15); padding: 16px; }
+            .schedule-cell.header { background: #131b2e; color: #afb9cb; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+            .schedule-cell.date-cell span:last-child { color: #86948a; }
+            .schedule-cell:hover:not(.header):not(.date-cell) { background: rgba(78, 222, 163, 0.05); }
+        </style>
+
+        <div class="schedule-grid" style="grid-template-columns: 120px repeat({{ $prayerTypes->count() }}, 1fr)">
             <!-- Header Row -->
-            <div class="schedule-cell header">Tanggal</div>
+            <div class="schedule-cell header flex items-center gap-2" style="display:flex;"><span class="material-symbols-outlined text-[16px]">calendar_month</span> Tanggal</div>
             @foreach($prayerTypes as $pt)
-                <div class="schedule-cell header">{{ $pt->name }}</div>
+                <div class="schedule-cell header text-center">{{ $pt->name }}</div>
             @endforeach
 
             <!-- Data Rows -->
             @foreach($schedules as $date => $dateSchedules)
-                <div class="schedule-cell date-cell">
-                    <span>{{ \Carbon\Carbon::parse($date)->format('d/m') }}</span>
-                    <span style="font-size:0.55rem;color:var(--clr-text-muted)">{{ \Carbon\Carbon::parse($date)->translatedFormat('D') }}</span>
+                <div class="schedule-cell date-cell flex flex-col justify-center items-center h-full" style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                    <span class="text-on-surface font-bold text-sm">{{ \Carbon\Carbon::parse($date)->format('d/m') }}</span>
+                    <span class="text-[10px] font-medium tracking-wide uppercase mt-1">{{ \Carbon\Carbon::parse($date)->translatedFormat('l') }}</span>
                 </div>
                 @foreach($prayerTypes as $pt)
                     @php
@@ -47,34 +68,53 @@
                         $isMySchedule = $schedule && $schedule->user_id === $user->id;
                         $imamIndex = $schedule && $schedule->user ? $imamsList->search(fn($im) => $im->id === $schedule->user_id) : false;
                         
-                        $statusClass = $imamIndex !== false ? 'imam-color-' . (($imamIndex % 5) + 1) : '';
+                        $statusClass = '';
+                        $bgColor = 'transparent';
+                        $textColor = 'rgba(218, 226, 253, 0.4)';
+                        
+                        if ($imamIndex !== false) {
+                            if($isMySchedule) {
+                                $bgColor = 'var(--clr-primary, #10b981)';
+                                $textColor = '#002113'; // on-primary
+                            } else {
+                                $colors = ['rgba(78,222,163,0.1)', 'rgba(255,185,95,0.1)', 'rgba(217,227,246,0.1)', 'rgba(16,185,129,0.1)', 'rgba(64,74,89,0.5)'];
+                                $textColors = ['#4edea3', '#ffb95f', '#dae2fd', '#10b981', '#dae2fd'];
+                                $bgColor = $colors[$imamIndex % count($colors)];
+                                $textColor = $textColors[$imamIndex % count($textColors)];
+                            }
+                            $statusClass = 'has-imam';
+                        }
+
                         $statusBadge = '';
+                        $isError = false;
                         if ($schedule && $schedule->user) {
                             if ($schedule->attendance) {
                                 if (in_array($schedule->attendance->status, ['approved', 'pending'])) {
-                                    $statusClass = 'bg-success text-white border-0 opacity-75';
-                                    $statusBadge = '<span style="font-size:0.5rem;display:block;margin-top:2px;">Selesai</span>';
+                                    $bColor = $isMySchedule ? 'bg-[#003824] text-[#4edea3]' : 'bg-primary/20 text-primary';
+                                    $statusBadge = '<span class="text-[9px] uppercase tracking-widest font-bold px-1.5 py-0.5 rounded ' . $bColor . ' mt-1 w-full text-center block">Selesai</span>';
                                 } else {
-                                    $statusClass = 'bg-danger text-white border-0';
-                                    $statusBadge = '<span style="font-size:0.5rem;display:block;margin-top:2px;">Expired</span>';
+                                    $bColor = $isMySchedule ? 'bg-[#690005] text-[#ffdad6]' : 'bg-error/20 text-error';
+                                    $statusBadge = '<span class="text-[9px] uppercase tracking-widest font-bold px-1.5 py-0.5 rounded ' . $bColor . ' mt-1 w-full text-center block">Expired</span>';
+                                    $isError = true;
                                 }
                             } else {
                                 $schDate = \Carbon\Carbon::parse($schedule->date)->toDateString();
-                                if ($schDate < now()->toDateString() || ($schDate == now()->toDateString() && $schedule->prayerTime && now()->format('H:i') > $schedule->prayerTime->effective_time)) {
-                                    $statusClass = 'bg-danger text-white border-0 opacity-50';
-                                    $statusBadge = '<span style="font-size:0.5rem;display:block;margin-top:2px;">Terlewat</span>';
+                                if ($schDate < now()->toDateString() || ($schDate == now()->toDateString() && $schedule->prayerTime && now()->format('H:i:s') > $schedule->prayerTime->effective_time)) {
+                                    $bColor = $isMySchedule ? 'bg-black/40 text-[#ffb4ab]' : 'bg-error/20 text-error';
+                                    $statusBadge = '<span class="text-[9px] uppercase tracking-widest font-bold px-1.5 py-0.5 rounded ' . $bColor . ' mt-1 w-full text-center block opacity-60">Terlewat</span>';
+                                    $isError = true;
                                 }
                             }
                         }
                     @endphp
-                    <div class="schedule-cell {{ $isMySchedule ? 'my-schedule' : '' }}">
+                    <div class="schedule-cell flex flex-col justify-center items-center text-center {{ $statusClass }} {{ $isMySchedule ? 'my-schedule' : '' }}" style="display:flex; justify-content:center; align-items:center; {{ $isError && !$isMySchedule ? 'opacity: 0.7;' : '' }}">
                         @if($schedule && $schedule->user)
-                            <span class="imam-tag {{ $statusClass }}" style="display:inline-block; line-height:1.2;">
-                                {{ $isMySchedule ? '● ' : '' }}{{ $schedule->user->name }}
+                            <div class="flex flex-col items-center justify-center w-full p-2.5 rounded-xl transition-all" style="background: {{ $bgColor }}; color: {{ $textColor }}; border: 1px solid {{ $isMySchedule ? 'transparent' : str_replace('0.1)', '0.3)', $bgColor) }}; width:100%; {{ $isMySchedule ? 'box-shadow: 0px 4px 15px rgba(16,185,129,0.2); transform:scale(1.02); z-index:10;' : '' }}">
+                                <span class="text-xs font-bold leading-tight">{{ $isMySchedule ? '● ' : '' }}{{ $schedule->user->name }}</span>
                                 {!! $statusBadge !!}
-                            </span>
+                            </div>
                         @else
-                            <span class="empty-slot">—</span>
+                            <span class="text-on-surface-variant/30 font-bold opacity-30">—</span>
                         @endif
                     </div>
                 @endforeach
@@ -82,13 +122,13 @@
         </div>
     </div>
 @else
-    <div class="card">
-        <div class="empty-state">
-            <div class="empty-icon"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="opacity:0.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-            <p>Belum ada jadwal tersedia.</p>
+    <div class="py-16 bg-surface-container rounded-3xl flex flex-col items-center justify-center text-center border border-outline-variant/10">
+        <div class="w-20 h-20 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-5xl text-on-surface-variant/30">event_busy</span>
         </div>
+        <h3 class="text-xl font-bold text-on-surface mb-2">Slot Jadwal Kosong</h3>
+        <p class="text-on-surface-variant text-sm mb-8">Belum ada jadwal tersedia dari Admin.</p>
     </div>
 @endif
-
 
 @endsection

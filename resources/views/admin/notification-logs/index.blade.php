@@ -2,11 +2,21 @@
 @section('title', 'Log Notifikasi')
 
 @section('content')
-<div class="main-header">
+<div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-8">
     <div>
-        <h2 style="display:flex;align-items:center;gap:10px"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg> Log Notifikasi</h2>
-        <div class="breadcrumb">Riwayat pengiriman notifikasi</div>
+        <h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1">Komunikasi</h2>
+        <p class="text-on-surface-variant text-sm font-medium">Kirim Broadcast dan Lihat Riwayat Notifikasi</p>
     </div>
+</div>
+
+<!-- TABS -->
+<div class="flex items-center gap-2 border-b border-outline-variant/20 mb-8 pb-4">
+    <a href="{{ route('admin.broadcast.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+        <span class="material-symbols-outlined text-[18px]">campaign</span> Broadcast Pesan
+    </a>
+    <a href="{{ route('admin.notification-logs.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-primary/20 text-primary border border-primary/30">
+        <span class="material-symbols-outlined text-[18px]">notifications_active</span> Log Notifikasi
+    </a>
 </div>
 
 <div class="card" style="margin-bottom:20px;padding:16px">

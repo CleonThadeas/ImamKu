@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImamKu | Smart Mosque Management System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#ffb95f",
+                    "surface-container-low": "#131b2e",
+                    "primary-container": "#10b981",
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#afb9cb",
+                    "surface-variant": "#2d3449",
+                    "surface": "#0b1326",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-surface-variant": "#bbcabf",
+                    "primary-fixed": "#6ffbbe",
+                    "on-tertiary": "#472a00",
+                    "secondary-fixed": "#d9e3f6",
+                    "primary-fixed-dim": "#4edea3",
+                    "surface-container-highest": "#2d3449",
+                    "inverse-primary": "#006c49",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-container": "#523200",
+                    "on-tertiary-fixed": "#2a1700",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-primary-fixed": "#002113",
+                    "secondary": "#bdc7d9",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#e29100",
+                    "surface-tint": "#4edea3",
+                    "on-surface": "#dae2fd",
+                    "on-secondary-fixed": "#121c2a",
+                    "secondary-container": "#404a59",
+                    "inverse-on-surface": "#283044",
+                    "on-background": "#dae2fd",
+                    "primary": "#4edea3",
+                    "surface-container": "#171f33",
+                    "surface-bright": "#31394d",
+                    "on-primary": "#003824",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-secondary": "#27313f",
+                    "on-error": "#690005",
+                    "outline-variant": "#3c4a42",
+                    "on-primary-container": "#00422b",
+                    "outline": "#86948a",
+                    "surface-dim": "#0b1326",
+                    "inverse-surface": "#dae2fd",
+                    "surface-container-high": "#222a3d",
+                    "surface-container-lowest": "#060e20",
+                    "background": "#0b1326"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+        .glass-effect { backdrop-filter: blur(20px); background: rgba(45, 52, 73, 0.6); }
+        .emerald-glow { box-shadow: 0px 0px 15px rgba(16, 185, 129, 0.3); }
+        .emerald-glow:hover { box-shadow: 0px 0px 25px rgba(16, 185, 129, 0.5); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky z-50 bg-[#0b1326]">
+<nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#10b981]">ImamKu</div>
+<div class="hidden md:flex gap-8 items-center font-['Inter'] font-medium tracking-tight">
+<a class="text-[#10b981] border-b-2 border-[#10b981] pb-1 hover:text-[#4edea3] transition-colors duration-300" href="#">Home</a>
+<a class="text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300" href="#">About</a>
+<a class="text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300" href="#">Donation</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 rounded-xl bg-surface-container-high text-primary font-medium active:scale-95 transition-transform hover:bg-surface-variant">Login</button>
+</div>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center overflow-hidden pt-12 md:pt-0">
+<!-- Abstract Background Glows -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-tertiary/5 rounded-full blur-[120px]"></div>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+<div class="flex flex-col space-y-8">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Modern Islamic Infrastructure</span>
+</div>
+<h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-on-surface">
+                    Smart Mosque <br/>
+<span class="bg-gradient-to-r from-primary to-primary-fixed-dim bg-clip-text text-transparent">Management System</span>
+</h1>
+<p class="text-lg text-on-surface-variant max-w-lg leading-relaxed font-light">
+                    Efficiently manage prayer schedules, imam assignments, and mosque operations with our comprehensive digital platform. Built for the modern sanctuary.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="px-8 py-4 rounded-3xl bg-gradient-to-br from-primary-container to-primary text-on-primary font-bold text-lg emerald-glow active:scale-95 transition-all">
+                        Login
+                    </button>
+<button class="px-8 py-4 rounded-3xl bg-surface-container-high border border-outline-variant/15 text-on-surface font-semibold text-lg hover:bg-surface-container-highest transition-all">
+                        Register
+                    </button>
+</div>
+<div class="flex items-center gap-6 pt-6">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="portrait of a middle-aged man with a friendly smile wearing traditional clothing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYNPKX6D1cm6thKIEoiUIa8bF5hJkAa1938BkotmQO-SPnf8LD5Sb9BZJeMiNqrG7VXEgJG445gm14l2D1la8kp8THlD_cWyROsBZgTgtZETUw33OYNpgoGg-zAymM9VCklCU-uOKV_jx6RFg3Uu7ORO360CP4Y4ZtS2jXAwIpSHkhjTeI_WiNXS6f_2HQQ40Owtl1lQXTxwYM7osrusgd07fN4we_brF768UJ_3P0y0HhfOp2F3W9XB7t3gnZuIl0h8GeV7HVjy0"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="professional male headshot with soft studio lighting and dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXm4J_tv7g6nc4hxe1j4ie5bMsgQZwRpMF32hMGxBqXJiJxX012Zy0E6BI5KGMHC2DQQMsuee2awY4amPZCwMmOKBDDVZ1PegKI8_fLdBzCKNnPoeoFUeMaxwIeY5a4lf3NRMEjR2w3wP-cJ3rUmqQST7kb9ekQBx1z-Je0VvvpdpBTgA0glGtoLVwdzbzTNP_Up5K0QPMolYh4uw3JpC5mkkT2vz2MGlwGFOJXKzai8lP9wcsd6NIJ0VuUAL7iRRLdd3z08LkHcw"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="young professional man looking confidently at camera in bright outdoor setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFwtAPuYdKfT3sBlJHtXsK1bUKAONdkHIJx8yyWqUajUPk2teOCBKvFI0peTm3GLJxXItdF92BWW8oensEmmh7foF2yCewqNnkR0b2tE2wkbglHAT7_cSdX4p_z-0IyIZ6gGhIyBkKKnnXxATA_N9TC0LeS-ChFPDHwC2iGZDKZLn7y-2A4mn7pMmLp6-KVJcDBNTUY41jWt59jmnTtQPtRltJ9dm4SAjPgxtbJoc4Yed-R90Jmx5A8IEzGj1D6LyH8OhGDxc52-U"/>
+</div>
+<div class="text-sm text-on-surface-variant">
+<span class="text-primary font-bold">200+</span> Mosques already joined
+                    </div>
+</div>
+</div>
+<!-- Dashboard Visualization -->
+<div class="relative lg:h-[600px] flex items-center justify-center">
+<div class="w-full aspect-square md:aspect-video lg:aspect-square bg-surface-container-low rounded-3xl relative overflow-hidden emerald-glow border border-outline-variant/10 group">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="sleek modern management dashboard with dark theme showing colorful mosque analytics charts and prayer schedules on a high-end monitor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkr9U-KoxUaNRbaQRgtslAYvwwebG_GK2l_2ekSDc5O882OxTAafKOU3g1ol-EnSfPUOQzJRQhZ25i_Y2NXDECGJwRIrsxdOwP8EY-7C6gVUiyU6hVT6umcLni_XHTQAlGTIl9GR6i7yo7K_g2co5o_ZC-NkvJZ2-nWLZD6YTz87YHFdNdKKqJaWeNY_DD4kXEzp3RF_fukB1-xWUkBZlcmEqlDzieKPJ9HQV5HCHS_5ay4vr21Dsqo5AVeYSipVjRBBaJTxStyzg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<!-- Floating UI Cards -->
+<div class="absolute top-8 left-8 glass-effect p-6 rounded-2xl shadow-2xl border border-outline-variant/15 w-64 hidden md:block">
+<div class="flex items-center gap-3 mb-4">
+<div class="p-2 bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined text-lg">schedule</span>
+</div>
+<span class="text-sm font-bold uppercase tracking-wider">Next Prayer</span>
+</div>
+<div class="text-3xl font-black text-on-surface">15:24</div>
+<div class="text-xs text-on-surface-variant mt-1 uppercase tracking-widest">Asr - Masjid Al-Imam</div>
+</div>
+<div class="absolute bottom-8 right-8 glass-effect p-6 rounded-2xl shadow-2xl border border-outline-variant/15 w-72 hidden md:block">
+<div class="flex items-center justify-between mb-4">
+<span class="text-sm font-bold uppercase tracking-wider text-on-surface">Weekly Attendance</span>
+<span class="text-xs text-primary font-bold">+12%</span>
+</div>
+<div class="flex items-end gap-2 h-20">
+<div class="flex-1 bg-primary/20 rounded-t-sm h-12"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-16"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-20"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-14"></div>
+<div class="flex-1 bg-primary/20 rounded-t-sm h-10"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Features Section -->
+<section class="py-24 px-6 max-w-7xl mx-auto">
+<div class="flex flex-col items-center mb-16 text-center">
+<h2 class="text-3xl font-bold tracking-tight mb-4">Everything needed for a <span class="text-primary">Digital Sanctuary</span></h2>
+<p class="text-on-surface-variant max-w-xl">Move beyond spreadsheets and manual tracking with modules designed specifically for mosque administrators.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature Card 1 -->
+<div class="md:col-span-2 bg-surface-container-low p-8 rounded-3xl flex flex-col justify-between border-b border-r border-outline-variant/5">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">groups</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Imam &amp; Congregation Management</h3>
+<p class="text-on-surface-variant leading-relaxed max-w-md">Coordinate assignments, keep track of congregational data, and facilitate communication within your community effortlessly.</p>
+</div>
+<div class="mt-12 h-32 bg-surface-container rounded-2xl overflow-hidden relative border border-outline-variant/10">
+<img class="w-full h-full object-cover opacity-30" data-alt="geometric Islamic pattern with soft lighting and deep blue and emerald green shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsWxaC5NEFxpzC-PyBuaZWnSqQQNAPiWNT6wDDxkM4eYU77dECGkC32amC43gdi0U1PqXLwjyfqo5jLFEpuuhykWY1VhXD3jUPLlduJXUpZkTg5wEIv1OvHgX2Y8tpwzHcZhqP-0v3rb6iOYvKV_nHMkV5Dmq6gNlrEwKDYshm3heSp26uMSrvqzmfC_QL3oZzens99IPjOJOTkUVIYFToJUtQXDrWbsMb7kgT3vCUpEehZgzyI33Ka1trccE-vM6tcUR8hj8HY3U"/>
+</div>
+</div>
+<!-- Feature Card 2 -->
+<div class="bg-surface-container p-8 rounded-3xl border border-outline-variant/10">
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary mb-6">
+<span class="material-symbols-outlined text-3xl">payments</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Financial Clarity</h3>
+<p class="text-on-surface-variant leading-relaxed">Complete transparency for donations, expenses, and facility maintenance funding.</p>
+<div class="mt-8 pt-8 border-t border-outline-variant/10">
+<div class="text-sm font-bold uppercase tracking-widest text-on-surface mb-2">Recent Inflow</div>
+<div class="text-2xl font-mono text-primary">$12,450.00</div>
+</div>
+</div>
+<!-- Feature Card 3 -->
+<div class="bg-surface-container p-8 rounded-3xl border border-outline-variant/10">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed-dim/10 flex items-center justify-center text-primary-fixed-dim mb-6">
+<span class="material-symbols-outlined text-3xl">event</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Event Planning</h3>
+<p class="text-on-surface-variant leading-relaxed">Organize lectures, Ramadan programs, and community events with ease.</p>
+</div>
+<!-- Feature Card 4 -->
+<div class="md:col-span-2 bg-surface-container-low p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center border border-outline-variant/10">
+<div class="flex-1">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">notifications_active</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Smart Announcements</h3>
+<p class="text-on-surface-variant leading-relaxed">Broadcast important updates, prayer time changes, and emergency notices to your community instantly.</p>
+</div>
+<div class="flex-1 w-full bg-surface-container rounded-2xl p-4 border border-outline-variant/15">
+<div class="space-y-3">
+<div class="h-4 bg-primary/20 w-3/4 rounded-full"></div>
+<div class="h-4 bg-on-surface-variant/10 w-full rounded-full"></div>
+<div class="h-4 bg-on-surface-variant/10 w-5/6 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full border-t border-[#3c4a42]/15 bg-[#0b1326]">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 py-12 gap-4 max-w-7xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#10b981] mb-4 md:mb-0">ImamKu</div>
+<p class="text-xs font-['Inter'] text-[#bbcabf] uppercase tracking-widest text-center md:text-left">
+                © 2024 ImamKu Directive. All rights reserved.
+            </p>
+<div class="flex gap-8">
+<a class="text-xs font-['Inter'] text-[#bbcabf] uppercase tracking-widest hover:text-[#10b981] transition-opacity duration-300" href="#">Privacy Policy</a>
+<a class="text-xs font-['Inter'] text-[#bbcabf] uppercase tracking-widest hover:text-[#10b981] transition-opacity duration-300" href="#">Terms of Service</a>
+<a class="text-xs font-['Inter'] text-[#bbcabf] uppercase tracking-widest hover:text-[#10b981] transition-opacity duration-300" href="#">Support</a>
+</div>
+</div>
+</footer>
+
+```</body></html>

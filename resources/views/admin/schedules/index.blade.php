@@ -2,28 +2,29 @@
 @section('title', 'Jadwal Imam')
 
 @section('content')
-<div class="main-header">
+<div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-8">
     <div>
-        <h2>Jadwal Imam</h2>
-        <div class="breadcrumb">Kelola penugasan imam per slot sholat</div>
+        <h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1">Jadwal Imam</h2>
+        <p class="text-on-surface-variant text-sm font-medium">Kelola penugasan imam per slot sholat</p>
     </div>
-    <div style="display:flex;gap:8px;align-items:center">
-        @if($selectedSeason)
-            <form method="POST" action="{{ route('admin.schedules.generate') }}" id="generateForm" style="margin:0">
-                @csrf
-                <input type="hidden" name="season_id" value="{{ $selectedSeason->id }}">
-                <button type="submit" class="btn btn-success btn-sm" id="generateBtn">Generate Slots</button>
-            </form>
-        @endif
-    </div>
+    @if($selectedSeason)
+        <form method="POST" action="{{ route('admin.schedules.generate') }}" id="generateForm" class="m-0">
+            @csrf
+            <input type="hidden" name="season_id" value="{{ $selectedSeason->id }}">
+            <button type="submit" class="px-6 py-2.5 bg-primary/10 text-primary font-bold text-sm rounded-xl hover:bg-primary/20 transition-colors flex items-center gap-2 border-none cursor-pointer" id="generateBtn">
+                <span class="material-symbols-outlined text-sm">magic_button</span> Generate Slots
+            </button>
+        </form>
+    @endif
 </div>
 
 <!-- Season Selector -->
 @if($seasons->count() > 0)
-<div class="card" style="margin-bottom:20px;padding:16px">
-    <form method="GET" style="display:flex;align-items:center;gap:12px">
-        <label class="form-label" style="margin:0;white-space:nowrap">Season:</label>
-        <select name="season_id" class="form-select" style="max-width:300px" onchange="this.form.submit()">
+<div class="bg-surface-container rounded-3xl p-6 mb-8 border border-outline-variant/10 shadow-sm flex items-center gap-4">
+    <span class="material-symbols-outlined text-primary">filter_alt</span>
+    <form method="GET" class="flex items-center gap-3 w-full max-w-sm m-0">
+        <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant whitespace-nowrap mb-0">Filter Season</label>
+        <select name="season_id" class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-xl px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none text-on-surface" onchange="this.form.submit()">
             @foreach($seasons as $s)
                 <option value="{{ $s->id }}" {{ $selectedSeason && $selectedSeason->id === $s->id ? 'selected' : '' }}>
                     {{ $s->name }} {{ $s->is_active ? '(Aktif)' : '' }}
@@ -36,66 +37,90 @@
 
 @if($selectedSeason && $schedules->count() > 0)
     <!-- Legend -->
-    <div class="card" style="margin-bottom:20px;padding:14px">
-        <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-            <span style="font-size:0.75rem;color:var(--clr-text-muted);font-weight:600">LEGENDA:</span>
-            @foreach($imams as $i => $imam)
-                <span class="imam-tag imam-color-{{ ($i % 5) + 1 }}" style="padding:4px 10px;border-radius:6px;font-size:0.7rem;font-weight:600;border:1px solid">
-                    {{ $imam->name }}
-                </span>
-            @endforeach
-            <span style="font-size:0.65rem;color:var(--clr-text-muted);font-style:italic">— Klik slot untuk assign/ubah imam</span>
-        </div>
+    <div class="bg-surface-container-low p-4 rounded-2xl mb-8 flex flex-wrap gap-3 items-center border border-outline-variant/10">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-lg mr-2">Legenda Imam</span>
+        @foreach($imams as $i => $imam)
+            @php
+                // Distinct Emerald Slate friendly colors based on index
+                $colors = ['text-primary bg-primary/10 border border-primary/20', 'text-tertiary bg-tertiary/10 border border-tertiary/20', 'text-secondary bg-secondary/10 border border-secondary/20', 'text-[var(--clr-accent)] bg-[var(--clr-accent)]/10 border border-[var(--clr-accent)]/20', 'text-on-surface bg-surface-container-highest border border-outline-variant/30'];
+                $c = $colors[$i % count($colors)];
+            @endphp
+            <span class="px-3 py-1 rounded-lg text-xs font-bold {{ $c }}">
+                {{ $imam->name }}
+            </span>
+        @endforeach
+        <span class="text-[10px] text-on-surface-variant/60 italic ml-auto flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">touch_app</span> Klik slot untuk mengubah imam</span>
     </div>
 
-    <!-- Schedule Grid -->
-    <div class="card" style="padding:12px;overflow-x:auto">
-        <div class="schedule-grid" style="grid-template-columns: 100px repeat({{ $prayerTypes->count() }}, 1fr)">
+    <!-- STRICT SCHEDULE UI GRID: Preserving existing generic classes and HTML structure -->
+    <div class="bg-surface-container rounded-3xl p-6 overflow-x-auto shadow-sm border border-outline-variant/10 mb-12 custom-scrollbar">
+        <!-- We keep schedule-grid class to inherit old table grid css, but override colors -->
+        <!-- Injecting small raw block scope to override legacy borders with new Emerald slate token mapping -->
+        <style>
+            .schedule-grid { border-color: rgba(60, 74, 66, 0.2); border-radius: 16px; background: #0b1326; }
+            .schedule-cell { border-color: rgba(60, 74, 66, 0.15); padding: 16px; }
+            .schedule-cell.header { background: #131b2e; color: #afb9cb; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+            .schedule-cell.date-cell span:last-child { color: #86948a; }
+            .schedule-cell:hover:not(.header):not(.date-cell) { background: rgba(78, 222, 163, 0.05); }
+        </style>
+
+        <div class="schedule-grid" style="grid-template-columns: 120px repeat({{ $prayerTypes->count() }}, 1fr)">
             <!-- Header Row -->
-            <div class="schedule-cell header">Tanggal</div>
+            <div class="schedule-cell header flex items-center gap-2" style="display:flex;"><span class="material-symbols-outlined text-[16px]">calendar_month</span> Tanggal</div>
             @foreach($prayerTypes as $pt)
-                <div class="schedule-cell header">{{ $pt->name }}</div>
+                <div class="schedule-cell header text-center">{{ $pt->name }}</div>
             @endforeach
 
             <!-- Data Rows -->
             @foreach($schedules as $date => $dateSchedules)
-                <div class="schedule-cell date-cell">
-                    <span>{{ \Carbon\Carbon::parse($date)->format('d/m') }}</span>
-                    <span style="font-size:0.55rem;color:var(--clr-text-muted)">{{ \Carbon\Carbon::parse($date)->translatedFormat('D') }}</span>
+                <div class="schedule-cell date-cell flex flex-col justify-center items-center h-full" style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                    <span class="text-on-surface font-bold text-sm">{{ \Carbon\Carbon::parse($date)->format('d/m') }}</span>
+                    <span class="text-[10px] font-medium tracking-wide uppercase mt-1">{{ \Carbon\Carbon::parse($date)->translatedFormat('l') }}</span>
                 </div>
                 @foreach($prayerTypes as $pt)
                     @php
                         $schedule = $dateSchedules->firstWhere('prayer_type_id', $pt->id);
                         $imamIndex = $schedule && $schedule->user ? $imams->search(fn($im) => $im->id === $schedule->user_id) : false;
                         
-                        $statusClass = $imamIndex !== false ? 'imam-color-' . (($imamIndex % 5) + 1) : '';
+                        $statusClass = '';
+                        $bgColor = 'transparent';
+                        $textColor = 'rgba(218, 226, 253, 0.4)'; // text-on-surface-variant fading
+                        
+                        if ($imamIndex !== false) {
+                            $colors = ['rgba(78,222,163,0.1)', 'rgba(255,185,95,0.1)', 'rgba(217,227,246,0.1)', 'rgba(16,185,129,0.1)', 'rgba(64,74,89,0.5)'];
+                            $textColors = ['#4edea3', '#ffb95f', '#dae2fd', '#10b981', '#dae2fd'];
+                            $bgColor = $colors[$imamIndex % count($colors)];
+                            $textColor = $textColors[$imamIndex % count($textColors)];
+                            $statusClass = 'has-imam';
+                        }
+
                         $statusBadge = '';
+                        $isError = false;
                         if ($schedule && $schedule->user) {
                             if ($schedule->attendance) {
                                 if (in_array($schedule->attendance->status, ['approved', 'pending'])) {
-                                    $statusClass = 'bg-success text-white border-0 opacity-75';
-                                    $statusBadge = '<span style="font-size:0.55rem;display:block;margin-top:2px;">Selesai</span>';
+                                    $statusBadge = '<span class="text-[9px] uppercase tracking-widest font-bold px-1.5 py-0.5 rounded bg-primary/20 text-primary mt-1 w-full text-center block">Selesai</span>';
                                 } else {
-                                    $statusClass = 'bg-danger text-white border-0';
-                                    $statusBadge = '<span style="font-size:0.55rem;display:block;margin-top:2px;">Expired</span>';
+                                    $statusBadge = '<span class="text-[9px] uppercase tracking-widest font-bold px-1.5 py-0.5 rounded bg-error/20 text-error mt-1 w-full text-center block">Expired</span>';
+                                    $isError = true;
                                 }
                             } else {
                                 $schDate = \Carbon\Carbon::parse($schedule->date)->toDateString();
                                 if ($schDate < now()->toDateString() || ($schDate == now()->toDateString() && $schedule->prayerTime && now()->format('H:i:s') > $schedule->prayerTime->effective_time)) {
-                                    $statusClass = 'bg-danger text-white border-0 opacity-50';
-                                    $statusBadge = '<span style="font-size:0.55rem;display:block;margin-top:2px;">Terlewat</span>';
+                                    $statusBadge = '<span class="text-[9px] uppercase tracking-widest font-bold px-1.5 py-0.5 rounded bg-error/20 text-error mt-1 w-full text-center block opacity-60">Terlewat</span>';
+                                    $isError = true;
                                 }
                             }
                         }
                     @endphp
-                    <div class="schedule-cell" onclick="openAssignModal({{ $schedule?->id ?? 'null' }}, '{{ $date }}', '{{ $pt->name }}', {{ $pt->id }}, {{ $schedule?->user_id ?? 'null' }})" style="cursor:pointer">
+                    <div class="schedule-cell flex flex-col justify-center items-center text-center {{ $statusClass }}" onclick="openAssignModal({{ $schedule?->id ?? 'null' }}, '{{ $date }}', '{{ $pt->name }}', {{ $pt->id }}, {{ $schedule?->user_id ?? 'null' }})" style="display:flex; justify-content:center; align-items:center; cursor:pointer; {{ $isError ? 'opacity: 0.7;' : '' }}">
                         @if($schedule && $schedule->user)
-                            <span class="imam-tag {{ $statusClass }}" style="display:inline-block; line-height:1.2;">
-                                {{ $schedule->user->name }}
+                            <div class="flex flex-col items-center justify-center w-full p-2.5 rounded-xl transition-all" style="background: {{ $bgColor }}; color: {{ $textColor }}; border: 1px solid {{ str_replace('0.1)', '0.3)', $bgColor) }}; width:100%;">
+                                <span class="text-xs font-bold leading-tight">{{ $schedule->user->name }}</span>
                                 {!! $statusBadge !!}
-                            </span>
+                            </div>
                         @else
-                            <span class="empty-slot">—</span>
+                            <span class="text-on-surface-variant/30 font-bold opacity-30">—</span>
                         @endif
                     </div>
                 @endforeach
@@ -103,48 +128,67 @@
         </div>
     </div>
 @elseif($selectedSeason)
-    <div class="card">
-        <div class="empty-state">
-            <div class="empty-icon" style="font-size:2rem;opacity:0.3">—</div>
-            <p>Belum ada slot jadwal. Klik "Generate Slots" untuk membuat slot berdasarkan season.</p>
+    <div class="py-16 bg-surface-container rounded-3xl flex flex-col items-center justify-center text-center border border-outline-variant/10">
+        <div class="w-20 h-20 rounded-2xl bg-surface-container-low flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-5xl text-on-surface-variant/30">event_busy</span>
         </div>
+        <h3 class="text-xl font-bold text-on-surface mb-2">Slot Jadwal Kosong</h3>
+        <p class="text-on-surface-variant text-sm mb-8">Belum ada slot jadwal. Klik "Generate Slots" untuk membuat slot berdasarkan season.</p>
     </div>
 @else
-    <div class="card">
-        <div class="empty-state">
-            <div class="empty-icon" style="font-size:2rem;opacity:0.3">—</div>
-            <p>Silakan buat Season Ramadan terlebih dahulu.</p>
-            <a href="{{ route('admin.seasons.create') }}" class="btn btn-primary btn-sm" style="margin-top:12px">Buat Season</a>
+    <div class="py-16 bg-surface-container rounded-3xl flex flex-col items-center justify-center text-center border border-outline-variant/10">
+        <div class="w-20 h-20 rounded-2xl bg-error/10 flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-5xl text-error/50">warning</span>
         </div>
+        <h3 class="text-xl font-bold text-on-surface mb-2">Pilih atau Buat Season</h3>
+        <p class="text-on-surface-variant text-sm mb-6 max-w-md">Silakan buat Season Ramadan terlebih dahulu sebelum melihat jadwal.</p>
+        <a href="{{ route('admin.seasons.create') }}" class="px-6 py-3 bg-gradient-to-br from-primary-container to-primary text-on-primary-container text-xs font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-105 transition-transform flex inline-flex items-center">
+            Buat Season
+        </a>
     </div>
 @endif
 
 <!-- Assign Modal -->
-<div class="modal-overlay" id="assignModal">
-    <div class="modal-content">
-        <h3 class="modal-title">Assign Imam</h3>
-        <p id="assignInfo" style="font-size:0.85rem;color:var(--clr-text-muted);margin-bottom:16px"></p>
+<!-- We preserve id="assignModal", "assignForm", "assignScheduleId", "assignUserId" to ensure JS functionality -->
+<div id="assignModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(8px); z-index:9999; justify-content:center; align-items:center;">
+    <div class="bg-surface-container p-8 rounded-3xl w-full max-w-[450px] relative m-4 border border-outline-variant/20 shadow-2xl">
+        <button onclick="closeAssignModal()" class="absolute top-6 right-6 text-on-surface-variant hover:text-error transition-colors" style="border:none;background:none;cursor:pointer;">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+        
+        <h3 class="text-xl font-bold text-on-surface mb-1 flex items-center gap-3">
+            <div class="p-2 bg-primary/10 rounded-lg text-primary"><span class="material-symbols-outlined">person_add</span></div> 
+            Assign Imam
+        </h3>
+        <p id="assignInfo" class="text-sm font-mono text-primary mb-6 pb-6 border-b border-outline-variant/10 tracking-tight"></p>
+        
         <form method="POST" action="{{ route('admin.schedules.assign') }}" id="assignForm">
             @csrf
             <input type="hidden" name="schedule_id" id="assignScheduleId">
-            <div class="form-group">
-                <label class="form-label">Pilih Imam</label>
-                <select name="user_id" id="assignUserId" class="form-select" required>
+            
+            <div class="mb-6">
+                <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Pilih Imam</label>
+                <select name="user_id" id="assignUserId" class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary outline-none text-on-surface" required>
                     <option value="">— Pilih —</option>
                     @foreach($imams as $imam)
                         <option value="{{ $imam->id }}">{{ $imam->name }}</option>
                     @endforeach
                 </select>
             </div>
-            <div style="display:flex;gap:8px">
-                <button type="submit" class="btn btn-primary">Assign</button>
-                <button type="button" class="btn btn-secondary" onclick="closeAssignModal()">Batal</button>
+            
+            <div class="flex gap-3 mt-8">
+                <button type="submit" class="flex-1 py-3 bg-gradient-to-br from-primary-container to-primary text-on-primary-container text-xs font-bold rounded-xl hover:scale-[1.02] transition-transform border-none cursor-pointer">
+                    Simpan Assign
+                </button>
             </div>
         </form>
-        <div id="removeSection" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--clr-border)">
+        
+        <div id="removeSection" style="display:none;" class="mt-4 pt-4 border-t border-outline-variant/10">
             <form method="POST" id="removeForm">
                 @csrf @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-sm">Hapus Penugasan</button>
+                <button type="submit" class="w-full py-3 bg-error/10 text-error text-xs font-bold rounded-xl hover:bg-error/20 transition-colors flex items-center justify-center gap-2 border border-error/20 cursor-pointer">
+                    <span class="material-symbols-outlined text-[16px]">person_remove</span> Hapus Penugasan
+                </button>
             </form>
         </div>
     </div>
@@ -153,13 +197,13 @@
 @push('scripts')
 <script>
 document.getElementById('generateForm')?.addEventListener('submit', function(e) {
-    this.querySelector('#generateBtn').textContent = 'Memproses...';
+    this.querySelector('#generateBtn').innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">refresh</span> Memproses...';
     this.querySelector('#generateBtn').disabled = true;
 });
 
 function openAssignModal(scheduleId, date, prayerName, prayerTypeId, currentUserId) {
     if (!scheduleId) return;
-    document.getElementById('assignModal').classList.add('active');
+    document.getElementById('assignModal').style.display = 'flex';
     document.getElementById('assignScheduleId').value = scheduleId;
     document.getElementById('assignInfo').textContent = `${date} — ${prayerName}`;
     document.getElementById('assignUserId').value = currentUserId || '';
@@ -174,7 +218,7 @@ function openAssignModal(scheduleId, date, prayerName, prayerTypeId, currentUser
 }
 
 function closeAssignModal() {
-    document.getElementById('assignModal').classList.remove('active');
+    document.getElementById('assignModal').style.display = 'none';
 }
 
 document.getElementById('assignModal').addEventListener('click', function(e) {

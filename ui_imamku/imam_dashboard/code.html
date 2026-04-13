@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImamKu Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005236",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "surface-variant": "#2d3449",
+                        "tertiary-container": "#e29100",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-secondary-fixed": "#121c2a",
+                        "surface-container": "#171f33",
+                        "on-tertiary": "#472a00",
+                        "on-primary-container": "#00422b",
+                        "tertiary-fixed": "#ffddb8",
+                        "tertiary": "#ffb95f",
+                        "error": "#ffb4ab",
+                        "primary": "#4edea3",
+                        "on-secondary-container": "#afb9cb",
+                        "on-surface-variant": "#bbcabf",
+                        "surface-container-low": "#131b2e",
+                        "surface-tint": "#4edea3",
+                        "surface-container-high": "#222a3d",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-background": "#dae2fd",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-container-lowest": "#060e20",
+                        "surface": "#0b1326",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#523200",
+                        "error-container": "#93000a",
+                        "background": "#0b1326",
+                        "primary-container": "#10b981",
+                        "on-surface": "#dae2fd",
+                        "surface-container-highest": "#2d3449",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#0b1326",
+                        "outline-variant": "#3c4a42",
+                        "outline": "#86948a",
+                        "inverse-surface": "#dae2fd",
+                        "secondary-container": "#404a59",
+                        "primary-fixed": "#6ffbbe",
+                        "secondary-fixed": "#d9e3f6",
+                        "on-primary-fixed": "#002113",
+                        "inverse-primary": "#006c49",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-primary": "#003824",
+                        "inverse-on-surface": "#283044",
+                        "surface-bright": "#31394d",
+                        "secondary": "#bdc7d9",
+                        "on-secondary": "#27313f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .glow-button {
+            box-shadow: 0px 0px 15px rgba(16, 185, 129, 0.3);
+        }
+        .glow-button:hover {
+            box-shadow: 0px 0px 25px rgba(16, 185, 129, 0.5);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b1326;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #171f33;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="fixed left-0 top-0 bottom-0 flex flex-col py-8 h-screen w-64 border-r border-[#3c4a42]/15 bg-[#131b2e] dark:bg-[#131b2e] font-['Inter'] text-sm font-medium tracking-wide z-50">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-black bg-gradient-to-br from-emerald-500 to-emerald-300 bg-clip-text text-transparent">ImamKu</h1>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-[0.15em] mt-1">Imam Dashboard</p>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<!-- Active: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 mb-1 bg-gradient-to-r from-emerald-500/10 to-transparent text-emerald-400 border-r-2 border-emerald-500 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 mb-1 hover:bg-[#171f33] hover:text-emerald-300 transition-colors duration-200 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span>Jadwal Saya</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 mb-1 hover:bg-[#171f33] hover:text-emerald-300 transition-colors duration-200 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">swap_horizontal_circle</span>
+<span>Swap Jadwal</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 mb-1 hover:bg-[#171f33] hover:text-emerald-300 transition-colors duration-200 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span>Poin &amp; Kedisiplinan</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 mb-1 hover:bg-[#171f33] hover:text-emerald-300 transition-colors duration-200 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Pendapatan</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 mb-1 hover:bg-[#171f33] hover:text-emerald-300 transition-colors duration-200 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span>Notifikasi</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 mb-1 hover:bg-[#171f33] hover:text-emerald-300 transition-colors duration-200 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>Panduan</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 mb-1 hover:bg-[#171f33] hover:text-emerald-300 transition-colors duration-200 active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span>Profile</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full py-3 rounded-2xl bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-bold text-center glow-button active:scale-95 transition-all">
+                Ajukan Cuti
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen bg-surface">
+<!-- TopNavBar (Authority: JSON) -->
+<header class="flex justify-between items-center px-6 sticky top-0 z-40 w-full h-16 bg-[#0b1326] dark:bg-[#0b1326] shadow-sm font-['Inter'] antialiased tracking-tight">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">menu</span>
+<h2 class="text-on-surface font-semibold text-lg">Dashboard Overview</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group hidden lg:block">
+<input class="bg-surface-container-lowest border-none rounded-full py-1.5 pl-10 pr-4 text-sm w-64 focus:ring-1 focus:ring-primary transition-all text-on-surface" placeholder="Search activities..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-400 hover:bg-[#222a3d] hover:text-emerald-400 transition-all duration-300 p-2 rounded-full">notifications</button>
+<button class="material-symbols-outlined text-slate-400 hover:bg-[#222a3d] hover:text-emerald-400 transition-all duration-300 p-2 rounded-full">help_outline</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/20">
+<img alt="Imam Profile" class="h-full w-full object-cover" data-alt="Portrait of a middle aged man with a warm friendly smile and professional attire for a profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_74FfhWsbYU5-JZfe4YSpP-Q4oz-I0nJZ9Rxkr1nwnBVs7TKT2x5opFcXl0HLKPWLe63PyQwAVD-UxrZE6Bl8LQEFI_bBXMmGp1Y630LwGe4ztQXT6Zpck5rxO1Y9ZieyMk0uPVeJIh0GpRVPyG2Z4H_XrSId5AhIkkyeKULZXMS7bXpZNljuN9XT2ADyjbkOUVa6xHjdG6eMoGGEoLEffa6oRBPJyWS7U2-g1aRJmfVXBr-0Ro3yyWcbLF5DPlSexOM-nXJ1q7s"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+<!-- Hero Welcome -->
+<section class="relative rounded-2xl overflow-hidden p-8 bg-surface-container-low">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+</div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-end md:items-center gap-6">
+<div>
+<h1 class="text-3xl font-extrabold tracking-tight text-on-surface">Assalamu’alaikum, Ust. Ahmad</h1>
+<p class="text-on-surface-variant mt-2 max-w-lg">Semoga hari ini penuh berkah. Anda memiliki 3 jadwal pelayanan minggu ini.</p>
+</div>
+<div class="flex items-center gap-3 text-primary bg-primary/10 px-4 py-2 rounded-xl border border-primary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-sm font-bold tracking-wider">PREMIUM IMAM</span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Upcoming Jadwal Card (Main Priority) -->
+<div class="md:col-span-8 space-y-6">
+<div class="bg-surface-container rounded-2xl p-6 border-l-4 border-primary shadow-lg group">
+<div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+<div class="space-y-4 flex-1">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest rounded-full">Upcoming Jadwal</span>
+<span class="text-on-surface-variant text-xs">• Today, 15 Oct 2023</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-on-surface">Shalat Maghrib &amp; Kultum</h3>
+<div class="flex items-center gap-4 mt-3 text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg">schedule</span>
+<span class="text-sm">17:58 WIB</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span class="text-sm">Masjid Al-Istiqomah, Jakarta Selatan</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1.5 rounded-lg text-xs font-medium">Imam Rawatib</span>
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1.5 rounded-lg text-xs font-medium">Khutbah Juma't</span>
+</div>
+</div>
+<div class="w-full sm:w-auto self-stretch flex flex-col justify-between">
+<div class="hidden sm:block text-right">
+<div class="text-primary font-mono text-3xl font-black">24<span class="text-on-surface-variant text-sm font-sans ml-1">min left</span></div>
+</div>
+<button class="w-full sm:w-44 py-4 rounded-2xl bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-bold glow-button active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">how_to_reg</span>
+                                    Absen Hadir
+                                </button>
+</div>
+</div>
+</div>
+<!-- Statistics / Info Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-5 rounded-2xl flex items-center gap-4">
+<div class="h-12 w-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">Total Poin</p>
+<p class="text-xl font-bold text-on-surface">1,240 <span class="text-xs text-primary ml-1">+12%</span></p>
+</div>
+</div>
+<div class="bg-surface-container-low p-5 rounded-2xl flex items-center gap-4">
+<div class="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">Pendapatan Bulan Ini</p>
+<p class="text-xl font-bold text-on-surface">Rp 4.250.000</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Info Waktu Sholat Widget -->
+<div class="md:col-span-4 space-y-6">
+<div class="bg-surface-container-low rounded-2xl overflow-hidden flex flex-col">
+<div class="p-6 pb-0">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-on-surface">Waktu Sholat</h3>
+<span class="text-xs text-primary font-medium px-2 py-1 bg-primary/10 rounded">Jakarta Selatan</span>
+</div>
+</div>
+<div class="space-y-1 px-4 pb-6">
+<!-- Sholat Item -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">wb_twilight</span>
+<span class="text-sm font-medium">Subuh</span>
+</div>
+<span class="text-sm font-mono text-on-surface-variant">04:12</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">light_mode</span>
+<span class="text-sm font-medium">Dzuhur</span>
+</div>
+<span class="text-sm font-mono text-on-surface-variant">11:45</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">wb_sunny</span>
+<span class="text-sm font-medium">Ashar</span>
+</div>
+<span class="text-sm font-mono text-on-surface-variant">14:58</span>
+</div>
+<!-- Active Sholat -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-primary/10 border border-primary/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">wb_twilight</span>
+<span class="text-sm font-bold text-primary">Maghrib</span>
+</div>
+<span class="text-sm font-mono font-bold text-primary">17:58</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">dark_mode</span>
+<span class="text-sm font-medium">Isya</span>
+</div>
+<span class="text-sm font-mono text-on-surface-variant">19:08</span>
+</div>
+</div>
+<div class="mt-auto p-4 bg-surface-container-highest/30">
+<p class="text-[10px] text-center text-on-surface-variant/60 uppercase tracking-widest font-bold">Terakhir diperbarui: 15:42 WIB</p>
+</div>
+</div>
+<!-- Quick Tools -->
+<div class="glass-panel p-6 rounded-2xl border border-outline-variant/10">
+<h4 class="text-sm font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">bolt</span>
+                            Quick Actions
+                        </h4>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors border border-outline-variant/5">
+<span class="material-symbols-outlined text-on-surface-variant">menu_book</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Materi Kultum</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors border border-outline-variant/5">
+<span class="material-symbols-outlined text-on-surface-variant">history</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Riwayat</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- News & Updates Section (Asymmetric) -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold tracking-tight">Info Terbaru</h3>
+<button class="text-xs font-bold text-primary hover:underline">Lihat Semua</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container rounded-2xl overflow-hidden group cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img alt="News Image 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Intricate geometric patterns on the dome of a beautiful grand mosque during a clear day" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN6Z8Xa4I43iJLpQhJJv9Xf3hSqdEt2lY-Xbqej2agrHUpkLbBVIlDkfp-1CxmbobNbv7tnm0EgrFfsdh0jBLZjVLGmHnyzBHJxEGMR-wj0yiHWr5t7QlWO2D3sncdrfW1QqRHrmPbTzQny4fYWcL4aCwK-5z4dxnAJfjs34AoDUBKuaQZkEEesy9VajYxfG4fdUdUS8tSFcr1ECl_qp68Wrn8hwIJdeYeUChR3uWB5Fc5Sru-MsE1lTB7I9vSBKHalcGNRObYCKA"/>
+</div>
+<div class="p-4">
+<span class="text-[10px] font-bold text-tertiary uppercase">Kebijakan Baru</span>
+<h4 class="text-sm font-bold mt-1 text-on-surface leading-snug">Sistem Penggajian Imam Rawatib Oktober 2023</h4>
+</div>
+</div>
+<div class="bg-surface-container rounded-2xl overflow-hidden group cursor-pointer">
+<div class="h-32 overflow-hidden">
+<img alt="News Image 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Close up of an open holy book on a wooden stand in a dimly lit peaceful library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxvtVrk0z8Yq9t4tVaA4a-AlaXiLaNK0icMGidsqCwOkaCLI8DSrSznaRuz5d6rlBjgN25T4_yCe5a2xcvKLiXLJie7S6MxByHS5GKq30g0AVpAtm5AObqmhVU3JzK_2UsiiaxKHTDpqx2jcei8G9nsuAXcGnmSYWhbAG7cQWXN4GUUmz2pzgr8xoWZckIBN4gIVH4-trL_J_vfOVt57ePHoFulux9-Gk5PbEa4Py53dacB7OWaHyzBIYX7Y-2yuMpWrmMGeGP2oQ"/>
+</div>
+<div class="p-4">
+<span class="text-[10px] font-bold text-primary uppercase">Event</span>
+<h4 class="text-sm font-bold mt-1 text-on-surface leading-snug">Pelatihan Tahsin Akbar Regional Jakarta</h4>
+</div>
+</div>
+<div class="bg-surface-container-low border border-dashed border-outline-variant/30 rounded-2xl flex items-center justify-center p-6 text-center">
+<div>
+<span class="material-symbols-outlined text-slate-500 text-3xl mb-2">add_circle</span>
+<p class="text-xs text-on-surface-variant font-medium">Ada info masjid yang ingin dibagikan?</p>
+<button class="mt-2 text-xs font-bold text-primary uppercase tracking-widest">Buat Pengumuman</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- FAB (Suppressed on Dashboard as per rules, but showing for demo context if necessary - here we omit to follow mandate) -->
+</body></html>

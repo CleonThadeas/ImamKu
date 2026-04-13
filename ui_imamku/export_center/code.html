@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pusat Export - ImamKu Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#bbcabf",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#121c2a",
+                        "outline": "#86948a",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "tertiary-container": "#e29100",
+                        "surface-tint": "#4edea3",
+                        "inverse-on-surface": "#283044",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "secondary": "#bdc7d9",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-primary-fixed-variant": "#005236",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#00422b",
+                        "tertiary-fixed": "#ffddb8",
+                        "background": "#0b1326",
+                        "surface-container-highest": "#2d3449",
+                        "on-primary-fixed": "#002113",
+                        "surface": "#0b1326",
+                        "surface-bright": "#31394d",
+                        "surface-container-low": "#131b2e",
+                        "on-background": "#dae2fd",
+                        "inverse-primary": "#006c49",
+                        "on-tertiary-container": "#523200",
+                        "inverse-surface": "#dae2fd",
+                        "surface-dim": "#0b1326",
+                        "primary": "#4edea3",
+                        "secondary-fixed": "#d9e3f6",
+                        "outline-variant": "#3c4a42",
+                        "on-surface": "#dae2fd",
+                        "on-tertiary": "#472a00",
+                        "on-primary": "#003824",
+                        "on-secondary-container": "#afb9cb",
+                        "surface-variant": "#2d3449",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#6ffbbe",
+                        "tertiary": "#ffb95f",
+                        "surface-container-lowest": "#060e20",
+                        "on-secondary": "#27313f",
+                        "primary-container": "#10b981",
+                        "surface-container": "#171f33",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-container-high": "#222a3d",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "secondary-container": "#404a59",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #4edea3 100%);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0b1326; }
+        ::-webkit-scrollbar-thumb { background: #222a3d; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary/30">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] shadow-[12px_0px_32px_rgba(0,0,0,0.2)] flex flex-col p-4 space-y-2 z-50">
+<div class="mb-8 px-2 flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">mosque</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#10b981] tracking-tighter leading-none">ImamKu Admin</h1>
+<p class="font-['Inter'] uppercase tracking-[0.05em] text-[10px] text-on-surface-variant">Management System</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Fee</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Laporan</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Broadcast</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Log Notifikasi</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center space-x-3 px-4 py-3 bg-gradient-to-r from-[#10b981] to-[#4edea3] text-[#0b1326] rounded-xl font-bold transition-all hover:translate-x-1 shadow-[0px_4px_12px_rgba(16,185,129,0.3)]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">ios_share</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Pusat Export</span>
+</a>
+</nav>
+<div class="pt-4 mt-auto space-y-1">
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Account</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 bg-[#0b1326] z-40 sticky shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex justify-between items-center w-full px-8 py-4 bg-[#131b2e]">
+<div class="flex items-center">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-lowest border-none rounded-xl pl-10 pr-4 py-2 text-sm text-on-surface w-64 focus:ring-1 focus:ring-primary transition-all" placeholder="Cari data export..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-4">
+<button class="text-[#bbcabf] hover:bg-[#222a3d] p-2 rounded-lg transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-[#bbcabf] hover:bg-[#222a3d] p-2 rounded-lg transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="text-[#bbcabf] hover:bg-[#222a3d] p-2 rounded-lg transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center space-x-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface leading-none">Admin ImamKu</p>
+<p class="text-[10px] text-primary-fixed-dim uppercase tracking-wider mt-1">Super Admin</p>
+</div>
+<img alt="Admin Profile" class="w-10 h-10 rounded-xl object-cover ring-2 ring-primary-container/20 group-hover:ring-primary transition-all" data-alt="Professional portrait of a male administrator in a dark studio setting with soft emerald rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgR629tllapjR6_kVIT0k_WIvCKitnjYyqPuUXcFnoCOw9wqW5P-4TYHmgsFiglhMY8W5LWUW3Z3cBS37NjTqVowEoB3pbzNw-amTUCo0uhB6PgWh__6IvcEnoA3hsyl5RKetc5EdlsTz-eYq8d6jOYuYQQNOWONP3sU461NY2QtktOstTr2XooIGncLzD4alkO2P7tOLsVeO2_IVbF4Q3jHRK3ZmGAYtrswPQTQ5ED5VbIPG7l-Bj-gN0R-IDVk0--CyMixVEW0c"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-8 p-8 min-h-screen">
+<div class="max-w-6xl mx-auto">
+<!-- Page Header -->
+<div class="mb-10 flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-2">Pusat Export Data</h2>
+<p class="text-on-surface-variant max-w-xl">Hasilkan laporan komprehensif dalam berbagai format untuk keperluan audit dan administrasi masjid Anda.</p>
+</div>
+<div class="flex space-x-3">
+<div class="px-4 py-2 bg-surface-container-low rounded-xl flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary-fixed-dim text-sm">schedule</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Server Time: 09:41 AM</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Step 1: Selection (Large Area) -->
+<section class="col-span-12 lg:col-span-8 space-y-6">
+<div class="bg-surface-container-low p-6 rounded-[1.5rem] shadow-[0px_4px_12px_rgba(0,0,0,0.1)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+<div class="flex items-center space-x-3 mb-6">
+<span class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">1</span>
+<h3 class="text-xl font-bold">Pilih Kategori Data</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Option 1 -->
+<button class="group p-5 rounded-2xl bg-surface-container text-left border border-transparent hover:border-primary/30 transition-all hover:bg-surface-container-high">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">person_apron</span>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Imam Data</h4>
+<p class="text-xs text-on-surface-variant">Profil, sertifikasi, dan riwayat tugas imam.</p>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-[10px] text-on-surface-variant/60 uppercase font-bold tracking-tighter">142 Entries</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+</div>
+</button>
+<!-- Option 2 (Selected) -->
+<button class="group p-5 rounded-2xl bg-surface-container-high text-left border border-primary/50 transition-all ring-1 ring-primary/20">
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">event_available</span>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Attendance</h4>
+<p class="text-xs text-on-surface-variant">Absensi kehadiran shalat rawatib dan jumat.</p>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-[10px] text-primary uppercase font-bold tracking-tighter">Selected</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<!-- Option 3 -->
+<button class="group p-5 rounded-2xl bg-surface-container text-left border border-transparent hover:border-primary/30 transition-all hover:bg-surface-container-high">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Financials</h4>
+<p class="text-xs text-on-surface-variant">Laporan mukafaah dan dana operasional.</p>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-[10px] text-on-surface-variant/60 uppercase font-bold tracking-tighter">Updated Today</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Step 2: Filters -->
+<div class="bg-surface-container-low p-6 rounded-[1.5rem] shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex items-center space-x-3 mb-6">
+<span class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">2</span>
+<h3 class="text-xl font-bold">Konfigurasi Laporan</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Rentang Waktu</label>
+<div class="grid grid-cols-2 gap-2">
+<input class="bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary text-on-surface" type="date"/>
+<input class="bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary text-on-surface" type="date"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Detail Tambahan</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary text-on-surface">
+<option>Sertakan Catatan Admin</option>
+<option>Hanya Data Terverifikasi</option>
+<option>Lengkap dengan Lampiran</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Format Selection Sidebar -->
+<aside class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-surface-container-low p-6 rounded-[1.5rem] shadow-[0px_12px_32px_rgba(0,0,0,0.2)]">
+<div class="flex items-center space-x-3 mb-6">
+<span class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">3</span>
+<h3 class="text-xl font-bold">Pilih Format</h3>
+</div>
+<div class="space-y-4">
+<!-- CSV -->
+<button class="w-full group flex items-center p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-all border-l-4 border-transparent hover:border-primary">
+<div class="w-10 h-10 rounded-lg bg-on-surface/5 flex items-center justify-center mr-4">
+<span class="material-symbols-outlined text-on-surface-variant">csv</span>
+</div>
+<div class="text-left flex-1">
+<h5 class="font-bold text-sm">Export as CSV</h5>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Raw data processing</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">download</span>
+</button>
+<!-- EXCEL -->
+<button class="w-full group flex items-center p-4 rounded-xl bg-surface-container hover:bg-surface-container-high transition-all border-l-4 border-transparent hover:border-primary">
+<div class="w-10 h-10 rounded-lg bg-on-surface/5 flex items-center justify-center mr-4">
+<span class="material-symbols-outlined text-on-surface-variant">table_chart</span>
+</div>
+<div class="text-left flex-1">
+<h5 class="font-bold text-sm">Export as Excel</h5>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Microsoft Excel format</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">download</span>
+</button>
+<!-- PDF -->
+<button class="w-full group flex items-center p-4 rounded-xl bg-surface-container-high transition-all border-l-4 border-primary ring-1 ring-primary/10">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mr-4">
+<span class="material-symbols-outlined text-primary">picture_as_pdf</span>
+</div>
+<div class="text-left flex-1">
+<h5 class="font-bold text-sm">Export as PDF</h5>
+<p class="text-[10px] text-primary uppercase tracking-tighter">Official document format</p>
+</div>
+<span class="material-symbols-outlined text-primary">check</span>
+</button>
+</div>
+<div class="mt-8">
+<button class="w-full py-4 rounded-xl primary-gradient text-on-primary font-black uppercase tracking-widest text-sm shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:shadow-[0px_0px_25px_rgba(16,185,129,0.5)] active:scale-95 transition-all flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">file_download</span>
+<span>Generate Laporan</span>
+</button>
+</div>
+</div>
+<!-- Statistics Card -->
+<div class="bg-primary/5 p-6 rounded-[1.5rem] relative overflow-hidden group">
+<img alt="Data Visualization" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-20 group-hover:scale-110 transition-transform duration-700" data-alt="Abstract dark aesthetic visualization of complex network data points with emerald green glowing lines on a black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl9zg1toMcCzwEv9adrWxoYYJWa5Y9l8b8iW77nbqaZZPyertE-_uG8HuOqqmVAas3I7dr92e_eWRfc3Uh-o2vWGSyRjItS1tP7WBQ_wU0VWEoTLiCWt4XLrA05rzfuKTD3RVShn-Djk1nM_27upI61EDD5O9shLFHqbWbUhsv7yy10w63ub9wpa0WstfeaGYaNB4YvY2XYAfxlj-BWhicWTi-DPm69Sg7o7qJExMCl6hAirslOWf3mtA2vGj3fjW1ql714jeTh0Q"/>
+<h4 class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-4 relative z-10">Export Activity</h4>
+<div class="space-y-3 relative z-10">
+<div class="flex justify-between items-center">
+<span class="text-xs text-on-surface-variant">Last Month</span>
+<span class="text-sm font-bold">128 Reports</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant leading-relaxed">Storage used for exported files is at 45% of total mosque allocation.</p>
+</div>
+</div>
+</aside>
+<!-- Recent Exports Table (Bento Style) -->
+<section class="col-span-12">
+<div class="bg-surface-container-low p-6 rounded-[1.5rem] shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-xl font-bold">Riwayat Export Terakhir</h3>
+<button class="text-xs font-bold text-primary uppercase tracking-widest hover:underline">Lihat Semua</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-separate border-spacing-y-2">
+<thead>
+<tr class="text-left">
+<th class="px-4 py-2 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Nama Dokumen</th>
+<th class="px-4 py-2 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Kategori</th>
+<th class="px-4 py-2 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Format</th>
+<th class="px-4 py-2 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Waktu Generate</th>
+<th class="px-4 py-2 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Status</th>
+<th class="px-4 py-2 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-right">Aksi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-surface-container group hover:bg-surface-container-high transition-colors">
+<td class="px-4 py-4 rounded-l-xl">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">description</span>
+</div>
+<span class="text-sm font-medium">attendance_may_2024.pdf</span>
+</div>
+</td>
+<td class="px-4 py-4 text-sm text-on-surface-variant">Attendance</td>
+<td class="px-4 py-4"><span class="px-2 py-1 bg-red-500/10 text-red-400 text-[10px] font-black rounded uppercase">PDF</span></td>
+<td class="px-4 py-4 text-xs text-on-surface-variant">Today, 08:22 AM</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center space-x-1 px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full">
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+<span>Ready</span>
+</span>
+</td>
+<td class="px-4 py-4 rounded-r-xl text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">download</span></button>
+</td>
+</tr>
+<tr class="bg-surface-container group hover:bg-surface-container-high transition-colors">
+<td class="px-4 py-4 rounded-l-xl">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-sm">database</span>
+</div>
+<span class="text-sm font-medium">imam_full_database_v2.csv</span>
+</div>
+</td>
+<td class="px-4 py-4 text-sm text-on-surface-variant">Imam Data</td>
+<td class="px-4 py-4"><span class="px-2 py-1 bg-blue-500/10 text-blue-400 text-[10px] font-black rounded uppercase">CSV</span></td>
+<td class="px-4 py-4 text-xs text-on-surface-variant">Yesterday, 14:15 PM</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center space-x-1 px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full">
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+<span>Ready</span>
+</span>
+</td>
+<td class="px-4 py-4 rounded-r-xl text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">download</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Success Toast (Floating) -->
+<div class="fixed bottom-8 right-8 z-[60] flex items-center space-x-4 p-4 glass-panel rounded-2xl shadow-[0px_12px_32px_rgba(0,0,0,0.3)] border-l-4 border-primary pointer-events-none opacity-0 translate-y-4">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">cloud_done</span>
+</div>
+<div>
+<h5 class="text-sm font-bold text-on-surface">Export Selesai</h5>
+<p class="text-xs text-on-surface-variant">attendance_may_2024.pdf telah diunduh.</p>
+</div>
+</div>
+</body></html>

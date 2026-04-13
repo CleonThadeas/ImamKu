@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImamKu Admin - Ramadan Seasons</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#3c4a42",
+                    "primary-fixed": "#6ffbbe",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-tertiary-fixed": "#2a1700",
+                    "tertiary-container": "#e29100",
+                    "surface-dim": "#0b1326",
+                    "primary-fixed-dim": "#4edea3",
+                    "background": "#0b1326",
+                    "surface-variant": "#2d3449",
+                    "surface-container": "#171f33",
+                    "outline": "#86948a",
+                    "on-error": "#690005",
+                    "inverse-primary": "#006c49",
+                    "tertiary-fixed": "#ffddb8",
+                    "inverse-on-surface": "#283044",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary-container": "#00422b",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-primary-fixed-variant": "#005236",
+                    "tertiary": "#ffb95f",
+                    "surface-container-lowest": "#060e20",
+                    "secondary": "#bdc7d9",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab",
+                    "on-secondary": "#27313f",
+                    "on-primary-fixed": "#002113",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "secondary-container": "#404a59",
+                    "error-container": "#93000a",
+                    "surface-container-highest": "#2d3449",
+                    "surface-bright": "#31394d",
+                    "primary-container": "#10b981",
+                    "surface": "#0b1326",
+                    "on-tertiary-container": "#523200",
+                    "surface-container-low": "#131b2e",
+                    "on-primary": "#003824",
+                    "on-background": "#dae2fd",
+                    "surface-container-high": "#222a3d",
+                    "on-tertiary": "#472a00",
+                    "on-surface-variant": "#bbcabf",
+                    "inverse-surface": "#dae2fd",
+                    "on-secondary-container": "#afb9cb",
+                    "primary": "#4edea3",
+                    "surface-tint": "#4edea3",
+                    "on-surface": "#dae2fd",
+                    "on-secondary-fixed-variant": "#3d4756"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-emerald-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #4edea3 100%);
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] flex flex-col py-6 shadow-[0px_12px_32px_rgba(0,0,0,0.2)]">
+<div class="px-6 mb-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-emerald-gradient flex items-center justify-center shadow-[0px_0px_15px_rgba(16,185,129,0.3)]">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">mosque</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#10b981] tracking-tighter">ImamKu</h1>
+<p class="text-[10px] font-['Inter'] text-sm tracking-wide uppercase font-semibold text-[#bbcabf]">Admin Console</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person_check">person_check</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Imams</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Prayer Times</span>
+</a>
+<a class="bg-[#222a3d] text-[#10b981] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-200 shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="brightness_3" style="font-variation-settings: 'FILL' 1;">brightness_3</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Ramadan Seasons</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Mosque Map</span>
+</a>
+</nav>
+<div class="mt-auto px-2 space-y-1">
+<button class="w-full mb-4 bg-emerald-gradient text-on-primary font-bold py-3 px-4 rounded-xl shadow-[0px_0px_15px_rgba(16,185,129,0.3)] active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Add New Entry</span>
+</button>
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg px-4 py-3 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Help Center</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg px-4 py-3 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-6 py-3 h-16 bg-[#0b1326] sticky top-0 z-10 shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-96 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary placeholder-on-surface-variant/50" placeholder="Search Ramadan cycles..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center gap-3">
+<button class="text-[#10b981] font-['Inter'] font-medium tracking-tight hover:text-[#4edea3] transition-colors duration-200">Support</button>
+<img alt="Admin Profile Avatar" class="w-9 h-9 rounded-full border-2 border-primary-container/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3mpZi1h2NXySPkJQj5osbPEEOkAVJOyXG5EYyZnF1m2HQt1W643g4fdI3dV8mXtMm9K4gouyf48VOLPRLOrfn68nA1rYOdB9tricb8P20F-z_n4o4zj1-rUYGV_Z5SYTjUPfEQg4Q59xOxwpHisjMlj0Pub6xWkMZaQxWsDcdp-AsCf5Y-taTDM4Jvmulbeb4D0Afe8qNzy-u7rAPJGJaRWxjgzgbcSdSm5nH_WcYfTH3VfFMWHhwDDPmzC37w-FXvml-Cq9M_Fw"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 max-w-7xl w-full mx-auto">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-10">
+<div class="space-y-1">
+<h2 class="text-4xl font-extrabold text-on-surface tracking-tighter leading-none">Ramadan Seasons</h2>
+<p class="text-on-surface-variant text-sm font-medium tracking-tight">Manage and schedule annual Ramadan calendars and observational periods.</p>
+</div>
+<button class="bg-emerald-gradient text-on-primary font-bold py-3.5 px-8 rounded-xl shadow-[0px_0px_20px_rgba(16,185,129,0.2)] active:scale-95 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined">calendar_add_on</span>
+                    Tambah Season
+                </button>
+</div>
+<!-- Dashboard Stats Asymmetric Layout -->
+<div class="grid grid-cols-12 gap-6 mb-12">
+<div class="col-span-12 md:col-span-8 bg-surface-container-low p-8 rounded-[2rem] relative overflow-hidden flex flex-col justify-between min-h-[240px]">
+<div class="z-10">
+<span class="bg-primary-container/20 text-primary-fixed-dim px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 inline-block">Active Status</span>
+<h3 class="text-3xl font-bold text-on-surface mb-2">Ramadan 1445H</h3>
+<p class="text-on-surface-variant max-w-md">The current season is currently active with peak mosque activity recorded across 1,200+ connected locations.</p>
+</div>
+<div class="z-10 mt-6 flex gap-4">
+<div class="bg-surface-container px-4 py-2 rounded-xl">
+<span class="block text-[10px] text-on-surface-variant uppercase font-bold">Progress</span>
+<span class="text-xl font-bold text-primary">Day 14/30</span>
+</div>
+<div class="bg-surface-container px-4 py-2 rounded-xl">
+<span class="block text-[10px] text-on-surface-variant uppercase font-bold">Peak Time</span>
+<span class="text-xl font-bold text-tertiary">18:24 PM</span>
+</div>
+</div>
+<div class="absolute right-0 top-0 w-1/3 h-full opacity-40 mix-blend-screen pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="close-up of intricate islamic geometric pattern carving on stone wall with soft dramatic shadows and warm ambient light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3DM-968-1wVs94RXS7v_LWwQIMkQPSB_8HD3BtUaSPw4pnNQ52cNf3CrnLqhKQ15wXGNzCng33ATZhfyKN2WTl-sVDmqEHiCBadbswIiz6ybKFj_-_XPgoKSNS4LCyrtAp4cVcVd-mCAxlEfu3iaFwEfZk3-XVR2TSnINke3SihbpsqkWiAOf0hVh6uG1l2agZpzWW8UlLLdcJ4amn__shhpZ9ykLMAF4KqWZiuEBZnyq91Nm84ALQQE_CtYbds8vTs4KJKidSYU"/>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-emerald-gradient p-8 rounded-[2rem] text-on-primary flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-6xl mb-4" style="font-variation-settings: 'FILL' 1;">verified</span>
+<h4 class="text-2xl font-bold mb-1">98% Verified</h4>
+<p class="text-on-primary/80 text-sm">Prayer schedules verified against local moon sightings.</p>
+</div>
+</div>
+<!-- Bento List of Seasons -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Season Item 1 -->
+<div class="bg-surface-container p-6 rounded-[1.5rem] border border-outline-variant/10 hover:bg-surface-container-high transition-all duration-300 group">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-highest flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">nightlight_round</span>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-tighter">Current</span>
+</div>
+<h5 class="text-xl font-bold text-on-surface mb-4">Ramadan 1445 H</h5>
+<div class="space-y-3 mb-6">
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant">Tanggal mulai</span>
+<span class="font-semibold text-on-surface">11 Maret 2024</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant">Tanggal selesai</span>
+<span class="font-semibold text-on-surface">09 April 2024</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-highest py-2.5 rounded-xl text-sm font-bold text-on-surface hover:bg-outline-variant/20 transition-colors">Manage</button>
+<button class="w-11 h-11 bg-surface-container-highest rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit_calendar</span>
+</button>
+</div>
+</div>
+<!-- Season Item 2 -->
+<div class="bg-surface-container p-6 rounded-[1.5rem] border border-outline-variant/10 hover:bg-surface-container-high transition-all duration-300 group">
+<div class="flex justify-between items-start mb-6">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-highest flex items-center justify-center text-on-surface-variant group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">history</span>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-tighter">Archived</span>
+</div>
+<h5 class="text-xl font-bold text-on-surface mb-4">Ramadan 1444 H</h5>
+<div class="space-y-3 mb-6">
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant">Tanggal mulai</span>
+<span class="font-semibold text-on-surface">22 Maret 2023</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant">Tanggal selesai</span>
+<span class="font-semibold text-on-surface">20 April 2023</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-highest py-2.5 rounded-xl text-sm font-bold text-on-surface hover:bg-outline-variant/20 transition-colors">View Data</button>
+<button class="w-11 h-11 bg-surface-container-highest rounded-xl flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">analytics</span>
+</button>
+</div>
+</div>
+<!-- Season Item 3 -->
+<div class="bg-surface-container-low/30 p-6 rounded-[1.5rem] border border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center gap-4 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">post_add</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Planned Season</h5>
+<p class="text-xs text-on-surface-variant mt-1">Schedule the upcoming 1446 H season cycle.</p>
+</div>
+<button class="text-primary text-sm font-bold underline underline-offset-4">Configure Next</button>
+</div>
+</div>
+<!-- Utility Table for Bulk Management -->
+<div class="mt-12 bg-surface-container-low rounded-[2rem] overflow-hidden">
+<div class="p-6 flex justify-between items-center bg-surface-container-high/30">
+<h6 class="text-lg font-bold">Historical Log</h6>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] text-on-surface-variant uppercase tracking-widest bg-surface-container-lowest/50">
+<th class="px-8 py-4 font-bold">Nama Season</th>
+<th class="px-8 py-4 font-bold">Tanggal mulai</th>
+<th class="px-8 py-4 font-bold">Tanggal selesai</th>
+<th class="px-8 py-4 font-bold">Status</th>
+<th class="px-8 py-4 font-bold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-high/20 transition-colors">
+<td class="px-8 py-5 font-semibold">Ramadan 1443 H</td>
+<td class="px-8 py-5 text-on-surface-variant">02 April 2022</td>
+<td class="px-8 py-5 text-on-surface-variant">01 Mei 2022</td>
+<td class="px-8 py-5">
+<span class="text-[10px] font-bold bg-outline-variant/20 text-on-surface-variant px-2 py-0.5 rounded-full">COMPLETED</span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="text-primary-fixed-dim hover:text-primary font-bold text-sm">Details</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/20 transition-colors">
+<td class="px-8 py-5 font-semibold">Ramadan 1442 H</td>
+<td class="px-8 py-5 text-on-surface-variant">13 April 2021</td>
+<td class="px-8 py-5 text-on-surface-variant">12 Mei 2021</td>
+<td class="px-8 py-5">
+<span class="text-[10px] font-bold bg-outline-variant/20 text-on-surface-variant px-2 py-0.5 rounded-full">COMPLETED</span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="text-primary-fixed-dim hover:text-primary font-bold text-sm">Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for quick action (as per system instructions for Home/Main Dashboards) -->
+<button class="fixed bottom-8 right-8 w-16 h-16 bg-emerald-gradient rounded-full shadow-[0px_12px_32px_rgba(0,0,0,0.4)] flex items-center justify-center text-on-primary active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform">add</span>
+</button>
+</body></html>

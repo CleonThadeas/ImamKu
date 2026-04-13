@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "on-surface-variant": "#bbcabf",
+                  "primary-fixed-dim": "#4edea3",
+                  "on-secondary-fixed": "#121c2a",
+                  "outline": "#86948a",
+                  "error-container": "#93000a",
+                  "on-tertiary-fixed-variant": "#653e00",
+                  "tertiary-container": "#e29100",
+                  "surface-tint": "#4edea3",
+                  "inverse-on-surface": "#283044",
+                  "tertiary-fixed-dim": "#ffb95f",
+                  "secondary": "#bdc7d9",
+                  "on-secondary-fixed-variant": "#3d4756",
+                  "on-primary-fixed-variant": "#005236",
+                  "error": "#ffb4ab",
+                  "on-primary-container": "#00422b",
+                  "tertiary-fixed": "#ffddb8",
+                  "background": "#0b1326",
+                  "surface-container-highest": "#2d3449",
+                  "on-primary-fixed": "#002113",
+                  "surface": "#0b1326",
+                  "surface-bright": "#31394d",
+                  "surface-container-low": "#131b2e",
+                  "on-background": "#dae2fd",
+                  "inverse-primary": "#006c49",
+                  "on-tertiary-container": "#523200",
+                  "inverse-surface": "#dae2fd",
+                  "surface-dim": "#0b1326",
+                  "primary": "#4edea3",
+                  "secondary-fixed": "#d9e3f6",
+                  "outline-variant": "#3c4a42",
+                  "on-surface": "#dae2fd",
+                  "on-tertiary": "#472a00",
+                  "on-primary": "#003824",
+                  "on-secondary-container": "#afb9cb",
+                  "surface-variant": "#2d3449",
+                  "on-error-container": "#ffdad6",
+                  "primary-fixed": "#6ffbbe",
+                  "tertiary": "#ffb95f",
+                  "surface-container-lowest": "#060e20",
+                  "on-secondary": "#27313f",
+                  "primary-container": "#10b981",
+                  "surface-container": "#171f33",
+                  "on-tertiary-fixed": "#2a1700",
+                  "surface-container-high": "#222a3d",
+                  "secondary-fixed-dim": "#bdc7d9",
+                  "secondary-container": "#404a59",
+                  "on-error": "#690005"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "2xl": "1rem",
+                  "3xl": "1.5rem",
+                  "full": "9999px"
+          },
+          "fontFamily": {
+                  "headline": ["Inter", "sans-serif"],
+                  "body": ["Inter", "sans-serif"],
+                  "label": ["Inter", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .glass-effect { background: rgba(45, 52, 73, 0.6); backdrop-filter: blur(20px); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] flex flex-col p-4 space-y-2 shadow-[12px_0px_32px_rgba(0,0,0,0.2)] z-40 hidden md:flex">
+<div class="flex items-center gap-3 px-2 mb-8 mt-2">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-container to-primary flex items-center justify-center shadow-[0px_0px_15px_rgba(16,185,129,0.3)]">
+<span class="material-symbols-outlined text-surface font-bold" data-icon="mosque">mosque</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#10b981] leading-tight">ImamKu Admin</h1>
+<p class="font-['Inter'] uppercase tracking-[0.05em] text-[10px] text-on-surface-variant">Management System</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<p class="font-['Inter'] uppercase tracking-[0.05em] text-[10px] text-on-surface-variant px-3 mb-2 opacity-50">Main Menu</p>
+<a class="flex items-center gap-3 px-3 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Dashboard</span>
+</a>
+<!-- Active Menu: Fee & Laporan -->
+<a class="flex items-center gap-3 px-3 py-3 bg-gradient-to-r from-[#10b981] to-[#4edea3] text-[#0b1326] rounded-xl font-bold transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Fee</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Laporan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Broadcast</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Log Notifikasi</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="ios_share">ios_share</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Pusat Export</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 px-3 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Account</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="md:ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-[#0b1326] sticky top-0 z-50 shadow-[0px_4px_12px_rgba(0,0,0,0.1)] flex justify-between items-center w-full px-6 py-3 border-b border-outline-variant/5">
+<div class="flex items-center gap-6">
+<div class="md:hidden">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</div>
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-on-surface-variant group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="search">search</span>
+</span>
+<input class="bg-surface-container-lowest border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Cari laporan..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-[#bbcabf] hover:bg-[#222a3d] active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-[#bbcabf] hover:bg-[#222a3d] active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-[#bbcabf] hover:bg-[#222a3d] active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/20 mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-on-surface">Admin Utama</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Super Admin</p>
+</div>
+<img alt="Admin Profile" class="w-10 h-10 rounded-xl object-cover ring-2 ring-primary/20" data-alt="professional portrait of a middle-aged administrator in a modern office setting, soft natural lighting, high quality" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc7TbD5cjMzDav1Uxn6joe_E49eREowdcZQjrEg1cxHmSIlnV-Byui5h3LsvsM9o7mX4RtY3ITpXgfwNUsi_aIQHa80AF2HU7dzBUUTO5LQ4McU55dZ74c2dZGz5ctfSdQ3JysIu9zv6OyV6ZNWCIrYMd5v2_rk8RV78_jh1Z52skWd9_CkyHgqeCnJJc4IF_sSmFWM0PJYv0Md6YCiFkfnnPeuYp1m4wMdvtDCnbVsfzVLb_Srb5EaZ73042IYgTnctQuapyEWjE"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 max-w-7xl mx-auto w-full space-y-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<nav class="flex gap-2 text-[10px] uppercase tracking-widest text-on-surface-variant mb-3 font-semibold">
+<span class="opacity-50">Keuangan</span>
+<span class="opacity-30">/</span>
+<span class="text-primary-fixed-dim">Fee &amp; Laporan</span>
+</nav>
+<h2 class="text-4xl font-black tracking-tighter text-on-surface">Fee Report</h2>
+<p class="text-on-surface-variant mt-2 max-w-md">Ringkasan pembayaran honorarium Imam berdasarkan kehadiran dan akumulasi poin tugas.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative inline-block text-left group">
+<button class="flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-primary-container to-primary text-surface font-bold rounded-3xl shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:shadow-[0px_0px_25px_rgba(16,185,129,0.5)] transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="ios_share">ios_share</span>
+<span>Export Laporan</span>
+<span class="material-symbols-outlined text-lg" data-icon="expand_more">expand_more</span>
+</button>
+<!-- Dropdown Menu (Glassmorphism) -->
+<div class="absolute right-0 mt-2 w-48 rounded-2xl glass-effect shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-outline-variant/10 p-2 overflow-hidden">
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-xl transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<span>Excel (.xlsx)</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-xl transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-error" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span>PDF Document</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 rounded-xl transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-tertiary" data-icon="csv">csv</span>
+<span>CSV File</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="md:col-span-1 bg-surface-container-low p-6 rounded-3xl flex flex-col justify-between group hover:bg-surface-container transition-colors">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</div>
+<span class="text-[10px] text-primary bg-primary/10 px-2 py-1 rounded-full font-bold">+12%</span>
+</div>
+<div class="mt-8">
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Total Imam</p>
+<h3 class="text-3xl font-black mt-1">42</h3>
+</div>
+</div>
+<div class="md:col-span-1 bg-surface-container-low p-6 rounded-3xl flex flex-col justify-between group hover:bg-surface-container transition-colors">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-2xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<span class="text-[10px] text-tertiary bg-tertiary/10 px-2 py-1 rounded-full font-bold">Pending</span>
+</div>
+<div class="mt-8">
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Total Fee Bulan Ini</p>
+<h3 class="text-3xl font-black mt-1">Rp 124.5M</h3>
+</div>
+</div>
+<div class="md:col-span-2 bg-primary/10 p-6 rounded-3xl relative overflow-hidden group">
+<div class="relative z-10 h-full flex flex-col justify-between">
+<div class="flex justify-between">
+<p class="text-[10px] uppercase tracking-widest text-primary font-black">Status Pembayaran</p>
+<span class="material-symbols-outlined text-primary" data-icon="query_stats">query_stats</span>
+</div>
+<div class="mt-4">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm font-medium">Progress Realisasi</span>
+<span class="text-sm font-black">82%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 82%"></div>
+</div>
+</div>
+<p class="text-xs mt-4 text-on-surface-variant italic">Realisasi pembayaran fee imam mencapai target kuartal ini.</p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[120px] text-primary" data-icon="payments">payments</span>
+</div>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-low rounded-3xl overflow-hidden shadow-2xl">
+<div class="p-6 border-b border-outline-variant/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<h4 class="text-lg font-bold">Detail Laporan Honorarium</h4>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 text-xs font-bold text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+<span>Filter</span>
+</button>
+<button class="px-4 py-2 text-xs font-bold text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="sort">sort</span>
+<span>Urutkan</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto no-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50">
+<th class="px-6 py-4 text-[10px] uppercase tracking-[0.1em] text-on-surface-variant font-black">Nama Imam</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-[0.1em] text-on-surface-variant font-black">Presensi &amp; Poin</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-[0.1em] text-on-surface-variant font-black">Total Fee</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-[0.1em] text-on-surface-variant font-black">Status Pembayaran</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-[0.1em] text-on-surface-variant font-black text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam 1" class="w-10 h-10 rounded-xl object-cover" data-alt="professional headshot of a mature man with a beard, dignified and calm expression, wearing traditional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLQAfQZ2dIJSqLF5OBxQsagJmgXUeQ7ge5MITIBWIAEDrWoHI20QQgxhEktnVcjGvNXLn-gLkp7lD129j3FvK-_D2964VeZxADnD34eOs9jOIUSJg8if0m4MxPT-fKL0HIIVDQ5FCKXzBDenQSCq94C2vt3XFIPlxbihA7dSEVANmSpNyojz6_AhpbtGwVMx-Xm_nchC0myapO_27kiSZml6hNf5t1Lmq0R9vHT4x7fkEhcOz8qSND4VJ7bcnXml9Vu9oLJKhZWOg"/>
+<div>
+<p class="font-bold text-on-surface">Ustadz Ahmad Fauzi</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Imam Rawatib</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium">98% Kehadiran</span>
+<span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+<span class="text-xs text-primary font-bold">145 Poin</span>
+</div>
+<div class="w-32 bg-surface-container-highest rounded-full h-1">
+<div class="bg-primary h-1 rounded-full" style="width: 98%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-black text-on-surface">Rp 4.350.000</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-primary/10 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    Paid
+                  </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam 2" class="w-10 h-10 rounded-xl object-cover" data-alt="portrait of a young energetic teacher, smiling warmly, clean high key studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLxd8m-gCVzPJknx7aNAq39dSxL2lI1KHJtlP-oysU-rhr86qMm2wdiD5Mqx4S9rtqjV_FTFsXCYYBuYcydwWLN31SM8yvHM58lygV5_cuvO1hDUzDGja-Do6TqsXlmNf4sE-b279kLyW3S68vrmNJDKiSYYa7iRvNqD74FvG8lzv4RDQVuxAoKKvRA13zQ6mCs02T-m26Rzh7U0Io8jZ8OQnP1fo9ts89AHjw19v_zwZq-u-xV6zV3TQ-YVx6-s7WZEcV3WPaw9w"/>
+<div>
+<p class="font-bold text-on-surface">Ustadz Ridwan Hakim</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Imam Rawatib</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium">85% Kehadiran</span>
+<span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+<span class="text-xs text-primary font-bold">110 Poin</span>
+</div>
+<div class="w-32 bg-surface-container-highest rounded-full h-1">
+<div class="bg-primary h-1 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-black text-on-surface">Rp 3.820.000</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-tertiary/10 text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                    Pending
+                  </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam 3" class="w-10 h-10 rounded-xl object-cover" data-alt="close-up of an elderly man with wisdom and gentleness in his eyes, soft diffused window light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsWQ1pI2lR8cTKzrIE3IEva6TAImJyNvopYZR1sQH_t22HT6c4aicdT_DnloObaAdhPxPnFU3vgOX8Wg-VGXeeXt_JIWnrQQAcjo9D-MQYUxWlvAp2cXVpuAk3ucX3mA-0k65J4A54QmZblBevTfDObMT69ibeqC1zNGFYc5suP7-6nOLVQgtst42TF-vKScnInymT7_B8InZ6_KIVRtVwIh-flvpR9wKXntOGIgjj5nWRRiLkBGyIYw808SLc0ApBwR731xGuSZ0"/>
+<div>
+<p class="font-bold text-on-surface">KH. Zainal Abidin</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Imam Besar</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium">100% Kehadiran</span>
+<span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+<span class="text-xs text-primary font-bold">210 Poin</span>
+</div>
+<div class="w-32 bg-surface-container-highest rounded-full h-1">
+<div class="bg-primary h-1 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-black text-on-surface">Rp 6.100.000</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-primary/10 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                    Paid
+                  </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam 4" class="w-10 h-10 rounded-xl object-cover" data-alt="portrait of a scholar in library setting, bookshelves in background with bokeh, warm academic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5VVNwOkWbRu52jKTFJdxR2Cjmi0L8wuaY40QMVQz5ppAu24raJtWFEX8QKJ-Imx0PxahDSrj4pUqErTB44yIkXRKgUx1lEk7B7Vdh8lCL54V-7Ms6D36YiOsT2mYbWTeVk_DXA2b9Jf0HJg7GhIZFThj8IHzvJb2y8JGd_TsRBv1i_TjRFmDgna72XHpl6x_ECje1KfvqApoip2ktQ7L8bIDE_QFAzDS-_lR51YszzXLybuVFmdi0wK8XP8nlIaZIJXwi6fxxOdM"/>
+<div>
+<p class="font-bold text-on-surface">Ustadz Yusuf Mansyur</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Imam Cadangan</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium">45% Kehadiran</span>
+<span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+<span class="text-xs text-primary font-bold">55 Poin</span>
+</div>
+<div class="w-32 bg-surface-container-highest rounded-full h-1">
+<div class="bg-error h-1 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="font-black text-on-surface">Rp 1.450.000</p>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-surface-container-highest text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                    Review
+                  </span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="text-xs text-on-surface-variant">Menampilkan 4 dari 42 Imam Terdaftar</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-surface font-black text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-highest transition-colors text-xs font-bold">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-highest transition-colors text-xs font-bold">3</button>
+<span class="px-1 opacity-50">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-highest transition-colors text-xs font-bold">11</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<footer class="mt-auto py-8 px-8 flex flex-col sm:flex-row justify-between items-center opacity-50 text-[10px] uppercase tracking-[0.2em] font-bold">
+<div class="flex items-center gap-4">
+<span>© 2024 ImamKu Management</span>
+<span class="h-1 w-1 bg-outline rounded-full"></span>
+<span>Version 2.4.0-Emerald</span>
+</div>
+<div class="flex gap-6 mt-4 sm:mt-0">
+<a class="hover:text-primary" href="#">Syarat &amp; Ketentuan</a>
+<a class="hover:text-primary" href="#">Pusat Bantuan</a>
+</div>
+</footer>
+</main>
+<!-- Mobile BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0b1326] shadow-[0px_-4px_12px_rgba(0,0,0,0.1)] flex justify-around items-center px-4 py-3 z-50">
+<button class="flex flex-col items-center gap-1 text-[#bbcabf] active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#10b981] font-bold active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter">Fee</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#bbcabf] active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter">Notif</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#bbcabf] active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter">Config</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImamKu Admin - Data Imam</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#3c4a42",
+                        "primary-fixed": "#6ffbbe",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-tertiary-fixed": "#2a1700",
+                        "tertiary-container": "#e29100",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed-dim": "#4edea3",
+                        "background": "#0b1326",
+                        "surface-variant": "#2d3449",
+                        "surface-container": "#171f33",
+                        "outline": "#86948a",
+                        "on-error": "#690005",
+                        "inverse-primary": "#006c49",
+                        "tertiary-fixed": "#ffddb8",
+                        "inverse-on-surface": "#283044",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-primary-container": "#00422b",
+                        "secondary-fixed": "#d9e3f6",
+                        "on-primary-fixed-variant": "#005236",
+                        "tertiary": "#ffb95f",
+                        "surface-container-lowest": "#060e20",
+                        "secondary": "#bdc7d9",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "on-secondary": "#27313f",
+                        "on-primary-fixed": "#002113",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "secondary-container": "#404a59",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#2d3449",
+                        "surface-bright": "#31394d",
+                        "primary-container": "#10b981",
+                        "surface": "#0b1326",
+                        "on-tertiary-container": "#523200",
+                        "surface-container-low": "#131b2e",
+                        "on-primary": "#003824",
+                        "on-background": "#dae2fd",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary": "#472a00",
+                        "on-surface-variant": "#bbcabf",
+                        "inverse-surface": "#dae2fd",
+                        "on-secondary-container": "#afb9cb",
+                        "primary": "#4edea3",
+                        "surface-tint": "#4edea3",
+                        "on-surface": "#dae2fd",
+                        "on-secondary-fixed-variant": "#3d4756"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+        .glass-card {
+            background: rgba(23, 31, 51, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .primary-glow {
+            box-shadow: 0px 0px 15px rgba(16, 185, 129, 0.3);
+        }
+        .triple-shadow {
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1), 0px 12px 32px rgba(0, 0, 0, 0.2), 0px 0px 8px rgba(78, 222, 163, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] flex flex-col py-6 z-50">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">mosque</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#10b981]">ImamKu</h1>
+<p class="font-['Inter'] text-[10px] tracking-wide uppercase font-semibold text-on-surface-variant">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active Tab: Imams -->
+<a class="bg-[#222a3d] text-[#10b981] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:translate-x-1 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person_check">person_check</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Imams</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] hover:text-white rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:translate-x-1 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Prayer Times</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] hover:text-white rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:translate-x-1 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="brightness_3">brightness_3</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Ramadan Seasons</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] hover:text-white rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:translate-x-1 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Mosque Map</span>
+</a>
+</nav>
+<div class="mt-auto px-2 space-y-1">
+<button class="w-[calc(100%-1rem)] mx-2 mb-4 bg-gradient-to-br from-primary-container to-primary text-on-primary py-3 px-4 rounded-xl font-bold flex items-center justify-center gap-2 primary-glow active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+<span>Add New Entry</span>
+</button>
+<a class="text-[#bbcabf] hover:bg-[#171f33] hover:text-white rounded-lg px-4 py-3 flex items-center gap-3 hover:translate-x-1 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Help Center</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] hover:text-white rounded-lg px-4 py-3 flex items-center gap-3 hover:translate-x-1 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-8 py-3 h-16 sticky top-0 bg-[#0b1326] z-40">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-sm">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 bg-surface-container-lowest border-none rounded-xl focus:ring-1 focus:ring-primary text-sm text-on-surface placeholder-outline-variant transition-all" placeholder="Search imams, contacts, or schedules..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/20"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface leading-none">Admin Profile</p>
+<p class="text-[10px] text-primary-fixed-dim uppercase tracking-widest font-bold">Super Admin</p>
+</div>
+<img alt="Admin Profile Avatar" class="w-10 h-10 rounded-full border-2 border-primary-container/30 object-cover" data-alt="professional portrait of a middle-aged administrative professional with a clean look against a blurred office background with emerald lighting accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9xk-wwpppcDMfjBvuzA66KBH5Z7GQ2GEGNmie4Uqfv4pLZoeDMP-bdmlliy0wnYS8qNrg-FhMpmNZHF5fGXu4BR7bJM8wBGhbNuaxR_ljSAvLZedX_UDpPMYCMhAlX4Gux3NFhHXQU6WPs_hbCeA2Ni7BBxgXGX1CB3U7-ynbDonIgTdKGWbtKHGFEcFv5P6SOGguVR4sibwLsv0w4PPIaiDAnbC7hNWPdIoz2gw3cyyKTbr2la8pJz9eN_VINkcUm3mnBpDvPK8"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="px-8 py-8 space-y-8">
+<!-- Hero Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tighter text-on-surface">Data Imam</h2>
+<p class="text-on-surface-variant mt-2 max-w-xl">Manage and organize official Imam profiles, contact details, and spiritual assignments for ImamKu ecosystem.</p>
+</div>
+<button class="bg-gradient-to-br from-primary-container to-primary text-on-primary py-4 px-8 rounded-xl font-extrabold flex items-center gap-3 primary-glow active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_add</span>
+                    Tambah Imam
+                </button>
+</div>
+<!-- Dashboard Stats Bento (Small) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl space-y-2 border-l-4 border-primary">
+<p class="label-md text-on-surface-variant font-bold text-[10px] tracking-widest uppercase">Total Imam</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black text-on-surface">124</h3>
+<span class="text-xs text-primary-fixed-dim font-bold">+5%</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl space-y-2">
+<p class="label-md text-on-surface-variant font-bold text-[10px] tracking-widest uppercase">Aktif Bertugas</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black text-on-surface">86</h3>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl space-y-2">
+<p class="label-md text-on-surface-variant font-bold text-[10px] tracking-widest uppercase">Wilayah Terdata</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black text-on-surface">12</h3>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl space-y-2">
+<p class="label-md text-on-surface-variant font-bold text-[10px] tracking-widest uppercase">Rating Rata-rata</p>
+<div class="flex items-baseline gap-2 text-tertiary">
+<h3 class="text-3xl font-black">4.9</h3>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden triple-shadow">
+<div class="px-6 py-5 flex justify-between items-center bg-surface-container">
+<h3 class="font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim">format_list_bulleted</span>
+                        Database Imam Resmi
+                    </h3>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container/50">
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-[0.1em] text-on-surface-variant/70 border-b border-outline-variant/10">Nama</th>
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-[0.1em] text-on-surface-variant/70 border-b border-outline-variant/10">Kontak WhatsApp</th>
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-[0.1em] text-on-surface-variant/70 border-b border-outline-variant/10">Email</th>
+<th class="px-6 py-4 text-[11px] font-black uppercase tracking-[0.1em] text-on-surface-variant/70 border-b border-outline-variant/10">Status</th>
+<th class="px-6 py-4 text-right border-b border-outline-variant/10"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-high/40 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Close up of a respected man in religious attire with a kind smile, professional lighting in a serene Islamic center environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgst7DjKz5S0Otb9Msze40TY_nuNHOiUcHLOUsnqTyyOiasOo6-ZBgq_3RZHh9v4uIEfAGvA3sZpN0IjgBmWvHU1jFvI6oGXA_LPxz5Tyb0d93jNmoFcvdpMetQwMraVHLh_Nof259ieCunc228xdCgAjgOQDxVqppI6hLklfzmzk4kZ2P4d-PHt2DWAmCYEcf46Yv-hd1x_q9TtFzPoBLnchwl_wQr5b4W1ZNfTYY1M_xQ5cPi2cjABSkKrIqyNuK2HNsKb1-OTg"/>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Ustadz Ahmad Sulaiman</p>
+<p class="text-xs text-on-surface-variant">Hafidz 30 Juz • Senior</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">chat_bubble</span>
+</span>
+<span class="text-sm font-medium text-on-surface">+62 812-3456-7890</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm text-on-surface-variant">ahmad.sulaiman@imamku.com</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-black uppercase bg-primary/20 text-primary-fixed-dim">Aktif</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/40 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Portrait of a young scholarly man with glasses and traditional cap, soft lighting from a window, scholarly library background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdiyI-spIPJBZKNWO8sIshZ1dYlS2pA6NUxUj6cWFPap8L4i2bpOqOy5x4XHttkl65in7CBe0D0rjnTpa2dCKLPjcHexgU3HkK6Q8xkPXYsWXe-KgKVRp2XnkF_KHVyaMccdsL7zFhoAJX0DToz0W9c_DQEtCICj_3Vq31PHyzzZLwreiYJdvmOBUHm97TjCTvpBwKpyA1jUS13H28quOKie4pKkjCKN59v6MbRSkDYoHdn7_4PYVKpKVgvd4yhL-0hQ7RCulA4nU"/>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Ustadz Hasan Mansur</p>
+<p class="text-xs text-on-surface-variant">Fiqh Specialist • Junior</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">chat_bubble</span>
+</span>
+<span class="text-sm font-medium text-on-surface">+62 856-7890-1234</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm text-on-surface-variant">hasan.mansur@imamku.com</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-black uppercase bg-primary/20 text-primary-fixed-dim">Aktif</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/40 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Dignified elderly man with a white beard, traditional spiritual leader appearance, warm glowing ambient lighting in a mosque courtyard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnGczsE4kNrK-676lSXfRCL-meuiQjhpz5qWltlpB1SFJ3l52C1oDevWx6SMbnYoSPnsUj8FidIQgPxg9pOXtO7Z-GvnTvaqBCLLXfXDXTdQg8uhZhBfehMBrpXeShaISaN_FDue5ccLluqkxbEENem5jjCa0uPKc0J3Ne_6ZgIYLouJX7DGRgn9wiBmrNL5bbFVEte45vj7KK3TbtNyF06jngu8ZFMvRAQI595VOh6KI-5kvEd5ImiJAToCG2CVZG4YFij9deeac"/>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">K.H. Zainal Abidin</p>
+<p class="text-xs text-on-surface-variant">Syariah Advisor • Lead</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">chat_bubble</span>
+</span>
+<span class="text-sm font-medium text-on-surface">+62 821-2223-3344</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-sm text-on-surface-variant">zainal.abidin@imamku.com</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-black uppercase bg-tertiary-container/20 text-tertiary">On Leave</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:text-primary">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 flex justify-between items-center bg-surface-container/30">
+<p class="text-xs text-on-surface-variant">Showing 3 of 124 Imams</p>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-xs font-bold text-on-surface bg-surface-container-high rounded-lg hover:bg-surface-variant transition-colors">Previous</button>
+<button class="px-4 py-2 text-xs font-bold text-on-primary bg-primary-container rounded-lg primary-glow transition-transform active:scale-95">Next</button>
+</div>
+</div>
+</div>
+<!-- Additional Detail Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-surface-container-low rounded-xl p-8 glass-card">
+<h4 class="text-xl font-bold mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                        Distribusi Wilayah
+                    </h4>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium">Jakarta Selatan</span>
+<span class="text-primary font-bold">42%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 42%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium">Jakarta Timur</span>
+<span class="text-primary font-bold">28%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full opacity-70" style="width: 28%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium">Jakarta Barat</span>
+<span class="text-primary font-bold">15%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full opacity-40" style="width: 15%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-8 relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="text-xl font-bold mb-4">Butuh Bantuan?</h4>
+<p class="text-on-surface-variant text-sm mb-6">Jika Anda mengalami kendala dalam mengelola database Imam, tim Support kami siap membantu 24/7.</p>
+<button class="bg-surface-container-highest text-primary font-bold py-3 px-6 rounded-xl transition-all hover:bg-surface-bright active:scale-95">
+                            Hubungi Support
+                        </button>
+</div>
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined text-[160px]" style="font-variation-settings: 'FILL' 1;">help_center</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

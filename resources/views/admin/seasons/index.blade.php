@@ -2,50 +2,60 @@
 @section('title', 'Season Ramadan')
 
 @section('content')
-<div class="main-header">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
     <div>
-        <h2 style="display:flex;align-items:center;gap:10px"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg> Season Ramadan</h2>
-        <div class="breadcrumb">Kelola periode Ramadan</div>
+        <h2 class="text-2xl font-bold flex items-center gap-3 text-on-surface">
+            <div class="w-1.5 h-6 bg-primary rounded-full"></div>
+            Season Ramadan
+        </h2>
+        <div class="text-sm text-on-surface-variant font-medium mt-1 flex items-center gap-2 tracking-wide">
+            <span class="material-symbols-outlined text-[16px]">event</span>
+            Kelola periode Ramadan
+        </div>
     </div>
-    <a href="{{ route('admin.seasons.create') }}" class="btn btn-primary">+ Tambah Season</a>
+    <a href="{{ route('admin.seasons.create') }}" class="btn btn-primary shadow-lg shadow-primary/20 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">add</span> Tambah Season
+    </a>
 </div>
 
-<div class="card">
+<div class="card p-0 overflow-hidden">
     @if($seasons->count() > 0)
-        <div class="table-wrapper">
+        <div class="table-wrapper border-0 rounded-none bg-surface-container-low mb-0">
             <table>
                 <thead>
                     <tr>
-                        <th>Nama</th>
-                        <th>Tahun Hijriah</th>
-                        <th>Mulai</th>
-                        <th>Selesai</th>
-                        <th>Jumlah Hari</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
+                        <th class="bg-surface-container-low !px-6">Nama</th>
+                        <th class="bg-surface-container-low">Tahun Hijriah</th>
+                        <th class="bg-surface-container-low">Mulai</th>
+                        <th class="bg-surface-container-low">Selesai</th>
+                        <th class="bg-surface-container-low">Jumlah Hari</th>
+                        <th class="bg-surface-container-low">Status</th>
+                        <th class="bg-surface-container-low text-right !px-6">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="divide-y divide-outline-variant/10">
                     @foreach($seasons as $season)
-                        <tr>
-                            <td><strong>{{ $season->name }}</strong></td>
-                            <td>{{ $season->hijri_year }}H</td>
-                            <td>{{ $season->start_date->format('d/m/Y') }}</td>
-                            <td>{{ $season->end_date->format('d/m/Y') }}</td>
-                            <td>{{ $season->days_count }} hari</td>
+                        <tr class="hover:bg-surface-container/50 transition-colors">
+                            <td class="!px-6">
+                                <strong class="text-primary font-bold">{{ $season->name }}</strong>
+                            </td>
+                            <td><div class="text-on-surface font-medium">{{ $season->hijri_year }}H</div></td>
+                            <td><div class="text-on-surface-variant text-sm">{{ $season->start_date->format('d/m/Y') }}</div></td>
+                            <td><div class="text-on-surface-variant text-sm">{{ $season->end_date->format('d/m/Y') }}</div></td>
+                            <td><div class="text-on-surface-variant text-sm">{{ $season->days_count }} hari</div></td>
                             <td>
                                 @if($season->is_active)
-                                    <span class="badge badge-success">Aktif</span>
+                                    <x-badge type="success"><span class="material-symbols-outlined text-[12px]">check_circle</span> Aktif</x-badge>
                                 @else
-                                    <span class="badge badge-neutral">Nonaktif</span>
+                                    <x-badge type="tertiary">Nonaktif</x-badge>
                                 @endif
                             </td>
-                            <td>
-                                <div style="display:flex;gap:6px">
-                                    <a href="{{ route('admin.seasons.edit', $season) }}" class="btn btn-secondary btn-xs">Edit</a>
+                            <td class="!px-6 text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <a href="{{ route('admin.seasons.edit', $season) }}" class="px-3 py-1.5 bg-secondary/10 text-secondary border border-secondary/20 hover:bg-secondary/20 rounded-lg text-xs font-bold transition-colors">Edit</a>
                                     <form method="POST" action="{{ route('admin.seasons.destroy', $season) }}" onsubmit="return confirm('Hapus season ini dan semua datanya?')">
                                         @csrf @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-xs">Hapus</button>
+                                        <button type="submit" class="px-3 py-1.5 bg-error/10 text-error border border-error/20 hover:bg-error/20 rounded-lg text-xs font-bold transition-colors">Hapus</button>
                                     </form>
                                 </div>
                             </td>
@@ -55,9 +65,10 @@
             </table>
         </div>
     @else
-        <div class="empty-state">
-            <div class="empty-icon"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="opacity:0.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></div>
-            <p>Belum ada season Ramadan.</p>
+        <div class="p-16 text-center">
+            <span class="material-symbols-outlined text-6xl text-on-surface-variant/30 mb-4 block">event_busy</span>
+            <h3 class="text-xl font-bold text-on-surface mb-2">Belum ada season Ramadan.</h3>
+            <p class="text-on-surface-variant text-sm max-w-sm mx-auto">Silakan buat season Ramadan pertama Anda untuk memulai manajemen jadwal dan attendance.</p>
         </div>
     @endif
 </div>

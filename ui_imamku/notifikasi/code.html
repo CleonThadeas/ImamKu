@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notifikasi - ImamKu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary-fixed-dim": "#ffb95f",
+                "primary-fixed-dim": "#4edea3",
+                "outline-variant": "#3c4a42",
+                "on-primary": "#003824",
+                "inverse-primary": "#006c49",
+                "error": "#ffb4ab",
+                "secondary": "#bdc7d9",
+                "surface-container-highest": "#2d3449",
+                "secondary-container": "#404a59",
+                "on-secondary": "#27313f",
+                "on-primary-fixed": "#002113",
+                "on-error-container": "#ffdad6",
+                "on-error": "#690005",
+                "surface-bright": "#31394d",
+                "primary-container": "#10b981",
+                "secondary-fixed": "#d9e3f6",
+                "on-secondary-fixed-variant": "#3d4756",
+                "surface-tint": "#4edea3",
+                "on-tertiary": "#472a00",
+                "surface-container": "#171f33",
+                "primary": "#4edea3",
+                "on-tertiary-container": "#523200",
+                "tertiary-fixed": "#ffddb8",
+                "surface-dim": "#0b1326",
+                "outline": "#86948a",
+                "on-primary-container": "#00422b",
+                "inverse-on-surface": "#283044",
+                "surface-container-low": "#131b2e",
+                "secondary-fixed-dim": "#bdc7d9",
+                "tertiary-container": "#e29100",
+                "surface-variant": "#2d3449",
+                "on-primary-fixed-variant": "#005236",
+                "on-secondary-fixed": "#121c2a",
+                "inverse-surface": "#dae2fd",
+                "tertiary": "#ffb95f",
+                "background": "#0b1326",
+                "surface-container-lowest": "#060e20",
+                "on-background": "#dae2fd",
+                "primary-fixed": "#6ffbbe",
+                "on-surface": "#dae2fd",
+                "error-container": "#93000a",
+                "surface-container-high": "#222a3d",
+                "on-surface-variant": "#bbcabf",
+                "on-secondary-container": "#afb9cb",
+                "surface": "#0b1326",
+                "on-tertiary-fixed-variant": "#653e00",
+                "on-tertiary-fixed": "#2a1700"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "2xl": "1rem",
+                "3xl": "1.5rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift { background-color: #131b2e; }
+        .tonal-depth { background-color: #0b1326; }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 overflow-x-hidden">
+<!-- TopNavBar (Mobile Only & Global Header) -->
+<header class="fixed top-0 w-full z-50 bg-[#0b1326] shadow-[0px_4px_12px_rgba(0,0,0,0.1)] h-16 flex justify-between items-center px-6 font-['Inter'] tracking-tight md:hidden">
+<span class="text-xl font-bold tracking-tighter text-[#10B981]">ImamKu</span>
+<div class="flex items-center gap-4">
+<button class="text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<div class="flex min-h-screen pt-16 md:pt-0">
+<!-- SideNavBar (Desktop) -->
+<aside class="h-screen w-64 hidden md:flex flex-col bg-[#131b2e] shadow-2xl shadow-black/20 sticky top-0">
+<div class="p-6">
+<div class="text-lg font-black text-[#10B981]">ImamKu</div>
+<div class="font-['Inter'] uppercase tracking-widest text-[10px] text-[#bbcabf] mt-1">Digital Sanctuary</div>
+</div>
+<nav class="flex flex-col p-4 space-y-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] font-['Inter'] uppercase tracking-widest text-[10px] hover:bg-[#222a3d] hover:text-white transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] font-['Inter'] uppercase tracking-widest text-[10px] hover:bg-[#222a3d] hover:text-white transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Community</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] font-['Inter'] uppercase tracking-widest text-[10px] hover:bg-[#222a3d] hover:text-white transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>Resources</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#10B981] bg-[#171f33] rounded-lg font-['Inter'] uppercase tracking-widest text-[10px] active:translate-x-1" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span>Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] font-['Inter'] uppercase tracking-widest text-[10px] hover:bg-[#222a3d] hover:text-white transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span>Profile</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<button class="w-full py-3 bg-gradient-to-br from-primary-container to-primary text-on-primary rounded-xl font-bold shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:scale-[1.02] transition-transform active:scale-95">
+                    Upgrade to Premium
+                </button>
+<div class="mt-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 text-[#bbcabf] font-['Inter'] uppercase tracking-widest text-[10px] hover:text-white" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span>Help</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-[#bbcabf] font-['Inter'] uppercase tracking-widest text-[10px] hover:text-white" href="#">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 p-6 md:p-10 lg:p-12 max-w-5xl mx-auto w-full pb-32 md:pb-12">
+<header class="mb-10">
+<h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-on-surface mb-2">Notifikasi</h1>
+<p class="text-on-surface-variant body-md">Stay updated with your spiritual journey and community events.</p>
+</header>
+<!-- Notification Groups -->
+<div class="space-y-8">
+<!-- Today Section -->
+<section>
+<div class="flex items-center justify-between mb-4 px-2">
+<h2 class="label-md uppercase tracking-[0.1em] text-primary font-bold">Today</h2>
+<button class="text-xs text-on-surface-variant hover:text-primary transition-colors">Mark all as read</button>
+</div>
+<div class="space-y-3">
+<!-- Unread Notification -->
+<div class="group relative flex gap-4 p-5 rounded-3xl bg-surface-container border border-transparent hover:border-outline-variant/30 transition-all duration-300">
+<div class="relative h-12 w-12 flex-shrink-0 bg-primary/10 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">mosque</span>
+<span class="absolute -top-1 -right-1 h-3 w-3 bg-primary border-2 border-surface-container rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface">Jumat Prayer Reminder</h3>
+<span class="text-[10px] font-medium text-on-surface-variant uppercase tracking-wider">2 mins ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Assalamu'alaikum, don't forget the Friday prayer starting at 12:30 PM. Prepare early for the Khutbah.</p>
+</div>
+</div>
+<!-- Unread Notification -->
+<div class="group relative flex gap-4 p-5 rounded-3xl bg-surface-container border border-transparent hover:border-outline-variant/30 transition-all duration-300">
+<div class="relative h-12 w-12 flex-shrink-0 bg-tertiary/10 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="absolute -top-1 -right-1 h-3 w-3 bg-primary border-2 border-surface-container rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface">New Community Post</h3>
+<span class="text-[10px] font-medium text-on-surface-variant uppercase tracking-wider">1 hour ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Ustadz Hanan Attaki just posted a new reflection on "Patience in Adversity". Check it out now.</p>
+</div>
+</div>
+<!-- Read Notification -->
+<div class="group relative flex gap-4 p-5 rounded-3xl bg-surface-container-low/50 hover:bg-surface-container transition-all duration-300">
+<div class="h-12 w-12 flex-shrink-0 bg-secondary-container/30 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">auto_stories</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface opacity-80">Daily Quran Goal</h3>
+<span class="text-[10px] font-medium text-on-surface-variant opacity-60 uppercase tracking-wider">5 hours ago</span>
+</div>
+<p class="text-sm text-on-surface-variant/80 leading-relaxed">You have completed your goal of reading 5 pages today. Alhamdulillah! Keep up the consistency.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Yesterday Section -->
+<section>
+<div class="flex items-center mb-4 px-2">
+<h2 class="label-md uppercase tracking-[0.1em] text-on-surface-variant font-bold">Yesterday</h2>
+</div>
+<div class="space-y-3">
+<div class="group relative flex gap-4 p-5 rounded-3xl bg-surface-container-low/50 hover:bg-surface-container transition-all duration-300">
+<div class="h-12 w-12 flex-shrink-0 bg-primary/5 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed-dim">payments</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface opacity-80">Zakat Confirmation</h3>
+<span class="text-[10px] font-medium text-on-surface-variant opacity-60 uppercase tracking-wider">Yesterday, 4:12 PM</span>
+</div>
+<p class="text-sm text-on-surface-variant/80 leading-relaxed">Your Zakat Mal payment has been successfully processed and distributed to the verified foundation.</p>
+</div>
+</div>
+<div class="group relative flex gap-4 p-5 rounded-3xl bg-surface-container-low/50 hover:bg-surface-container transition-all duration-300">
+<div class="h-12 w-12 flex-shrink-0 bg-tertiary/5 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">celebration</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-on-surface opacity-80">Anniversary Badge</h3>
+<span class="text-[10px] font-medium text-on-surface-variant opacity-60 uppercase tracking-wider">Yesterday, 9:00 AM</span>
+</div>
+<p class="text-sm text-on-surface-variant/80 leading-relaxed">Congratulations! You've been part of the ImamKu community for 1 year. We've awarded you a special badge.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Older Section -->
+<section>
+<div class="flex items-center mb-4 px-2">
+<h2 class="label-md uppercase tracking-[0.1em] text-on-surface-variant font-bold">Earlier</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Bento Style Archive Card -->
+<div class="p-6 rounded-3xl bg-surface-container-low/30 border border-outline-variant/10 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary mb-3">history</span>
+<h3 class="font-bold text-on-surface mb-2">Past Interactions</h3>
+<p class="text-sm text-on-surface-variant">View all your previous notifications and activity history in the archive.</p>
+</div>
+<button class="mt-4 text-sm font-bold text-primary flex items-center gap-2 group">
+                                Open Archive <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<!-- Promotional Card -->
+<div class="relative p-6 rounded-3xl overflow-hidden bg-surface-container">
+<div class="absolute inset-0 opacity-10 pointer-events-none" data-alt="abstract geometric pattern with islamic architectural influences and soft light" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIqmnXcluN5Z6RrHJd49IwoOpx9P0B0V1kPCPAQZPBJIMzEwp4FXQYjU5tu37ac2vpY-OEIJWRImStMEMViDkQuXv_6BfaWPfRal2tYxBPX_F8sxi-BonQ0WuXMQCrvfru40GwBreO7fWp6INB2u22CvpKfZ7iCzJpOlQQGc2LkbTPsEY5R-XxnNHLk8BZMCtCISKAquyYuEsWN294FV-GuE-0eYUNeEouYwyOm_eseh-vnhzttiKUG3KFRm9qXEIJ-sZ7WKEJcsQ'); background-size: cover;"></div>
+<div class="relative z-10">
+<h3 class="font-bold text-on-surface mb-2">Digital Sanctuary Premium</h3>
+<p class="text-sm text-on-surface-variant mb-4">Unlock ad-free Quran reading and exclusive Imam lectures.</p>
+<button class="px-4 py-2 bg-primary/10 border border-primary/20 text-primary rounded-full text-xs font-bold hover:bg-primary hover:text-on-primary transition-all">Learn More</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-6 pb-6 pt-3 bg-[#0b1326]/90 backdrop-blur-xl z-50 rounded-t-3xl shadow-[0px_-8px_24px_rgba(0,0,0,0.3)]">
+<a class="flex flex-col items-center justify-center text-[#bbcabf] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">mosque</span>
+<span class="font-['Inter'] text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bbcabf] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-['Inter'] text-[10px] font-medium">Prayers</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#10b981]/10 text-[#10B981] rounded-2xl px-4 py-1 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-['Inter'] text-[10px] font-medium">Notifications</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bbcabf] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-['Inter'] text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</body></html>

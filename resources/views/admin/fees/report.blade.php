@@ -2,11 +2,21 @@
 @section('title', 'Laporan Fee')
 
 @section('content')
-<div class="main-header">
+<div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-8">
     <div>
-        <h2 style="display:flex;align-items:center;gap:10px"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg> Laporan Fee Imam</h2>
-        <div class="breadcrumb">{{ $season ? $season->name : 'Tidak ada season aktif' }}</div>
+        <h2 class="text-3xl font-extrabold tracking-tight text-on-surface mb-1">Fee & Laporan</h2>
+        <p class="text-on-surface-variant text-sm font-medium">Manajemen Keuangan dan Konfigurasi Tarif Imam</p>
     </div>
+</div>
+
+<!-- TABS -->
+<div class="flex items-center gap-2 border-b border-outline-variant/20 mb-8 pb-4">
+    <a href="{{ route('admin.fees.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+        <span class="material-symbols-outlined text-[18px]">settings</span> Konfigurasi Fee
+    </a>
+    <a href="{{ route('admin.fees.report') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-primary/20 text-primary border border-primary/30">
+        <span class="material-symbols-outlined text-[18px]">assessment</span> Laporan Keuangan
+    </a>
 </div>
 
 @if($season && $summary->count() > 0)

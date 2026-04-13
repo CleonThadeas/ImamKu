@@ -11,7 +11,7 @@ Route::get('/', function () {
             ? redirect()->route('admin.dashboard')
             : redirect()->route('imam.dashboard');
     }
-    return redirect()->route('login');
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {

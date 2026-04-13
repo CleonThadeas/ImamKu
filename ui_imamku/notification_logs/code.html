@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImamKu Admin - Log Notifikasi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#bbcabf",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-secondary-fixed": "#121c2a",
+                    "outline": "#86948a",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "tertiary-container": "#e29100",
+                    "surface-tint": "#4edea3",
+                    "inverse-on-surface": "#283044",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "secondary": "#bdc7d9",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-primary-fixed-variant": "#005236",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#00422b",
+                    "tertiary-fixed": "#ffddb8",
+                    "background": "#0b1326",
+                    "surface-container-highest": "#2d3449",
+                    "on-primary-fixed": "#002113",
+                    "surface": "#0b1326",
+                    "surface-bright": "#31394d",
+                    "surface-container-low": "#131b2e",
+                    "on-background": "#dae2fd",
+                    "inverse-primary": "#006c49",
+                    "on-tertiary-container": "#523200",
+                    "inverse-surface": "#dae2fd",
+                    "surface-dim": "#0b1326",
+                    "primary": "#4edea3",
+                    "secondary-fixed": "#d9e3f6",
+                    "outline-variant": "#3c4a42",
+                    "on-surface": "#dae2fd",
+                    "on-tertiary": "#472a00",
+                    "on-primary": "#003824",
+                    "on-secondary-container": "#afb9cb",
+                    "surface-variant": "#2d3449",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed": "#6ffbbe",
+                    "tertiary": "#ffb95f",
+                    "surface-container-lowest": "#060e20",
+                    "on-secondary": "#27313f",
+                    "primary-container": "#10b981",
+                    "surface-container": "#171f33",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-container-high": "#222a3d",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary-container": "#404a59",
+                    "on-error": "#690005"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] shadow-[12px_0px_32px_rgba(0,0,0,0.2)] flex flex-col p-4 space-y-2 z-50">
+<div class="flex items-center gap-3 px-2 py-6 mb-4">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#10b981] to-[#4edea3] flex items-center justify-center shadow-[0px_0px_15px_rgba(16,185,129,0.3)]">
+<span class="material-symbols-outlined text-[#0b1326]" style="font-variation-settings: 'FILL' 1;">mosque</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#10b981] leading-tight">ImamKu Admin</h1>
+<p class="font-['Inter'] uppercase tracking-[0.05em] text-[10px] text-[#bbcabf]">Management System</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Label for Category -->
+<p class="font-['Inter'] uppercase tracking-[0.05em] text-[10px] text-[#bbcabf] px-4 py-2 opacity-50">Main Menu</p>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1 group" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Fee</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1 group" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Laporan</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1 group" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Broadcast</span>
+</a>
+<p class="font-['Inter'] uppercase tracking-[0.05em] text-[10px] text-[#bbcabf] px-4 py-2 opacity-50 mt-4">Sistem</p>
+<a class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#10b981] to-[#4edea3] text-[#0b1326] rounded-xl font-bold transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Log Notifikasi</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all hover:translate-x-1 group" href="#">
+<span class="material-symbols-outlined">ios_share</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Pusat Export</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-outline-variant/10 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:text-white hover:bg-[#222a3d] rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Account</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-error/80 hover:text-error hover:bg-error-container/10 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[12px]">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen bg-[#0b1326] flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-[#0b1326] sticky top-0 z-40 shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex justify-between items-center w-full px-8 py-4 bg-[#131b2e]">
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-[#060e20] border-none rounded-full pl-10 pr-4 py-2 w-64 text-sm focus:ring-1 focus:ring-[#10b981] transition-all placeholder:text-on-surface-variant/50" placeholder="Cari log atau pesan..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-[#bbcabf] hover:bg-[#222a3d] transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-[#bbcabf] hover:bg-[#222a3d] transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-[#bbcabf] hover:bg-[#222a3d] transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/20 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">Admin Utama</p>
+<p class="text-[10px] text-[#10b981] uppercase tracking-wider font-bold">Super Admin</p>
+</div>
+<img alt="Admin Profile" class="w-10 h-10 rounded-full object-cover ring-2 ring-[#10b981]/20" data-alt="close-up portrait of professional male administrator in modern office lighting with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArBHi6Jy4z-EFeWC4QzGt9Mxe0EAdwfZfI0A9aloXup0lvPnKsi97McZTeGCjIyNxbJ0_5JfEotvg4WuPA7niYcacyCodKk_lJ5WJ21GVyN3r_TJghAJOYYTD_pRASruQzZ2vdFAGvNDt0zA4yi_3CwC7evLitK_x3g8ciiq_inn9TAKqNmDEFUHzkf-gQjZny_XxNiR6Km5P4fFjmPdznx_LUMpuuioEo7mhKOsMQyIIPwgqGVhSUiGMZQcHFfQDGhiEpPRPrP50"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-8 space-y-8 max-w-7xl mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-extrabold text-on-surface tracking-tight">Log Notifikasi</h2>
+<p class="text-on-surface-variant mt-1">Pantau status pengiriman pesan sistem secara real-time.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-surface-container-high text-on-surface rounded-xl hover:bg-surface-container-highest transition-colors active:scale-95 text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+                        Refresh
+                    </button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-br from-[#10b981] to-[#4edea3] text-[#0b1326] rounded-xl shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:shadow-[0px_0px_20px_rgba(16,185,129,0.4)] transition-all active:scale-95 text-sm font-bold">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">download</span>
+                        Export Log
+                    </button>
+</div>
+</div>
+<!-- Dashboard Overview Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl space-y-2">
+<p class="text-on-surface-variant font-medium text-xs uppercase tracking-widest">Total Terkirim</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-black text-on-surface">12,482</h3>
+<span class="text-[#10b981] text-xs font-bold">+5.2%</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl space-y-2">
+<p class="text-on-surface-variant font-medium text-xs uppercase tracking-widest">Berhasil</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-black text-[#10b981]">12,401</h3>
+<span class="text-on-surface-variant text-xs">99.3%</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl space-y-2">
+<p class="text-on-surface-variant font-medium text-xs uppercase tracking-widest">Gagal</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-black text-error">48</h3>
+<span class="text-error text-xs font-bold">Terdeteksi</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl space-y-2 border-l-4 border-[#ffb95f]">
+<p class="text-on-surface-variant font-medium text-xs uppercase tracking-widest">Dalam Antrian</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-black text-on-surface">33</h3>
+<span class="text-on-surface-variant text-xs italic">Pending</span>
+</div>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<!-- Filters Bar -->
+<div class="p-6 bg-surface-container flex flex-wrap items-center justify-between gap-6">
+<div class="flex items-center gap-4 flex-wrap">
+<div class="flex flex-col gap-1.5">
+<label class="text-[10px] uppercase tracking-widest text-[#bbcabf] font-bold">Filter Status</label>
+<select class="bg-surface-container-lowest border-none rounded-lg text-sm text-on-surface focus:ring-1 focus:ring-[#10b981] py-2 px-4 w-40">
+<option>Semua Status</option>
+<option>Sent</option>
+<option>Pending</option>
+<option>Failed</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-[10px] uppercase tracking-widest text-[#bbcabf] font-bold">Filter Tanggal</label>
+<div class="flex items-center gap-2">
+<input class="bg-surface-container-lowest border-none rounded-lg text-sm text-on-surface focus:ring-1 focus:ring-[#10b981] py-2 px-4" type="date"/>
+<span class="text-on-surface-variant text-sm">s/d</span>
+<input class="bg-surface-container-lowest border-none rounded-lg text-sm text-on-surface focus:ring-1 focus:ring-[#10b981] py-2 px-4" type="date"/>
+</div>
+</div>
+</div>
+<button class="mt-auto flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary border border-primary/20 rounded-lg hover:bg-primary/20 transition-all text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+                        TERAPKAN FILTER
+                    </button>
+</div>
+<!-- Actual Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50">
+<th class="px-6 py-4 font-['Inter'] uppercase tracking-[0.05em] text-[11px] text-[#bbcabf]">ID Pesan</th>
+<th class="px-6 py-4 font-['Inter'] uppercase tracking-[0.05em] text-[11px] text-[#bbcabf]">Pesan</th>
+<th class="px-6 py-4 font-['Inter'] uppercase tracking-[0.05em] text-[11px] text-[#bbcabf]">Waktu</th>
+<th class="px-6 py-4 font-['Inter'] uppercase tracking-[0.05em] text-[11px] text-[#bbcabf]">Penerima</th>
+<th class="px-6 py-4 font-['Inter'] uppercase tracking-[0.05em] text-[11px] text-[#bbcabf]">Status</th>
+<th class="px-6 py-4 font-['Inter'] uppercase tracking-[0.05em] text-[11px] text-[#bbcabf] text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1: Sent -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-5">
+<span class="text-xs font-mono text-on-surface-variant group-hover:text-primary transition-colors">#MSG-99281</span>
+</td>
+<td class="px-6 py-5 max-w-xs">
+<p class="text-sm font-medium text-on-surface truncate">Pemberitahuan: Jadwal Imam Masjid Al-Ikhlas untuk Shalat Jumat besok...</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm text-on-surface">24 Okt 2023</span>
+<span class="text-[11px] text-on-surface-variant">14:20:11</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs text-on-surface-variant">324 Pengguna</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-[10px] font-bold uppercase tracking-widest border border-primary/20">Sent</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Failed -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-5">
+<span class="text-xs font-mono text-on-surface-variant group-hover:text-primary transition-colors">#MSG-99279</span>
+</td>
+<td class="px-6 py-5 max-w-xs">
+<p class="text-sm font-medium text-on-surface truncate">Broadcast: Penggalangan dana renovasi kubah masjid tahap II...</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm text-on-surface">24 Okt 2023</span>
+<span class="text-[11px] text-on-surface-variant">11:05:45</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs text-on-surface-variant">1,200 Pengguna</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-error/10 text-error rounded-full text-[10px] font-bold uppercase tracking-widest border border-error/20">Failed</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Pending -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-5">
+<span class="text-xs font-mono text-on-surface-variant group-hover:text-primary transition-colors">#MSG-99275</span>
+</td>
+<td class="px-6 py-5 max-w-xs">
+<p class="text-sm font-medium text-on-surface truncate">Reminder: Rapat rutin takmir masjid akan dilaksanakan pada...</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm text-on-surface">24 Okt 2023</span>
+<span class="text-[11px] text-on-surface-variant">09:12:30</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs text-on-surface-variant">15 Pengguna</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-[#ffb95f]/10 text-[#ffb95f] rounded-full text-[10px] font-bold uppercase tracking-widest border border-[#ffb95f]/20">Pending</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">pause</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Sent -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-5">
+<span class="text-xs font-mono text-on-surface-variant group-hover:text-primary transition-colors">#MSG-99268</span>
+</td>
+<td class="px-6 py-5 max-w-xs">
+<p class="text-sm font-medium text-on-surface truncate">Informasi: Update aplikasi ImamKu versi 2.4.1 kini tersedia...</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm text-on-surface">23 Okt 2023</span>
+<span class="text-[11px] text-on-surface-variant">22:45:00</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs text-on-surface-variant">8,500 Pengguna</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-[10px] font-bold uppercase tracking-widest border border-primary/20">Sent</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: Sent -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-6 py-5">
+<span class="text-xs font-mono text-on-surface-variant group-hover:text-primary transition-colors">#MSG-99265</span>
+</td>
+<td class="px-6 py-5 max-w-xs">
+<p class="text-sm font-medium text-on-surface truncate">Konfirmasi: Pembayaran fee imam bulan Oktober telah berhasil...</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm text-on-surface">23 Okt 2023</span>
+<span class="text-[11px] text-on-surface-variant">16:30:15</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs text-on-surface-variant">42 Pengguna</span>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-[10px] font-bold uppercase tracking-widest border border-primary/20">Sent</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination -->
+<div class="px-6 py-4 flex items-center justify-between border-t border-outline-variant/10">
+<p class="text-xs text-on-surface-variant">Menampilkan 1-5 dari 1,248 entri</p>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-highest/50 text-on-surface-variant hover:bg-surface-container-highest transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="px-3 py-1.5 rounded-lg bg-[#10b981] text-[#0b1326] font-bold text-xs">1</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-highest/50 text-on-surface-variant hover:bg-surface-container-highest transition-colors text-xs font-medium">2</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-highest/50 text-on-surface-variant hover:bg-surface-container-highest transition-colors text-xs font-medium">3</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-highest/50 text-on-surface-variant hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Asymmetric Bento-style Details Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Most Active Target -->
+<div class="lg:col-span-2 bg-surface-container-low p-6 rounded-xl flex flex-col gap-4 overflow-hidden relative">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary/5 blur-3xl rounded-full"></div>
+<div class="flex items-center justify-between relative z-10">
+<h4 class="text-lg font-bold text-on-surface">Target Notifikasi Teratas</h4>
+<span class="text-xs font-bold text-primary uppercase tracking-tighter">Bulan Ini</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+<div class="p-4 bg-surface-container rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Takmir Masjid</p>
+<p class="text-[11px] text-on-surface-variant">4,281 Notifikasi</p>
+</div>
+</div>
+<div class="p-4 bg-surface-container rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Imam &amp; Muadzin</p>
+<p class="text-[11px] text-on-surface-variant">2,109 Notifikasi</p>
+</div>
+</div>
+<div class="p-4 bg-surface-container rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Guru Ngaji</p>
+<p class="text-[11px] text-on-surface-variant">1,892 Notifikasi</p>
+</div>
+</div>
+<div class="p-4 bg-surface-container rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Donatur Aktif</p>
+<p class="text-[11px] text-on-surface-variant">4,200 Notifikasi</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Action Card -->
+<div class="bg-gradient-to-br from-[#131b2e] to-[#0b1326] p-8 rounded-xl border border-primary/10 flex flex-col justify-between group">
+<div class="space-y-4">
+<div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[#10b981]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<h4 class="text-xl font-black text-on-surface">Sistem Broadcast</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Butuh mengirim pesan segera ke seluruh pengguna? Gunakan panel broadcast terpusat.</p>
+</div>
+<a class="mt-8 flex items-center justify-between px-6 py-4 bg-[#10b981] text-[#0b1326] rounded-xl font-black text-sm uppercase tracking-widest hover:brightness-110 transition-all" href="#">
+                        Buat Pesan Baru
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Footer Space -->
+<footer class="mt-auto p-8 border-t border-outline-variant/5">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs text-on-surface-variant">© 2023 ImamKu Management System. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors font-bold" href="#">Kebijakan Privasi</a>
+<a class="text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors font-bold" href="#">Pusat Bantuan</a>
+<a class="text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors font-bold" href="#">Status Server</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

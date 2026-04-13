@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detail Notifikasi - ImamKu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary-fixed-dim": "#ffb95f",
+                "primary-fixed-dim": "#4edea3",
+                "outline-variant": "#3c4a42",
+                "on-primary": "#003824",
+                "inverse-primary": "#006c49",
+                "error": "#ffb4ab",
+                "secondary": "#bdc7d9",
+                "surface-container-highest": "#2d3449",
+                "secondary-container": "#404a59",
+                "on-secondary": "#27313f",
+                "on-primary-fixed": "#002113",
+                "on-error-container": "#ffdad6",
+                "on-error": "#690005",
+                "surface-bright": "#31394d",
+                "primary-container": "#10b981",
+                "secondary-fixed": "#d9e3f6",
+                "on-secondary-fixed-variant": "#3d4756",
+                "surface-tint": "#4edea3",
+                "on-tertiary": "#472a00",
+                "surface-container": "#171f33",
+                "primary": "#4edea3",
+                "on-tertiary-container": "#523200",
+                "tertiary-fixed": "#ffddb8",
+                "surface-dim": "#0b1326",
+                "outline": "#86948a",
+                "on-primary-container": "#00422b",
+                "inverse-on-surface": "#283044",
+                "surface-container-low": "#131b2e",
+                "secondary-fixed-dim": "#bdc7d9",
+                "tertiary-container": "#e29100",
+                "surface-variant": "#2d3449",
+                "on-primary-fixed-variant": "#005236",
+                "on-secondary-fixed": "#121c2a",
+                "inverse-surface": "#dae2fd",
+                "tertiary": "#ffb95f",
+                "background": "#0b1326",
+                "surface-container-lowest": "#060e20",
+                "on-background": "#dae2fd",
+                "primary-fixed": "#6ffbbe",
+                "on-surface": "#dae2fd",
+                "error-container": "#93000a",
+                "surface-container-high": "#222a3d",
+                "on-surface-variant": "#bbcabf",
+                "on-secondary-container": "#afb9cb",
+                "surface": "#0b1326",
+                "on-tertiary-fixed-variant": "#653e00",
+                "on-tertiary-fixed": "#2a1700"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Inter', sans-serif; background-color: #0b1326; color: #dae2fd; }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .tonal-shift { background-color: #131b2e; }
+      .tonal-depth { background-color: #0b1326; }
+      .glass-effect { backdrop-filter: blur(20px); background-color: rgba(45, 52, 73, 0.6); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 w-full z-50 bg-[#0b1326] flex justify-between items-center px-6 h-16 w-full shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface-variant active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="text-xl font-bold tracking-tighter text-[#10B981] font-['Inter']">ImamKu</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#bbcabf] font-['Inter'] tracking-tight hover:text-[#4edea3] transition-colors duration-200" href="#">Home</a>
+<a class="text-[#bbcabf] font-['Inter'] tracking-tight hover:text-[#4edea3] transition-colors duration-200" href="#">Prayers</a>
+<a class="text-[#10B981] font-bold border-b-2 border-[#10B981] pb-1 font-['Inter'] tracking-tight" href="#">Notifications</a>
+<a class="text-[#bbcabf] font-['Inter'] tracking-tight hover:text-[#4edea3] transition-colors duration-200" href="#">Profile</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#10B981] cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-[#10B981] cursor-pointer" data-icon="settings">settings</span>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant/20">
+<img alt="User Profile Avatar" data-alt="Close-up portrait of a professional man with clean lighting and neutral background for profile use" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEbDt-6IkY5HdTTQPxSoURA6tuQBXJltJYJBmJv3RGcX99gHDLAaAybaxcnXtTXo5g7cEP4WJkd7MaLviKEYLzPJcMrcg69gCpDl28icx1bja6HoMJ0Z1I5GVbVpgCeCSYCS_oPiHD0om93oN3DwdMznPULT30qtm8R40tlgk4HkvQVYl9DZPtCyePMVcZUr-j4G42USm0RZA_01Y6YZVGCRBg4XLuOd8X7Z71D9QbkpCwz3XAqDQgZEz0YB83Rc4u1OQkmNsFPjc"/>
+</div>
+</div>
+</nav>
+<div class="flex pt-16 min-h-screen">
+<!-- SideNavBar (Shared Component - Web) -->
+<aside class="h-[calc(100vh-64px)] w-64 hidden md:flex flex-col bg-[#131b2e] p-4 space-y-2 shadow-2xl shadow-black/20 sticky top-16">
+<div class="flex items-center gap-3 px-2 py-4 mb-4">
+<div class="bg-primary-container rounded-lg p-2">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="mosque">mosque</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-[#10B981] leading-none">ImamKu</h2>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">Digital Sanctuary</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#bbcabf] hover:bg-[#222a3d] hover:text-white transition-all rounded-lg font-['Inter'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span> Home
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#bbcabf] hover:bg-[#222a3d] hover:text-white transition-all rounded-lg font-['Inter'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span> Community
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#bbcabf] hover:bg-[#222a3d] hover:text-white transition-all rounded-lg font-['Inter'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span> Resources
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#10B981] bg-[#171f33] rounded-lg font-['Inter'] uppercase tracking-widest text-[10px] active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span> Notifications
+                </a>
+</nav>
+<div class="pt-4 border-t border-outline-variant/10 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#bbcabf] hover:bg-[#222a3d] hover:text-white transition-all rounded-lg font-['Inter'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span> Help
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#bbcabf] hover:bg-[#222a3d] hover:text-white transition-all rounded-lg font-['Inter'] uppercase tracking-widest text-[10px]" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span> Logout
+                </a>
+</div>
+<button class="mt-6 w-full bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-bold py-3 rounded-xl shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:scale-[1.02] transition-transform">
+                Upgrade to Premium
+            </button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-6 md:p-12 max-w-5xl mx-auto w-full pb-32 md:pb-12">
+<!-- Breadcrumbs / Back Navigation -->
+<header class="mb-10 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<a class="h-10 w-10 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined group-active:scale-90 transition-transform" data-icon="arrow_back">arrow_back</span>
+</a>
+<div>
+<p class="text-xs font-bold uppercase tracking-[0.2em] text-primary/70 mb-1">Notifications</p>
+<h1 class="text-3xl font-extrabold tracking-tight text-on-surface">Detail Notifikasi</h1>
+</div>
+</div>
+<div class="hidden md:flex gap-2">
+<button class="h-10 w-10 flex items-center justify-center rounded-xl bg-surface-container text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+<button class="h-10 w-10 flex items-center justify-center rounded-xl bg-surface-container text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</header>
+<!-- Notification Content Card -->
+<article class="bg-surface-container-low rounded-[2rem] overflow-hidden shadow-2xl relative">
+<!-- Message Header -->
+<div class="p-8 md:p-12 border-b border-outline-variant/10">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex items-center gap-5">
+<div class="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary-container to-primary flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-on-primary text-3xl" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h2 class="text-2xl font-bold text-on-surface leading-tight mb-1">Ramadan Preparation Webinar</h2>
+<div class="flex items-center gap-3">
+<span class="text-primary font-semibold text-sm">System Admin</span>
+<span class="h-1 w-1 rounded-full bg-outline-variant"></span>
+<span class="text-on-surface-variant text-sm">Mar 12, 2024 • 10:45 AM</span>
+</div>
+</div>
+</div>
+<div class="flex">
+<span class="px-4 py-1.5 rounded-full bg-primary-container/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">Announcement</span>
+</div>
+</div>
+</div>
+<!-- Message Body -->
+<div class="p-8 md:p-12 bg-surface-container-lowest/30">
+<div class="prose prose-invert max-w-none text-on-surface-variant leading-relaxed space-y-6">
+<p class="text-lg text-on-surface/90 font-medium">Assalamu'alaikum Warahmatullahi Wabarakatuh,</p>
+<p>We are pleased to invite you to our exclusive webinar series: <strong>"Spiritual Readiness: Mastering Your Mindset for Ramadan 2024"</strong>. This session is specifically curated for our premium community members to help navigate the spiritual and physical preparations for the holy month.</p>
+<div class="bg-surface-container rounded-2xl p-6 my-8 border-l-4 border-primary">
+<h4 class="text-on-surface font-bold mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="event">event</span>
+                                Event Details
+                            </h4>
+<ul class="space-y-2 text-sm">
+<li class="flex justify-between">
+<span class="text-on-surface-variant">Date:</span>
+<span class="text-on-surface font-semibold">Saturday, March 16th</span>
+</li>
+<li class="flex justify-between">
+<span class="text-on-surface-variant">Time:</span>
+<span class="text-on-surface font-semibold">20:00 - 21:30 (GMT+7)</span>
+</li>
+<li class="flex justify-between">
+<span class="text-on-surface-variant">Platform:</span>
+<span class="text-on-surface font-semibold">ImamKu Live Studio</span>
+</li>
+</ul>
+</div>
+<p>The webinar will feature <strong>Ustadz Khalid Al-Fayed</strong>, who will share practical insights on balancing professional productivity with spiritual growth during fasting hours. We will also introduce the new 'Fasting Tracker' feature during this live event.</p>
+<p>Please ensure your mobile application is updated to the latest version (v2.4.0) to access the Live Studio seamlessly. You can register your interest by clicking the button below or via the Events tab in your dashboard.</p>
+<p>May this upcoming Ramadan be a source of immense blessings for you and your family.</p>
+<p class="pt-6 italic border-t border-outline-variant/10">Barakallahu Feekum,<br/><span class="text-on-surface font-bold not-italic">Team ImamKu</span></p>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="p-8 md:p-10 bg-surface-container-low flex flex-col sm:flex-row gap-4 items-center justify-center">
+<button class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-bold shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+                        Register for Webinar
+                    </button>
+<button class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-surface-container-high text-on-surface font-bold hover:bg-surface-container-highest transition-colors">
+                        Add to Calendar
+                    </button>
+</div>
+</article>
+<!-- Related Items (Asymmetric Layout) -->
+<section class="mt-12">
+<h3 class="text-label-md uppercase tracking-[0.1em] text-on-surface-variant mb-6 flex items-center gap-2">
+<span class="h-px w-8 bg-primary/30"></span>
+                    Recent Notifications
+                </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-5 rounded-2xl bg-surface-container hover:bg-surface-container-high transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-primary/80 uppercase tracking-wider">System Update</span>
+<span class="text-[10px] text-on-surface-variant">2h ago</span>
+</div>
+<h4 class="text-on-surface font-semibold group-hover:text-primary transition-colors">Server Maintenance Schedule</h4>
+<p class="text-sm text-on-surface-variant line-clamp-1 mt-1">Brief interruption expected this Friday at 02:00 AM...</p>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container hover:bg-surface-container-high transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-tertiary uppercase tracking-wider">Subscription</span>
+<span class="text-[10px] text-on-surface-variant">1d ago</span>
+</div>
+<h4 class="text-on-surface font-semibold group-hover:text-tertiary transition-colors">Subscription Renewed</h4>
+<p class="text-sm text-on-surface-variant line-clamp-1 mt-1">Thank you! Your premium access has been extended...</p>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- BottomNavBar (Shared Component - Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-6 pb-6 pt-3 bg-[#0b1326]/90 backdrop-blur-xl z-50 rounded-t-3xl shadow-[0px_-8px_24px_rgba(0,0,0,0.3)]">
+<a class="flex flex-col items-center justify-center text-[#bbcabf] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Inter'] text-[10px] font-medium mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bbcabf] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+<span class="font-['Inter'] text-[10px] font-medium mt-1">Prayers</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#10b981]/10 text-[#10B981] rounded-2xl px-4 py-1 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-['Inter'] text-[10px] font-medium mt-0.5">Notifications</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bbcabf] opacity-70 hover:opacity-100 transition-opacity active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-['Inter'] text-[10px] font-medium mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

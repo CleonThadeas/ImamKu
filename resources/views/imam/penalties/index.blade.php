@@ -78,6 +78,7 @@
                                     @elseif($log->event_type === 'attendance_late') Absen Terlambat
                                     @elseif($log->event_type === 'no_show') Tidak Hadir (Alpha)
                                     @elseif($log->event_type === 'swap_expired') Swap Expired
+                                    @elseif($log->event_type === 'admin_reset') Pemutihan Poin (Admin)
                                     @endif
                                 </strong><br>
                                 <span style="font-size:0.85rem; color:var(--clr-text-muted);">{{ $log->description }}</span>

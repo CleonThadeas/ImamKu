@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#005236",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-variant": "#2d3449",
+                    "tertiary-container": "#e29100",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-secondary-fixed": "#121c2a",
+                    "surface-container": "#171f33",
+                    "on-tertiary": "#472a00",
+                    "on-primary-container": "#00422b",
+                    "tertiary-fixed": "#ffddb8",
+                    "tertiary": "#ffb95f",
+                    "error": "#ffb4ab",
+                    "primary": "#4edea3",
+                    "on-secondary-container": "#afb9cb",
+                    "on-surface-variant": "#bbcabf",
+                    "surface-container-low": "#131b2e",
+                    "surface-tint": "#4edea3",
+                    "surface-container-high": "#222a3d",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-background": "#dae2fd",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-container-lowest": "#060e20",
+                    "surface": "#0b1326",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#523200",
+                    "error-container": "#93000a",
+                    "background": "#0b1326",
+                    "primary-container": "#10b981",
+                    "on-surface": "#dae2fd",
+                    "surface-container-highest": "#2d3449",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-error-container": "#ffdad6",
+                    "surface-dim": "#0b1326",
+                    "outline-variant": "#3c4a42",
+                    "outline": "#86948a",
+                    "inverse-surface": "#dae2fd",
+                    "secondary-container": "#404a59",
+                    "primary-fixed": "#6ffbbe",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-primary-fixed": "#002113",
+                    "inverse-primary": "#006c49",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-primary": "#003824",
+                    "inverse-on-surface": "#283044",
+                    "surface-bright": "#31394d",
+                    "secondary": "#bdc7d9",
+                    "on-secondary": "#27313f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container/30">
+<!-- Dashboard Background Shell -->
+<div class="flex min-h-screen">
+<!-- SideNavBar Implementation -->
+<aside class="fixed left-0 top-0 bottom-0 flex flex-col py-8 h-screen w-64 border-r border-outline-variant/15 bg-surface-container-low font-['Inter'] text-sm font-medium tracking-wide shadow-2xl z-40">
+<div class="px-6 mb-8">
+<div class="text-2xl font-black bg-gradient-to-br from-primary to-primary-fixed-dim bg-clip-text text-transparent">ImamKu</div>
+<div class="text-on-surface-variant text-xs mt-1">Imam Dashboard</div>
+</div>
+<nav class="flex-1 px-2">
+<div class="space-y-1">
+<a class="bg-gradient-to-r from-primary/10 to-transparent text-primary border-r-2 border-primary flex items-center px-4 py-3 mb-1 transition-transform active:translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span> Dashboard
+                    </a>
+<a class="text-slate-400 flex items-center px-4 py-3 mb-1 hover:bg-surface-container hover:text-primary transition-colors duration-200 active:translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3">calendar_month</span> Jadwal Saya
+                    </a>
+<a class="text-slate-400 flex items-center px-4 py-3 mb-1 hover:bg-surface-container hover:text-primary transition-colors duration-200 active:translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3">swap_horizontal_circle</span> Swap Jadwal
+                    </a>
+<a class="text-slate-400 flex items-center px-4 py-3 mb-1 hover:bg-surface-container hover:text-primary transition-colors duration-200 active:translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3">verified</span> Poin &amp; Kedisiplinan
+                    </a>
+</div>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full py-3 rounded-xl bg-surface-container-highest text-primary font-bold hover:bg-surface-container-high transition-all active:scale-95">
+                    Ajukan Cuti
+                </button>
+</div>
+</aside>
+<!-- Main Content (Blurred Under Modal) -->
+<main class="ml-64 flex-1 p-8 filter blur-sm">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-6 sticky top-0 z-50 w-full h-16 bg-surface dark:bg-surface shadow-sm font-['Inter'] antialiased tracking-tight mb-8">
+<div class="text-xl font-bold tracking-tighter text-primary">Dashboard Utama</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer">help_outline</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a professional man with a friendly expression in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrt-fWkObNdYxmuiCAouBqpUCA_83Q_1dS6kZrXOUpd1EVFPX1D7oQ0jOkDX-0OBTwKJC0ROGV58nvbZgRg9Vqylcz6LEQLrnE5hyxw0tJHZwPK0g0X_pqxmGzTxAhMiEcUObucqa4pA6wYnhmuRJxTFgftDIWiMzS9sC65RYKL3ieI5fPGeZBTSySTP3BESNDBXKizo6z85NLiXMeAAzZ30x-BToVDBHsknunkMKD-5ffpv1zf1b1c4eNxLPszsWmDBW177Gdg6s"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Bento Grid Content -->
+<div class="grid grid-cols-12 gap-6">
+<div class="col-span-8 bg-surface-container-low p-6 rounded-3xl h-64 shadow-sm border border-outline-variant/10"></div>
+<div class="col-span-4 bg-surface-container-low p-6 rounded-3xl h-64 shadow-sm border border-outline-variant/10"></div>
+<div class="col-span-4 bg-surface-container-low p-6 rounded-3xl h-96 shadow-sm border border-outline-variant/10"></div>
+<div class="col-span-8 bg-surface-container-low p-6 rounded-3xl h-96 shadow-sm border border-outline-variant/10"></div>
+</div>
+</main>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center bg-surface-container-lowest/80 backdrop-blur-md p-4">
+<!-- Check-in Modal Container -->
+<div class="w-full max-w-lg glass-panel rounded-3xl shadow-[0px_4px_12px_rgba(0,0,0,0.1),0px_12px_32px_rgba(0,0,0,0.2),0px_0px_8px_rgba(78,222,163,0.05)] border border-outline-variant/20 overflow-hidden">
+<!-- Modal Header -->
+<div class="px-8 py-6 flex justify-between items-center">
+<h2 class="text-xl font-bold tracking-tight text-on-surface">Check-in Kehadiran</h2>
+<button class="p-2 rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Content -->
+<div class="px-8 pb-8 space-y-6">
+<!-- Camera Preview Area (Placeholder) -->
+<div class="relative aspect-video w-full rounded-2xl bg-surface-container-lowest overflow-hidden border border-outline-variant/10 group">
+<img class="w-full h-full object-cover opacity-40" data-alt="abstract dark blue background with subtle lighting and texture representing a professional camera sensor view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcSSbX1qRjPFjF_4mYQ8TXWLhyfqwhQaGjuvEyXSLhJtLXW900x4pWB7o8oKN05kDT31y_X4YpukCGSRcjNXbob1KWnzNde7GTEcILl49MtB_xM11XOVQbDgHxD9KJX1d31rTjVUxwsPSejNoA91LpYwIdeMHawNv5AOeIiehr73tZ9EDJZSfmF5dcW6TNBViF0qv5fsDEwpQKEfGO7WFJBgFaP2IZHmgnMeJzcRuDcbnctOPtMfGwxI69R2s1_y4J4yE7oIwhZRc"/>
+<!-- Viewfinder Overlay -->
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<!-- Scanning Frame -->
+<div class="w-48 h-48 border-2 border-primary/40 rounded-3xl flex items-center justify-center relative">
+<div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary"></div>
+<span class="material-symbols-outlined text-primary text-5xl animate-pulse">face</span>
+</div>
+<p class="mt-4 text-label-md text-on-surface-variant uppercase tracking-widest font-semibold">Siap Untuk Memindai</p>
+</div>
+<!-- Location Tag -->
+<div class="absolute bottom-4 left-4 bg-surface-container-highest/60 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="text-xs font-medium text-on-surface">Masjid Raya Al-Barkah</span>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="flex items-center gap-4">
+<button class="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-2xl bg-surface-container-high text-on-surface font-medium hover:bg-surface-container-highest transition-colors active:scale-95 group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">photo_camera</span>
+                        Upload Foto
+                    </button>
+<button class="w-14 h-14 flex items-center justify-center rounded-2xl bg-surface-container-low text-on-surface-variant border border-outline-variant/20 hover:border-primary/50 transition-all">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+</div>
+<!-- Verification Info -->
+<div class="p-4 rounded-2xl bg-primary/5 border border-primary/10 flex gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">info</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-primary">Pastikan Wajah Terlihat Jelas</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Sistem akan melakukan verifikasi biometrik secara otomatis sebelum check-in disetujui.</p>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full py-4 rounded-3xl bg-gradient-to-br from-primary-container to-primary text-on-primary font-bold text-lg shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:shadow-[0px_0px_25px_rgba(16,185,129,0.5)] transition-all active:scale-[0.98]">
+                    Submit Kehadiran
+                </button>
+<p class="text-center text-xs text-on-surface-variant/60">
+                    Waktu Server: <span class="text-on-surface-variant font-medium">12:34:56 WIB</span>
+</p>
+</div>
+</div>
+</div>
+</body></html>

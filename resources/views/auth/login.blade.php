@@ -1,263 +1,147 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'ImamKu') }} — Login</title>
-
-        <link rel="icon" type="image/svg+xml" href="{{ asset('storage/logo/Logo.svg') }}">
-
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700,800&display=swap" rel="stylesheet" />
-
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-        <style>
-            * { box-sizing: border-box; margin: 0; padding: 0; }
-
-            body {
-                font-family: 'Inter', sans-serif;
-                background: #0A0F1A;
-                color: #F9FAFB;
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-            }
-
-            .login-bg {
-                position: fixed;
-                inset: 0;
-                background: linear-gradient(135deg, #0F2B1F 0%, #0A0F1A 50%, #1B4332 100%);
-                z-index: 0;
-            }
-
-            .login-bg::before {
-                content: '';
-                position: absolute;
-                top: -50%;
-                left: -50%;
-                width: 200%;
-                height: 200%;
-                background: radial-gradient(ellipse at center, rgba(212,168,67,0.06) 0%, transparent 60%);
-                animation: pulse 8s ease-in-out infinite alternate;
-            }
-
-            .login-bg::after {
-                content: '';
-                position: absolute;
-                bottom: -30%;
-                right: -30%;
-                width: 60%;
-                height: 60%;
-                background: radial-gradient(circle, rgba(16,185,129,0.04) 0%, transparent 60%);
-                animation: pulse 10s ease-in-out infinite alternate-reverse;
-            }
-
-            @keyframes pulse {
-                from { transform: scale(1); }
-                to { transform: scale(1.1); }
-            }
-
-            .login-container {
-                position: relative;
-                z-index: 1;
-                width: 100%;
-                max-width: 420px;
-                padding: 20px;
-            }
-
-            .login-card {
-                background: rgba(17, 24, 39, 0.8);
-                backdrop-filter: blur(20px);
-                border: 1px solid rgba(55, 65, 81, 0.5);
-                border-radius: 24px;
-                padding: 44px 36px;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-                animation: cardEnter 0.6s ease-out;
-            }
-
-            @keyframes cardEnter {
-                from { opacity: 0; transform: translateY(20px) scale(0.97); }
-                to { opacity: 1; transform: translateY(0) scale(1); }
-            }
-
-            .login-brand {
-                text-align: center;
-                margin-bottom: 32px;
-            }
-
-            .login-brand .brand-icon {
-                font-size: 3rem;
-                margin-bottom: 8px;
-                display: block;
-            }
-
-            .login-brand h1 {
-                font-size: 1.8rem;
-                font-weight: 800;
-                color: #D4A843;
-                letter-spacing: 1px;
-            }
-
-            .login-brand .brand-sub {
-                font-size: 0.75rem;
-                color: #9CA3AF;
-                text-transform: uppercase;
-                letter-spacing: 3px;
-                margin-top: 4px;
-            }
-
-            .form-group {
-                margin-bottom: 20px;
-            }
-
-            .form-label {
-                display: block;
-                font-size: 0.8rem;
-                font-weight: 600;
-                color: #9CA3AF;
-                margin-bottom: 8px;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-
-            .form-input {
-                width: 100%;
-                padding: 12px 16px;
-                background: rgba(31, 41, 55, 0.6);
-                border: 1px solid #374151;
-                border-radius: 10px;
-                color: #F9FAFB;
-                font-size: 0.9rem;
-                font-family: inherit;
-                transition: border-color 0.2s, box-shadow 0.2s;
-            }
-
-            .form-input:focus {
-                outline: none;
-                border-color: #D4A843;
-                box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.15);
-            }
-
-            .form-input::placeholder {
-                color: #6B7280;
-            }
-
-            .remember-row {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 24px;
-            }
-
-            .remember-row label {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                font-size: 0.8rem;
-                color: #9CA3AF;
-                cursor: pointer;
-            }
-
-            .remember-row input[type="checkbox"] {
-                width: 16px;
-                height: 16px;
-                accent-color: #D4A843;
-                cursor: pointer;
-            }
-
-            .btn-login {
-                width: 100%;
-                padding: 14px;
-                background: linear-gradient(135deg, #B8922D, #D4A843);
-                color: #0F2B1F;
-                border: none;
-                border-radius: 10px;
-                font-size: 1rem;
-                font-weight: 700;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                letter-spacing: 0.5px;
-                font-family: inherit;
-            }
-
-            .btn-login:hover {
-                background: linear-gradient(135deg, #D4A843, #E8C96A);
-                transform: translateY(-2px);
-                box-shadow: 0 8px 24px rgba(212, 168, 67, 0.3);
-            }
-
-            .error-msg {
-                background: rgba(239, 68, 68, 0.1);
-                border: 1px solid rgba(239, 68, 68, 0.3);
-                color: #F87171;
-                padding: 10px 14px;
-                border-radius: 8px;
-                font-size: 0.8rem;
-                margin-bottom: 16px;
-            }
-
-            .status-msg {
-                background: rgba(16, 185, 129, 0.1);
-                border: 1px solid rgba(16, 185, 129, 0.3);
-                color: #34D399;
-                padding: 10px 14px;
-                border-radius: 8px;
-                font-size: 0.8rem;
-                margin-bottom: 16px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="login-bg"></div>
-
-        <div class="login-container">
-            <div class="login-card">
-                <div class="login-brand">
-                    <img src="{{ asset('storage/logo/Logo.svg') }}" alt="ImamKu" style="height:56px; width:auto; margin-bottom:8px;">
-                    <h1>ImamKu</h1>
-                    <div class="brand-sub">Ramadan Schedule</div>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Login - ImamKu</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: { colors: { 
+                "primary": "#10B981",
+                "primary-container": "#0d9467",
+                "on-primary-container": "#d1fae5",
+                "secondary": "#1F2937",
+                "accent": "#F59E0B",
+                "background": "#0F172A",
+                "surface": "#111827",
+                "surface-container": "#1F2937",
+                "surface-container-low": "#111827",
+                "surface-container-high": "#374151",
+                "surface-container-highest": "#4B5563",
+                "surface-container-lowest": "#060e20",
+                "on-surface": "#E5E7EB",
+                "on-surface-variant": "#9CA3AF",
+                "outline-variant": "#4B5563",
+                "error": "#EF4444",
+                "tertiary": "#F59E0B"
+            }, fontFamily: { "headline": ["Inter"], "body": ["Inter"], "label": ["Inter"] } } }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glow-primary { box-shadow: 0px 0px 15px rgba(16, 185, 129, 0.3); }
+        .glow-primary:hover { box-shadow: 0px 0px 25px rgba(16, 185, 129, 0.5); }
+        .glass-overlay { background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(20px); }
+        /* Task 6 constraints locally forced just in case */
+        input { background-color: #111827 !important; color: #E5E7EB !important; border: 1px solid #374151 !important; }
+        input:focus { border-color: #10B981 !important; box-shadow: 0 0 0 1px #10B981 !important; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
+    
+    <!-- Ambient Decorative Elements -->
+    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+    
+    <main class="w-full max-w-md px-6 py-12 z-10 hidden-on-submit">
+        <!-- Brand Identity -->
+        <div class="flex flex-col items-center mb-10">
+            <div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center mb-6 shadow-2xl border border-outline-variant/30">
+                <img src="{{ asset('storage/logo/Logo.svg') }}" alt="Logo" class="h-10 w-auto" />
+            </div>
+            <h1 class="text-3xl font-extrabold tracking-tighter text-primary">ImamKu</h1>
+            <p class="text-on-surface-variant text-sm mt-2 font-medium uppercase tracking-[0.05em]">The Digital Sanctuary</p>
+        </div>
+        
+        <!-- Login Card -->
+        <div class="bg-surface glass-overlay p-8 md:p-10 rounded-2xl shadow-[0px_12px_32px_rgba(0,0,0,0.5)] relative overflow-hidden border border-outline-variant/50">
+            <header class="relative z-10 mb-8">
+                <h2 class="text-xl font-bold text-on-surface tracking-tight">Welcome Back</h2>
+                <p class="text-on-surface-variant text-sm mt-1">Please enter your credentials to continue</p>
+            </header>
+            
+            @if(session('status'))
+                <div class="mb-4 p-3 bg-primary/10 border border-primary/30 rounded-xl text-primary text-sm font-medium">
+                    {{ session('status') }}
                 </div>
+            @endif
 
-                @if(session('status'))
-                    <div class="status-msg">{{ session('status') }}</div>
-                @endif
+            @if($errors->any())
+                <div class="mb-4 p-3 bg-error/10 border border-error/30 rounded-xl text-error text-sm font-bold">
+                    @foreach($errors->all() as $error)
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">error</span>{{ $error }}</div>
+                    @endforeach
+                </div>
+            @endif
 
-                @if($errors->any())
-                    <div class="error-msg">
-                        @foreach($errors->all() as $error)
-                            <div>{{ $error }}</div>
-                        @endforeach
+            <form method="POST" action="{{ route('login') }}" class="space-y-6 relative z-10" id="loginForm">
+                @csrf
+                
+                <!-- Email Input -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest block" for="email">Email Address</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-outline-variant text-lg">mail</span>
+                        </div>
+                        <input class="w-full rounded-xl py-4 pl-12 pr-4 transition-all duration-300" id="email" name="email" value="{{ old('email') }}" type="email" required autofocus autocomplete="username" placeholder="nama@email.com"/>
                     </div>
-                @endif
-
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email</label>
-                        <input id="email" type="email" name="email" class="form-input" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="nama@email.com">
+                </div>
+                
+                <!-- Password Input -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest block" for="password">Password</label>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="password">Password</label>
-                        <input id="password" type="password" name="password" class="form-input" required autocomplete="current-password" placeholder="••••••••">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-outline-variant text-lg">lock</span>
+                        </div>
+                        <input class="w-full rounded-xl py-4 pl-12 pr-12 transition-all duration-300" id="password" name="password" type="password" required autocomplete="current-password" placeholder="••••••••"/>
                     </div>
+                </div>
+                
+                <!-- Remember Me -->
+                <div class="flex items-center gap-3">
+                    <input class="w-5 h-5 rounded border-none bg-surface-container-highest text-primary focus:ring-primary focus:ring-offset-0" name="remember" id="remember" type="checkbox"/>
+                    <label class="text-sm text-on-surface-variant cursor-pointer select-none" for="remember">Remember this device</label>
+                </div>
+                
+                <!-- Login Action -->
+                <button class="w-full bg-gradient-to-br from-primary-container to-primary py-4 rounded-xl text-on-primary-container font-bold tracking-tight glow-primary transition-all active:scale-95 border border-primary/50" type="submit">
+                    Login to Dashboard
+                </button>
+            </form>
+        </div>
 
-                    <div class="remember-row">
-                        <label>
-                            <input type="checkbox" name="remember">
-                            Ingat saya
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn-login">Masuk</button>
-                </form>
+        <div class="mt-12 flex justify-center items-center">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Server Secure</span>
             </div>
         </div>
-    </body>
+    </main>
+
+    <!-- LOADING OVERLAY (Hidden by default) -->
+    <div id="loadingOverlay" style="display:none;" class="flex-col justify-center items-center fixed inset-0 bg-background/90 backdrop-blur-sm z-50 transition-opacity">
+        <div class="relative flex items-center justify-center mb-6">
+            <div class="absolute w-24 h-24 border-4 border-primary/20 rounded-full"></div>
+            <div class="absolute w-24 h-24 border-4 border-primary rounded-full border-t-transparent animate-spin"></div>
+            <span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+        </div>
+        <h2 class="text-xl font-bold text-on-surface mb-2">Authenticating...</h2>
+        <p class="text-primary font-medium tracking-wider text-sm animate-pulse">Mengalihkan ke dashboard...</p>
+    </div>
+
+    <!-- Toggle logic for the loader -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function() {
+            document.querySelectorAll('.hidden-on-submit').forEach(el => el.style.opacity = '0.3');
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        });
+    </script>
+</body>
 </html>

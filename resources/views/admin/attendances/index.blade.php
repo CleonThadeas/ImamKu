@@ -2,146 +2,230 @@
 @section('title', 'Validasi Absensi Imam')
 
 @section('content')
-<div class="main-header">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
     <div>
-        <h2 style="display:flex;align-items:center;gap:10px"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2v11z"/><circle cx="12" cy="13" r="4"/></svg> Validasi Absensi Imam</h2>
-        <div class="breadcrumb">Admin — Manajemen Absen Kehadiran</div>
+        <h2 class="text-2xl font-bold flex items-center gap-3 text-on-surface">
+            <div class="w-1.5 h-6 bg-primary rounded-full"></div>
+            Validasi Absensi Imam
+        </h2>
+        <div class="text-sm text-on-surface-variant font-medium mt-1 flex items-center gap-2 tracking-wide">
+            <span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>
+            Admin — Manajemen Absen Kehadiran
+        </div>
     </div>
 </div>
 
 @if(!$season)
-    <div class="card">
-        <div class="empty-state">
-            <div class="empty-icon"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="opacity:0.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></div>
-            <p>Silakan buat dan aktifkan Season Ramadan terlebih dahulu.</p>
-            <a href="{{ route('admin.seasons.index') }}" class="btn btn-primary" style="margin-top: 10px;">Atur Season</a>
-        </div>
+    <div class="card p-12 text-center border-dashed border-2 border-outline-variant/30 bg-surface-container/50">
+        <span class="material-symbols-outlined text-6xl text-on-surface-variant/30 mb-4 block">event_busy</span>
+        <h3 class="text-xl font-bold text-on-surface mb-2">Belum ada Season Aktif</h3>
+        <p class="text-on-surface-variant max-w-md mx-auto mb-6">Silakan buat dan aktifkan Season Ramadan terlebih dahulu untuk mulai mengelola kehadiran absensi imam.</p>
+        <a href="{{ route('admin.seasons.index') }}" class="btn btn-primary inline-flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">settings</span> Atur Season
+        </a>
     </div>
 @else
-    <div class="card mb-4" style="padding: 20px;">
-        <h3 style="display:flex;align-items:center;gap:8px"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg> Skema Persetujuan Absensi & Pencairan Fee</h3>
+    <!-- Skema Panel -->
+    <div class="card mb-8">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 pb-6 border-b border-outline-variant/20 gap-4">
+            <div>
+                <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">rule_settings</span>
+                    Skema Persetujuan Absensi & Pencairan Fee
+                </h3>
+                <p class="text-sm text-on-surface-variant mt-1.5">Tentukan bagaimana absensi kehadiran (beserta laporan fee-nya) akan divalidasi oleh sistem.</p>
+            </div>
+        </div>
         
         @if($feeConfig && !$feeConfig->is_enabled)
-            <div class="alert alert-warning" style="margin-bottom: 15px; display:flex; align-items:flex-start; gap:10px;">
-                <span style="font-size:1.5em; line-height:1;"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--clr-warning)"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg></span>
+            <div class="bg-warning/10 border border-warning/30 rounded-2xl p-4 mb-6 relative overflow-hidden flex gap-4">
+                <div class="absolute top-0 left-0 w-1 h-full bg-warning"></div>
+                <span class="material-symbols-outlined text-warning text-3xl">money_off</span>
                 <div>
-                    <strong>Perhatian:</strong> Sistem Fee Manajemen Keuangan saat ini <strong style="color:var(--clr-danger)">NONAKTIF</strong>.<br>
-                    Absensi yang disetujui (baik manual/otomatis) disini sifatnya hanya merekam kehadiran operasional dan <strong>tidak akan menambah saldo Fee apapun</strong> kepada Imam.
+                    <h4 class="font-bold text-warning text-sm mb-1 uppercase tracking-wider">Warning: Sistem Keuangan Nonaktif</h4>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
+                        Sistem Manajemen Keuangan dan pencairan fee saat ini <strong class="text-error">NONAKTIF</strong>. 
+                        Absensi yang disetujui disini sifatnya hanya merekam kehadiran operasional dan <strong class="text-warning">tidak akan menambah saldo Fee apapun</strong> kepada Imam.
+                    </p>
                 </div>
             </div>
         @endif
 
-        <p class="text-muted mb-3" style="font-size:0.9rem;">Tentukan bagaimana absensi kehadiran (beserta laporan fee-nya) akan divalidasi oleh sistem.</p>
-    
-    <form action="{{ route('admin.fee-configs.toggle-auto-approve') }}" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label style="display:flex; align-items:baseline; gap:10px; cursor:pointer; margin-bottom:10px; padding:10px; border:1px solid var(--clr-border); border-radius:6px; background:var(--clr-surface-light);">
-                <input type="radio" name="is_auto_approve_attendance" value="0" {{ !$feeConfig->is_auto_approve_attendance ? 'checked' : '' }} style="margin-top:3px;">
-                <div>
-                    <strong style="color:var(--clr-accent)">Validasi Manual (Rekomendasi)</strong><br>
-                    <span class="text-muted" style="font-size:0.85rem;">Admin harus mengecek dan menyetujui foto bukti absensi secara manual di halaman ini barulah fee dicairkan ke dompet Imam.</span>
-                </div>
-            </label>
-            <label style="display:flex; align-items:baseline; gap:10px; cursor:pointer; padding:10px; border:1px solid var(--clr-border); border-radius:6px; background:var(--clr-surface-light);">
-                <input type="radio" name="is_auto_approve_attendance" value="1" {{ $feeConfig->is_auto_approve_attendance ? 'checked' : '' }} style="margin-top:3px;">
-                <div>
-                    <strong style="color:var(--clr-accent)">Setujui Otomatis (Robot Scheduler)</strong><br>
-                    <span class="text-muted" style="font-size:0.85rem;">Sistem akan menyetujui absensi yang dikirim Imam secara otomatis dan mencairkan Fee-nya tepat <strong style="color:var(--clr-success)">30 menit setelah waktu sholat</strong>. Bukti foto tetap terarsip di sini.</span>
-                </div>
-            </label>
+        <form action="{{ route('admin.fee-configs.toggle-auto-approve') }}" method="POST">
+            @csrf
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <!-- Manual Validation -->
+                <label class="relative flex items-start gap-4 p-5 rounded-2xl cursor-pointer border-2 transition-all duration-200 {{ !$feeConfig->is_auto_approve_attendance ? 'border-primary bg-primary/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'border-outline-variant/20 bg-surface-container-low hover:border-primary/50' }}">
+                    <input type="radio" name="is_auto_approve_attendance" value="0" {{ !$feeConfig->is_auto_approve_attendance ? 'checked' : '' }} class="mt-1 w-5 h-5 accent-primary bg-surface-container-highest border-outline-variant/50 focus:ring-primary focus:ring-offset-surface shrink-0 cursor-pointer">
+                    <div class="flex-1">
+                        <strong class="block text-base font-bold {{ !$feeConfig->is_auto_approve_attendance ? 'text-primary' : 'text-on-surface' }}">Validasi Manual (Rekomendasi)</strong>
+                        <p class="text-sm text-on-surface-variant mt-2 leading-relaxed">Admin harus mengecek ulang dan menyetujui foto bukti absensi secara manual barulah fee dicairkan ke dompet Imam.</p>
+                    </div>
+                    @if(!$feeConfig->is_auto_approve_attendance)
+                        <span class="material-symbols-outlined absolute top-4 right-4 text-primary opacity-20 text-4xl pointer-events-none">verified_user</span>
+                    @endif
+                </label>
+
+                <!-- Auto Validation -->
+                <label class="relative flex items-start gap-4 p-5 rounded-2xl cursor-pointer border-2 transition-all duration-200 {{ $feeConfig->is_auto_approve_attendance ? 'border-primary bg-primary/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'border-outline-variant/20 bg-surface-container-low hover:border-primary/50' }}">
+                    <input type="radio" name="is_auto_approve_attendance" value="1" {{ $feeConfig->is_auto_approve_attendance ? 'checked' : '' }} class="mt-1 w-5 h-5 accent-primary bg-surface-container-highest border-outline-variant/50 focus:ring-primary focus:ring-offset-surface shrink-0 cursor-pointer">
+                    <div class="flex-1">
+                        <strong class="block text-base font-bold {{ $feeConfig->is_auto_approve_attendance ? 'text-primary' : 'text-on-surface' }}">Setujui Otomatis (Robot Scheduler)</strong>
+                        <p class="text-sm text-on-surface-variant mt-2 leading-relaxed">Sistem akan menyetujui absensi otomatis dan memproses pencairan Fee <strong class="text-primary font-semibold">30 menit setelah waktu sholat</strong>. Bukti foto tetap terarsip.</p>
+                    </div>
+                    @if($feeConfig->is_auto_approve_attendance)
+                        <span class="material-symbols-outlined absolute top-4 right-4 text-primary opacity-20 text-4xl pointer-events-none">smart_toy</span>
+                    @endif
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary group flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 font-semibold tracking-wide">
+                <span class="material-symbols-outlined text-[18px] group-hover:scale-110 transition-transform">save</span> Simpan Skema Validasi
+            </button>
+        </form>
+    </div>
+
+    <!-- Antrean Absensi -->
+    <div class="card p-0 overflow-hidden">
+        <div class="p-6 border-b border-outline-variant/20 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface-container/50">
+            <div>
+                <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
+                    <span class="material-symbols-outlined text-accent">pending_actions</span>
+                    Antrean Validasi Absensi
+                </h3>
+                <p class="text-sm text-on-surface-variant">Menampilkan status kehadiran aktual Imam yang butuh persetujuan.</p>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-sm">💾 Simpan Skema</button>
-    </form>
-</div>
 
-<div class="card">
-    @if(session('success'))
-        <div class="alert alert-success" style="margin:20px 20px 0 20px;">{{ session('success') }}</div>
-    @endif
-    @if(session('error'))
-        <div class="alert alert-danger" style="margin:20px 20px 0 20px;">{{ session('error') }}</div>
-    @endif
+        @if(session('success'))
+            <div class="p-4 mx-6 mt-6 rounded-xl bg-primary/10 border border-primary/20 text-primary text-sm font-medium flex items-center gap-2"><span class="material-symbols-outlined text-lg">check_circle</span>{{ session('success') }}</div>
+        @endif
+        @if(session('error'))
+            <div class="p-4 mx-6 mt-6 rounded-xl bg-error/10 border border-error/20 text-error text-sm font-medium flex items-center gap-2"><span class="material-symbols-outlined text-lg">error</span>{{ session('error') }}</div>
+        @endif
 
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Waktu Absen</th>
-                    <th>Imam</th>
-                    <th>Jadwal Sholat</th>
-                    <th>Bukti Hadir</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($attendances as $row)
+        <div class="table-wrapper border-0 rounded-none bg-surface-container-low mt-4">
+            <table>
+                <thead>
                     <tr>
-                        <td><strong>{{ $row->created_at->format('d/m/Y') }}</strong><br><small class="text-muted">{{ $row->created_at->format('H:i') }}</small></td>
-                        <td>{{ $row->schedule->user->name ?? '-' }}</td>
-                        <td>
-                            <span class="badge badge-gold">{{ $row->schedule->prayerType->name ?? '-' }}</span><br>
-                            <small class="text-muted">{{ \Carbon\Carbon::parse($row->schedule->date)->format('d/m/Y') }}</small>
-                        </td>
-                        <td>
-                            @if($row->proof_path)
-                                <a href="{{ Storage::url($row->proof_path) }}" target="_blank" class="btn btn-secondary btn-xs">Lihat Foto</a>
-                            @else
-                                <span class="text-muted" style="font-size:0.75rem; font-style:italic">Tidak ada foto</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if($row->status === 'pending')
-                                <span class="badge badge-warning">Menunggu</span>
-                            @elseif($row->status === 'approved')
-                                <span class="badge badge-success" style="background-color: var(--clr-success);">Disetujui</span>
-                            @elseif($row->status === 'expired')
-                                <span class="badge badge-danger">Kedaluwarsa (Terlewat 30m)</span>
-                            @else
-                                <span class="badge badge-danger" style="background-color: var(--clr-danger);">Ditolak</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if($row->status === 'pending')
-                                <div style="display:flex; gap:5px;">
-                                    <form action="{{ route('admin.attendances.approve', $row->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-primary btn-xs">✅ Setujui & Cairkan Fee</button>
-                                    </form>
-                                    <form action="{{ route('admin.attendances.reject', $row->id) }}" method="POST" onsubmit="return confirm('Tolak absensi ini?');">
-                                        @csrf
-                                        <button type="submit" class="btn btn-secondary btn-xs" style="background:var(--clr-danger);color:white;border-color:var(--clr-danger);">❌ Tolak</button>
-                                    </form>
-                                </div>
-                            @elseif($row->status === 'expired')
-                                <div style="display:flex; gap:5px; flex-direction:column;">
-                                    <form action="{{ route('admin.attendances.approve', $row->id) }}" method="POST" style="width:100%">
-                                        @csrf
-                                        <button type="submit" class="btn btn-primary btn-xs" style="width:100%">✅ Tetap Anggap Hadir</button>
-                                    </form>
-                                    <form action="{{ route('admin.attendances.reject', $row->id) }}" method="POST" style="width:100%" onsubmit="return confirm('Konfirmasi imam ini tidak hadir?');">
-                                        @csrf
-                                        <input type="hidden" name="notes" value="Imam dikonfirmasi TIDAK hadir karena lewat batas waktu.">
-                                        <button type="submit" class="btn btn-secondary btn-xs" style="background:var(--clr-danger);color:white;width:100%">❌ Konfirmasi Tdk Hadir</button>
-                                    </form>
-                                </div>
-                            @else
-                                <span class="text-muted" style="font-size:0.8rem; font-style:italic;">Sudah diproses</span>
-                            @endif
-                        </td>
+                        <th class="bg-surface-container-low !px-6">Waktu Absen</th>
+                        <th class="bg-surface-container-low">Imam</th>
+                        <th class="bg-surface-container-low">Jadwal Sholat</th>
+                        <th class="bg-surface-container-low">Bukti Hadir</th>
+                        <th class="bg-surface-container-low">Status</th>
+                        <th class="bg-surface-container-low text-right !px-6">Aksi</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="6" class="text-center" style="padding: 20px;">Belum ada antrean absensi masuk.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="divide-y divide-outline-variant/10">
+                    @forelse($attendances as $row)
+                        <tr class="hover:bg-surface-container/50 transition-colors">
+                            <td class="!px-6">
+                                <div class="font-bold text-on-surface">{{ $row->created_at->format('d/m/Y') }}</div>
+                                <div class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+                                    <span class="material-symbols-outlined text-[12px]">schedule</span> 
+                                    {{ $row->created_at->format('H:i') }} WIB
+                                </div>
+                            </td>
+                            <td>
+                                <div class="font-bold text-primary flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary">{{ substr($row->schedule->user->name ?? 'A', 0, 1) }}</div>
+                                    {{ $row->schedule->user->name ?? '-' }}
+                                </div>
+                            </td>
+                            <td>
+                                <x-badge type="tertiary" class="!text-[10px] !py-0.5 !px-2 mb-1">{{ $row->schedule->prayerType->name ?? '-' }}</x-badge>
+                                <div class="text-xs text-on-surface-variant">{{ \Carbon\Carbon::parse($row->schedule->date)->format('d/m/Y') }}</div>
+                            </td>
+                            <td>
+                                @if($row->proof_path)
+                                    <a href="{{ Storage::url($row->proof_path) }}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-info/10 text-info border border-info/20 hover:bg-info/20 rounded-lg text-xs font-bold transition-colors">
+                                        <span class="material-symbols-outlined text-[14px]">image</span> Lihat Foto
+                                    </a>
+                                @else
+                                    <span class="text-xs text-on-surface-variant/60 italic inline-flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">no_photography</span> Tanpa Foto
+                                    </span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($row->status === 'pending')
+                                    <x-badge type="warning" class="shadow-sm">
+                                        <span class="material-symbols-outlined text-[12px] animate-pulse">hourglass_top</span> Menunggu
+                                    </x-badge>
+                                @elseif($row->status === 'approved')
+                                    <x-badge type="success" class="shadow-sm">
+                                        <span class="material-symbols-outlined text-[12px]">check_circle</span> Disetujui
+                                    </x-badge>
+                                @elseif($row->status === 'expired')
+                                    <x-badge type="error" class="shadow-sm">
+                                        <span class="material-symbols-outlined text-[12px]">timer_off</span> Kedaluwarsa
+                                    </x-badge>
+                                @else
+                                    <x-badge type="error" class="shadow-sm">
+                                        <span class="material-symbols-outlined text-[12px]">cancel</span> Ditolak
+                                    </x-badge>
+                                @endif
+                            </td>
+                            <td class="!px-6">
+                                @if($row->status === 'pending')
+                                    <div class="flex items-center justify-end gap-2">
+                                        <form action="{{ route('admin.attendances.approve', $row->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors" title="Setujui & Cairkan Fee">
+                                                <span class="material-symbols-outlined text-[14px]">check_circle</span> Setujui
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('admin.attendances.reject', $row->id) }}" method="POST" onsubmit="return confirm('Tolak absensi ini?');">
+                                            @csrf
+                                            <button type="submit" class="px-3 py-1.5 bg-error/10 text-error border border-error/20 hover:bg-error/20 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors" title="Tolak">
+                                                <span class="material-symbols-outlined text-[14px]">cancel</span> Tolak
+                                            </button>
+                                        </form>
+                                    </div>
+                                @elseif($row->status === 'expired')
+                                    <div class="flex flex-col items-end gap-2">
+                                        <form action="{{ route('admin.attendances.approve', $row->id) }}" method="POST" class="w-full">
+                                            @csrf
+                                            <button type="submit" class="w-full px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 rounded-lg text-[10px] font-bold flex items-center justify-center gap-1 transition-colors whitespace-nowrap">
+                                                <span class="material-symbols-outlined text-[12px]">verified</span> Anggap Hadir
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('admin.attendances.reject', $row->id) }}" method="POST" class="w-full" onsubmit="return confirm('Konfirmasi imam ini tidak hadir?');">
+                                            @csrf
+                                            <input type="hidden" name="notes" value="Imam dikonfirmasi TIDAK hadir karena lewat batas waktu.">
+                                            <button type="submit" class="w-full px-3 py-1.5 bg-error/10 text-error border border-error/20 hover:bg-error/20 rounded-lg text-[10px] font-bold flex items-center justify-center gap-1 transition-colors whitespace-nowrap">
+                                                <span class="material-symbols-outlined text-[12px]">person_off</span> Konfirmasi Tidak Hadir
+                                            </button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="text-right">
+                                        <span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold flex items-center justify-end gap-1 px-3 py-1.5 border border-outline-variant/10 rounded-lg bg-surface-container w-fit ml-auto">
+                                            <span class="material-symbols-outlined text-[12px]">lock</span> Telah Diproses
+                                        </span>
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="p-12 text-center">
+                                <div class="flex flex-col items-center justify-center text-on-surface-variant/50">
+                                    <span class="material-symbols-outlined text-5xl mb-3">inbox</span>
+                                    <p class="text-sm font-medium">Kosong. Belum ada antrean absensi masuk yang butuh disetujui.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        
+        @if($attendances->hasPages())
+        <div class="pagination-wrapper p-4 border-t border-outline-variant/10 bg-surface-container">
+            {{ $attendances->links('pagination::bootstrap-5') }}
+        </div>
+        @endif
     </div>
-    <div style="padding: 15px;">
-        {{ $attendances->links('pagination::bootstrap-5') }}
-    </div>
-</div>
 @endif
 @endsection

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImamKu Admin - Edit Waktu Sholat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#3c4a42",
+                        "primary-fixed": "#6ffbbe",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-tertiary-fixed": "#2a1700",
+                        "tertiary-container": "#e29100",
+                        "surface-dim": "#0b1326",
+                        "primary-fixed-dim": "#4edea3",
+                        "background": "#0b1326",
+                        "surface-variant": "#2d3449",
+                        "surface-container": "#171f33",
+                        "outline": "#86948a",
+                        "on-error": "#690005",
+                        "inverse-primary": "#006c49",
+                        "tertiary-fixed": "#ffddb8",
+                        "inverse-on-surface": "#283044",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-primary-container": "#00422b",
+                        "secondary-fixed": "#d9e3f6",
+                        "on-primary-fixed-variant": "#005236",
+                        "tertiary": "#ffb95f",
+                        "surface-container-lowest": "#060e20",
+                        "secondary": "#bdc7d9",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "on-secondary": "#27313f",
+                        "on-primary-fixed": "#002113",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "secondary-container": "#404a59",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#2d3449",
+                        "surface-bright": "#31394d",
+                        "primary-container": "#10b981",
+                        "surface": "#0b1326",
+                        "on-tertiary-container": "#523200",
+                        "surface-container-low": "#131b2e",
+                        "on-primary": "#003824",
+                        "on-background": "#dae2fd",
+                        "surface-container-high": "#222a3d",
+                        "on-tertiary": "#472a00",
+                        "on-surface-variant": "#bbcabf",
+                        "inverse-surface": "#dae2fd",
+                        "on-secondary-container": "#afb9cb",
+                        "primary": "#4edea3",
+                        "surface-tint": "#4edea3",
+                        "on-surface": "#dae2fd",
+                        "on-secondary-fixed-variant": "#3d4756"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary min-h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#131b2e] flex flex-col py-6 shadow-[0px_12px_32px_rgba(0,0,0,0.2)] z-30">
+<div class="px-6 mb-10 flex flex-col gap-1">
+<h1 class="text-lg font-black text-[#10b981]">ImamKu</h1>
+<p class="font-['Inter'] text-sm tracking-wide uppercase font-semibold text-[#bbcabf] opacity-60">Admin Console</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all hover:text-white hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person_check">person_check</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Imams</span>
+</a>
+<!-- Active State: Prayer Times -->
+<a class="bg-[#222a3d] text-[#10b981] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Prayer Times</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all hover:text-white hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="brightness_3">brightness_3</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Ramadan Seasons</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-all hover:text-white hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Mosque Map</span>
+</a>
+</nav>
+<div class="mt-auto px-2 space-y-1">
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg px-4 py-3 flex items-center gap-3 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Help Center</span>
+</a>
+<a class="text-[#bbcabf] hover:bg-[#171f33] rounded-lg px-4 py-3 flex items-center gap-3 transition-all hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 relative flex flex-col h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-[#0b1326] flex justify-between items-center w-full px-6 py-3 h-16 shadow-[0px_4px_12px_rgba(0,0,0,0.1)] sticky top-0 z-20">
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-lowest px-4 py-1.5 rounded-full ring-1 ring-outline-variant/15">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="search">search</span>
+<span class="ml-2 text-on-surface-variant text-sm font-['Inter'] font-medium tracking-tight">Search schedules...</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#bbcabf] cursor-pointer hover:text-[#4edea3] transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-[#bbcabf] cursor-pointer hover:text-[#4edea3] transition-colors" data-icon="settings">settings</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-1.5 rounded-full font-['Inter'] font-medium tracking-tight hover:brightness-110 active:scale-95 transition-all">
+                    Support
+                </button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden ring-1 ring-primary/20">
+<img alt="Admin Profile Avatar" class="w-full h-full object-cover" data-alt="minimalistic 3d avatar of a professional administrator with glasses and a friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFdt6Y-f-_hkwWAEChYTaQO8PU7qOMDE5xEd00WCygIekV6xBKQtZ_4pz2IOmGKqqf2EMFuUWmauXhhHXujc_fyb9630GeaTiF7mQM251Okvu6hfpA-9yHMaxWbnGkOjXAHyKoetE7VlszTfhlUng2Lx2y8q9-ajhSjnGo-ULAh0U4wx5FG__hc7HswKOs31dED3RO8q8PvQiUDByhyNuopUc_sM5UqhkPk3-jdctTBR0ometkYuFlxNeR-OKnnrMU0ktxz1qb0wg"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas (Background: Waktu Sholat Table) -->
+<div class="p-8 overflow-y-auto">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface mb-2">Waktu Sholat</h2>
+<p class="text-on-surface-variant text-sm">Managing prayer schedules for Jakarta, Indonesia</p>
+</div>
+<div class="flex gap-3">
+<div class="bg-surface-container-low px-4 py-2 rounded-xl flex items-center gap-2 ring-1 ring-outline-variant/15">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+<span class="font-semibold text-sm">October 2023</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid - Table Area -->
+<div class="bg-surface-container-low rounded-2xl overflow-hidden shadow-2xl">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant/70">Tanggal</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant/70">Subuh</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant/70">Terbit</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant/70">Dzuhur</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant/70">Ashar</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant/70">Maghrib</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant/70">Isya</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant/70 text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-6 py-4 font-medium">Sen, 23 Okt</td>
+<td class="px-6 py-4 text-primary">04:12</td>
+<td class="px-6 py-4">05:31</td>
+<td class="px-6 py-4">11:42</td>
+<td class="px-6 py-4">14:55</td>
+<td class="px-6 py-4">17:52</td>
+<td class="px-6 py-4">19:03</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary-fixed-dim hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</td>
+</tr>
+<tr class="bg-surface-container-high/30 hover:bg-surface-container transition-colors">
+<td class="px-6 py-4 font-medium">Sel, 24 Okt</td>
+<td class="px-6 py-4 text-primary">04:11</td>
+<td class="px-6 py-4">05:30</td>
+<td class="px-6 py-4">11:41</td>
+<td class="px-6 py-4">14:56</td>
+<td class="px-6 py-4">17:52</td>
+<td class="px-6 py-4">19:03</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary-fixed-dim hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</td>
+</tr>
+<!-- More rows for visual context -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-6 py-4 font-medium">Rab, 25 Okt</td>
+<td class="px-6 py-4 text-primary">04:11</td>
+<td class="px-6 py-4">05:30</td>
+<td class="px-6 py-4">11:41</td>
+<td class="px-6 py-4">14:57</td>
+<td class="px-6 py-4">17:52</td>
+<td class="px-6 py-4">19:04</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary-fixed-dim hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- MODAL OVERLAY: Edit Waktu Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-6">
+<!-- Backdrop Blur -->
+<div class="absolute inset-0 bg-[#0b1326]/80 backdrop-blur-md"></div>
+<!-- Modal Card -->
+<div class="relative w-full max-w-xl bg-surface-container glass-panel rounded-3xl p-8 shadow-[0px_12px_32px_rgba(0,0,0,0.4),0px_0px_8px_rgba(78,222,163,0.1)] ring-1 ring-outline-variant/30">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="text-2xl font-bold tracking-tight text-on-surface">Edit Waktu Sholat</h3>
+<p class="text-on-surface-variant text-sm mt-1">Tanggal: <span class="text-primary font-medium">Selasa, 24 Oktober 2023</span></p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="close">close</span>
+</button>
+</div>
+<!-- Input Grid -->
+<div class="grid grid-cols-2 gap-6 mb-10">
+<div class="space-y-2">
+<label class="font-['Inter'] text-[10px] tracking-[0.1em] uppercase font-bold text-on-surface-variant/80 ml-1">Subuh</label>
+<div class="bg-surface-container-lowest rounded-xl flex items-center px-4 py-3 ring-1 ring-outline-variant/20 focus-within:ring-primary focus-within:shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim mr-3 text-lg" data-icon="wb_twilight">wb_twilight</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-semibold w-full p-0" type="text" value="04:11"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-['Inter'] text-[10px] tracking-[0.1em] uppercase font-bold text-on-surface-variant/80 ml-1">Terbit</label>
+<div class="bg-surface-container-lowest rounded-xl flex items-center px-4 py-3 ring-1 ring-outline-variant/20 focus-within:ring-primary focus-within:shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim mr-3 text-lg" data-icon="wb_sunny">wb_sunny</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-semibold w-full p-0" type="text" value="05:30"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-['Inter'] text-[10px] tracking-[0.1em] uppercase font-bold text-on-surface-variant/80 ml-1">Dzuhur</label>
+<div class="bg-surface-container-lowest rounded-xl flex items-center px-4 py-3 ring-1 ring-outline-variant/20 focus-within:ring-primary focus-within:shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim mr-3 text-lg" data-icon="sunny">sunny</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-semibold w-full p-0" type="text" value="11:41"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-['Inter'] text-[10px] tracking-[0.1em] uppercase font-bold text-on-surface-variant/80 ml-1">Ashar</label>
+<div class="bg-surface-container-lowest rounded-xl flex items-center px-4 py-3 ring-1 ring-outline-variant/20 focus-within:ring-primary focus-within:shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim mr-3 text-lg" data-icon="partly_cloudy_day">partly_cloudy_day</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-semibold w-full p-0" type="text" value="14:56"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-['Inter'] text-[10px] tracking-[0.1em] uppercase font-bold text-on-surface-variant/80 ml-1">Maghrib</label>
+<div class="bg-surface-container-lowest rounded-xl flex items-center px-4 py-3 ring-1 ring-outline-variant/20 focus-within:ring-primary focus-within:shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim mr-3 text-lg" data-icon="wb_twilight">wb_twilight</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-semibold w-full p-0" type="text" value="17:52"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-['Inter'] text-[10px] tracking-[0.1em] uppercase font-bold text-on-surface-variant/80 ml-1">Isya</label>
+<div class="bg-surface-container-lowest rounded-xl flex items-center px-4 py-3 ring-1 ring-outline-variant/20 focus-within:ring-primary focus-within:shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim mr-3 text-lg" data-icon="bedtime">bedtime</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface font-semibold w-full p-0" type="text" value="19:03"/>
+</div>
+</div>
+</div>
+<!-- Modal Actions -->
+<div class="flex flex-col gap-4">
+<button class="w-full bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-bold py-4 rounded-2xl shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:scale-[1.01] active:scale-[0.98] transition-all">
+                        Simpan Perubahan
+                    </button>
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-highest text-on-surface font-semibold py-3.5 rounded-2xl hover:bg-surface-bright transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="api">api</span>
+                            Reset ke API
+                        </button>
+<button class="px-6 text-on-surface-variant font-medium hover:text-on-surface transition-colors">
+                            Batal
+                        </button>
+</div>
+</div>
+<!-- Aesthetic Subtle Glow -->
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 blur-[80px] rounded-full pointer-events-none"></div>
+</div>
+</div>
+</main>
+</body></html>

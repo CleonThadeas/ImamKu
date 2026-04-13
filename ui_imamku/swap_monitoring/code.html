@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImamKu Admin - Swap Monitoring</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#002113",
+                    "surface-container": "#171f33",
+                    "background": "#0b1326",
+                    "surface-tint": "#4edea3",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-surface": "#dae2fd",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-primary-fixed-variant": "#005236",
+                    "primary-fixed": "#6ffbbe",
+                    "tertiary": "#ffb95f",
+                    "on-secondary-container": "#afb9cb",
+                    "on-error-container": "#ffdad6",
+                    "inverse-surface": "#dae2fd",
+                    "on-secondary": "#27313f",
+                    "surface-container-highest": "#2d3449",
+                    "secondary-container": "#404a59",
+                    "surface-container-lowest": "#060e20",
+                    "primary": "#4edea3",
+                    "surface-container-high": "#222a3d",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#e29100",
+                    "on-tertiary": "#472a00",
+                    "on-error": "#690005",
+                    "on-background": "#dae2fd",
+                    "on-primary-container": "#00422b",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-surface-variant": "#bbcabf",
+                    "surface-variant": "#2d3449",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-secondary-fixed": "#121c2a",
+                    "surface-container-low": "#131b2e",
+                    "on-primary": "#003824",
+                    "inverse-on-surface": "#283044",
+                    "secondary": "#bdc7d9",
+                    "surface": "#0b1326",
+                    "outline-variant": "#3c4a42",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "surface-bright": "#31394d",
+                    "inverse-primary": "#006c49",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-dim": "#0b1326",
+                    "outline": "#86948a",
+                    "on-tertiary-container": "#523200",
+                    "primary-container": "#10b981",
+                    "on-secondary-fixed-variant": "#3d4756"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Inter', sans-serif; }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(23, 31, 51, 0.6);
+        backdrop-filter: blur(20px);
+      }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #0b1326; }
+      ::-webkit-scrollbar-thumb { background: #171f33; border-radius: 10px; }
+      ::-webkit-scrollbar-thumb:hover { background: #222a3d; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-[#131b2e] flex flex-col py-8 px-4 space-y-2 z-40 shadow-[12px_0px_32px_rgba(0,0,0,0.2)]">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container shadow-[0px_0px_15px_rgba(16,185,129,0.3)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mosque</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-[#10b981] leading-none">ImamKu Admin</h1>
+<p class="text-[10px] text-on-surface-variant tracking-widest uppercase mt-1">Operational Sanctuary</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="text-[11px] font-bold text-outline uppercase tracking-widest px-2 mb-2 opacity-50">Main Menu</div>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">calendar_month</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Jadwal Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">verified</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Validasi Absensi</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#222a3d] text-[#10b981] rounded-xl shadow-[0px_0px_15px_rgba(16,185,129,0.1)] group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">swap_horiz</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Swap Monitoring</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">warning</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Conflict Alerts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">map</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Attendance Detail</span>
+</a>
+</nav>
+<div class="pt-6 mt-6 border-t border-outline-variant/10 space-y-1">
+<button class="w-full mb-4 py-3 px-4 rounded-xl bg-gradient-to-br from-primary-container to-primary text-on-primary-container font-bold text-sm shadow-[0px_0px_15px_rgba(16,185,129,0.3)] active:scale-95 transition-transform">
+                Export Reports
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">settings</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#bbcabf] hover:bg-[#171f33] hover:text-white transition-all duration-300 rounded-xl group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200 text-error">logout</span>
+<span class="font-['Inter'] font-medium uppercase tracking-[0.05em] text-[12px]">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-[#0b1326] z-30 flex justify-between items-center px-8 shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<div class="flex items-center gap-6">
+<h2 class="text-xl font-bold tracking-tighter text-[#10b981]">Swap Monitoring</h2>
+<div class="hidden md:flex gap-6">
+<a class="font-['Inter'] text-sm tracking-tight text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-['Inter'] text-sm tracking-tight text-[#10b981] border-b-2 border-[#10b981] pb-1" href="#">Reports</a>
+<a class="font-['Inter'] text-sm tracking-tight text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-200" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<button class="p-2 text-[#bbcabf] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+</div>
+<button class="p-2 text-[#bbcabf] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-3 ml-2 pl-4 border-l border-outline-variant/20">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-on-surface">Admin Utama</p>
+<p class="text-[10px] text-on-surface-variant">Superuser</p>
+</div>
+<img alt="Admin profile avatar" class="w-10 h-10 rounded-full border-2 border-primary-container object-cover" data-alt="portrait of a middle-aged man with a clean beard wearing a professional suit in a minimalist office setting with soft backlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMHt2ies_DF9K8Dbp2bMl02NeM8YNqjOTo76pQjDFmiZUkiyGyXHJGVGDHnHY2Zk9fuE4owKwnjVyAYJ8cM8DTWVKh8UOdVAUCr9e6IrnyMAN79mPMAWkbS-n3gSpltnkoopZkUHRaVygUS_HokOoVeY0pgMJxswEX62qCAY_Kkygdq9G0JYzt7ScN3nMckoTpUij2yAqUtw825pIlxqNxVFUEgDUHXWkznonk-z8jVZN1E9xjdBfjK8JBba9_IlWjucCWF-PaQUM"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="pt-24 pb-12 px-8">
+<!-- Stats Overview -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-container-low p-6 rounded-2xl shadow-[0px_4px_12px_rgba(0,0,0,0.1)] relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Total Requests</p>
+<h3 class="text-3xl font-black text-on-surface">128</h3>
+<p class="text-xs text-primary mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12% this week
+                        </p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5">
+<span class="material-symbols-outlined text-8xl">swap_calls</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Pending Approval</p>
+<h3 class="text-3xl font-black text-tertiary">24</h3>
+<p class="text-xs text-on-surface-variant mt-2">Requires immediate action</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Approved Today</p>
+<h3 class="text-3xl font-black text-primary">12</h3>
+<p class="text-xs text-on-surface-variant mt-2">System auto-updated</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Efficiency Rate</p>
+<h3 class="text-3xl font-black text-on-surface">94%</h3>
+<p class="text-xs text-primary mt-2">Optimal coverage</p>
+</div>
+</div>
+<!-- Main Monitoring Table -->
+<div class="bg-surface-container-low rounded-3xl overflow-hidden shadow-[0px_12px_32px_rgba(0,0,0,0.2)]">
+<div class="px-8 py-6 flex justify-between items-center border-b border-outline-variant/10">
+<div>
+<h4 class="text-lg font-bold text-on-surface">Live Swap Requests</h4>
+<p class="text-sm text-on-surface-variant">Monitoring imam schedule exchange requests in real-time.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-surface-container-lowest px-4 py-2 rounded-xl flex items-center gap-2 border border-outline-variant/10">
+<span class="material-symbols-outlined text-outline text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-48 p-0" placeholder="Search imam name..." type="text"/>
+</div>
+<button class="p-2 bg-surface-container-high rounded-xl text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high/50">
+<th class="px-8 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Imam Pengaju</th>
+<th class="px-8 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Imam Pengganti</th>
+<th class="px-8 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Jadwal Detil</th>
+<th class="px-8 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Status Swap</th>
+<th class="px-8 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam Pengaju Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Close up of a dignified middle eastern man with a gentle expression and traditional cap in soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhruKgI9zG4tT7F4V2y68OlYIJjPW4GPd8m394IMtp-IgwYtqD0nPbBooATAFCHkxAS2L9kjavdWMoqzhpUDx7a_82h4o1SxePrHFyyHjW57PLZC2GRmYo6WMfBUmxHWdmOpuSYZZne8L5Ey_7nf7gGLZXUV7I5kRgR6R1dlzrKuwaejQKuVSbR0_BN_aGQA-RNOQ8GLC6T-6Hj7vwfzvTSyOYMaXZP9xd9GKJre4QkVJLvmcJsARIKxvi44qZN4v3GMazJki4cpc"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Ust. Ahmad Fauzi</p>
+<p class="text-[11px] text-on-surface-variant">Senior Imam</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam Pengganti Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Professional portrait of a young man with a polite smile in a bright studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1W6zDlmieUjcrX7ziA_gWhKdgBUIOFNfwOWBK6v7gSLejQp3U8jgTaYb__ECorH-N1cLKzTCHYtjhDYNwhOYZVBa4M0K0-ctXolDHIas6nZPN5w5IoEHfLMUeiyO0SP2rJzU0O4tkOvpHUUq5NATekI1KvXMtC9cQJRoW-Vyd_bB4PvVIem95hI292hmDI4tJijMo0MFFo-J2ErTKi-f0nfmzMJ-4CCZfU9ZsG1jzFGrm-9JVaKnlCeAKyBFNg1XPu1JjnG1BQ7E"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Ust. Salman Al-Farisi</p>
+<p class="text-[11px] text-on-surface-variant">Associate Imam</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="space-y-1">
+<p class="text-sm font-medium text-on-surface">Shalat Jum'at</p>
+<div class="flex items-center gap-2 text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">event</span>
+<span>24 Oct 2023, 12:00</span>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-tertiary-container/10 text-tertiary text-[11px] font-bold uppercase tracking-tight">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-2 animate-pulse"></span>
+                                        Pending
+                                    </span>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-sm">check</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-error-container/10 text-error flex items-center justify-center hover:bg-error hover:text-on-error transition-all">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam Pengaju Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Smiling elder man with white beard and glasses wearing traditional prayer attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDinz-alWYb__HQYNNi2jJkq1S35URIy2OIqXEpLyqNndXaozb0axeKts7QQfjjwz9-A1y1WCDaO1oivBvJukFTAY04vg7MC3cEBm2BKtQqIZyeSkvTcsRimp0UCtxVkO5EbT151BjBPeYTrvEbId9lrt_wtkSqfePEvnuiYze0_0VtG1P_V6XA7VHcO2Whg-w-AlMamKPV7FjDhFtBARBEKpXfU1ZK4HFlIXMBNhT9J5NePO5ngpNXAHnVBBo2ZmOa-gCHDi-rPe0"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Ust. Hassan Mansur</p>
+<p class="text-[11px] text-on-surface-variant">Lead Qari</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam Pengganti Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Young professional man in casual smart attire against a bokeh blurred library background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsOJOoPijFG_eQhsQ_nkGGLvhIHZf3TlqzhI1WghSVgGLETCbQ1tuVjljlQmJHowNgzPUYkgihVlv59k3qpVaUkAwAOMsA5WLPxJUx55tq1GX9qlanTjjln-rxg4LYV4qHoRNass1BbQfBrhPKWV9X1--JfVQ1ML2PcXFAwQ-o6mZnn2rYECaq3InrH2yd9XMUaPOpepxH0Betl9uFcV1ewL0SDFbSg2M7jPCh8WovpDcIxUBmFWTnAj93hnpRrXWcyjZai2J5fDg"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Ust. Ridwan Kamil</p>
+<p class="text-[11px] text-on-surface-variant">Guest Speaker</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="space-y-1">
+<p class="text-sm font-medium text-on-surface">Shalat Maghrib</p>
+<div class="flex items-center gap-2 text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">event</span>
+<span>23 Oct 2023, 17:54</span>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-primary-container/10 text-primary text-[11px] font-bold uppercase tracking-tight">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
+                                        Approved
+                                    </span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam Pengaju Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Portrait of a scholarly man with thoughtful eyes in a dimly lit study with books in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSzgziDzOWk3Vp4SiDPxYdCFBy9SXMBxONMpJfEpXd6HJE2H0vUbaTBicV6xE6SEpR519_psIoSXBb9b3au56HPGQlF1euaCnwVunYEzhfS8KHr_XxFyHWZc1rPxYLXptJ-RotNZyg4UDPjxzZfyn4i2wVs5YoJBpAPO-ZEmhnWg5p-BtJuZib0kzMb2nZdqDfl1QP8a3rmzvN_dQV9ibKgK49nChdDHFhlRmkJkFy0g_GcKsqrbXsi36II3LLNb_AStorcSPS2z4"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Ust. Zulfikar Ali</p>
+<p class="text-[11px] text-on-surface-variant">Tahfizh Instructor</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Imam Pengganti Profile" class="w-10 h-10 rounded-xl object-cover" data-alt="Side profile of a man looking focused in a clean modern environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKG6oXZJR2qC-3_bsLU_NPt654suA5gnFpm-7tCE2Clkeqeh7fKP4qM6MNKK2vMN7KtlJW9GpndkKw3BDJoDi_cWMpL89r9eCfPA56Q0M8YvhJc4EgLI2t9E3LPHSX9EXP-J-iEcNplp-lDSv8BZoeQ1PvvmtltUIwxey5D_V5dIeoRU_f3uDL84PK7ZbhvkHIMs1p1NKUMiULjJ21zkRQUWG0yDed7gUvvMTgVMrxhi2N19y56Q9ckz7eVMDvwcFw93ozQzuFMgg"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Ust. Umar Bakri</p>
+<p class="text-[11px] text-on-surface-variant">Senior Imam</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="space-y-1">
+<p class="text-sm font-medium text-on-surface">Shalat Subuh</p>
+<div class="flex items-center gap-2 text-[11px] text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">event</span>
+<span>25 Oct 2023, 04:20</span>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-error-container/10 text-error text-[11px] font-bold uppercase tracking-tight">
+<span class="w-1.5 h-1.5 rounded-full bg-error mr-2"></span>
+                                        Rejected
+                                    </span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-6 flex justify-between items-center bg-surface-container-high/20">
+<p class="text-[11px] text-on-surface-variant">Showing 3 of 128 requests</p>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary-container text-on-primary-container text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant text-xs">2</button>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant text-xs">3</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Info Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+<div class="glass-card p-6 rounded-3xl border border-outline-variant/10 shadow-[0px_12px_32px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">rule</span>
+</div>
+<h5 class="text-base font-bold text-on-surface">Swap Policy</h5>
+</div>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li class="flex gap-3">
+<span class="text-primary">•</span>
+<span>Swaps must be requested 24h before shalat time.</span>
+</li>
+<li class="flex gap-3">
+<span class="text-primary">•</span>
+<span>Replacement Imam must have equal or higher rank.</span>
+</li>
+<li class="flex gap-3">
+<span class="text-primary">•</span>
+<span>Maximum 3 swaps permitted per imam per month.</span>
+</li>
+</ul>
+</div>
+<div class="glass-card p-6 rounded-3xl border border-outline-variant/10 shadow-[0px_12px_32px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<h5 class="text-base font-bold text-on-surface">Quick Insights</h5>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<p class="text-xs text-on-surface-variant">Jum'at Coverage</p>
+<p class="text-xs font-bold text-primary">High</p>
+</div>
+<div class="h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[85%] bg-primary"></div>
+</div>
+<div class="flex justify-between items-end mt-4">
+<p class="text-xs text-on-surface-variant">Subuh Reliability</p>
+<p class="text-xs font-bold text-tertiary">Medium</p>
+</div>
+<div class="h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[62%] bg-tertiary"></div>
+</div>
+</div>
+</div>
+<div class="relative rounded-3xl overflow-hidden shadow-[0px_12px_32px_rgba(0,0,0,0.2)] group">
+<img alt="Masjid interior monitoring" class="absolute inset-0 w-full h-full object-cover brightness-[0.4] group-hover:scale-105 transition-transform duration-700" data-alt="Interior of a large modern mosque with clean lines, soft ambient emerald lighting, and artistic islamic geometry on walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUctUUuqruJflIftchQig5VwWCExBW1OcwiFhRD03k8OGd0ywvnrhzyF-_yb4CNsUF0L8uYThF9eGMGLyeotG4QZEAOag6y4e6vPkT6Ca_D7RwSYGgOthj2rljfo-OL5p-KMBtN018TmRB9n39DXkEi99a9DTNHHE_V85JPsNU8ZrHOA8lPSdcA5FnCFbY9BmZcUx39zXkWoi7WxPKwTdT792Tq1sazjywRniwZ7FramfcvyMyuN9KLkBBHmrB6BI4kFb5fu51ShU"/>
+<div class="relative z-10 p-8 h-full flex flex-col justify-end">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">monitoring</span>
+<h5 class="text-xl font-black text-on-surface mb-2">Operational Analytics</h5>
+<p class="text-sm text-on-surface-variant mb-6">Access deep architectural insights of imam rotations and attendance patterns.</p>
+<button class="flex items-center gap-2 text-primary font-bold text-sm group/btn">
+                            View Detailed Map
+                            <span class="material-symbols-outlined group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

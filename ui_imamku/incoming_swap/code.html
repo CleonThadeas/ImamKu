@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#e29100",
+                    "secondary": "#bdc7d9",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#005236",
+                    "surface-bright": "#31394d",
+                    "on-background": "#dae2fd",
+                    "on-surface": "#dae2fd",
+                    "outline": "#86948a",
+                    "tertiary": "#ffb95f",
+                    "inverse-primary": "#006c49",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "surface-container-lowest": "#060e20",
+                    "primary-container": "#10b981",
+                    "error": "#ffb4ab",
+                    "surface": "#0b1326",
+                    "inverse-on-surface": "#283044",
+                    "secondary-fixed": "#d9e3f6",
+                    "surface-container": "#171f33",
+                    "primary-fixed": "#6ffbbe",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-secondary-container": "#afb9cb",
+                    "surface-container-highest": "#2d3449",
+                    "surface-container-low": "#131b2e",
+                    "surface-container-high": "#222a3d",
+                    "inverse-surface": "#dae2fd",
+                    "background": "#0b1326",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-surface-variant": "#bbcabf",
+                    "on-primary-fixed": "#002113",
+                    "surface-tint": "#4edea3",
+                    "on-primary": "#003824",
+                    "on-secondary": "#27313f",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "outline-variant": "#3c4a42",
+                    "on-secondary-fixed": "#121c2a",
+                    "surface-dim": "#0b1326",
+                    "on-tertiary-container": "#523200",
+                    "surface-variant": "#2d3449",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-tertiary": "#472a00",
+                    "error-container": "#93000a",
+                    "secondary-container": "#404a59",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary": "#4edea3",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-primary-container": "#00422b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            background: rgba(45, 52, 73, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        .emerald-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #4edea3 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Sidebar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-[#131b2e] flex flex-col gap-2 py-8 shadow-[0px_0px_8px_rgba(78,222,163,0.05)]">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-10 h-10 emerald-gradient rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mosque</span>
+</div>
+<div>
+<h1 class="text-[#10b981] font-black italic tracking-tight text-xl">ImamKu</h1>
+<p class="text-[10px] uppercase tracking-[0.1em] text-on-surface-variant font-medium">Digital Sanctuary</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1 pr-4">
+<a class="flex items-center gap-4 py-3 px-6 text-[#bbcabf] hover:bg-[#171f33] transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">calendar_month</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[10px]">Schedule</span>
+</a>
+<!-- Active Navigation State: Swap Requests -->
+<a class="flex items-center gap-4 py-3 px-6 bg-[#222a3d] text-[#10b981] rounded-r-full border-r-4 border-[#10b981] transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">sync_alt</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[10px] font-semibold">Swap Requests</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-6 text-[#bbcabf] hover:bg-[#171f33] transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">military_tech</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[10px]">Points History</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-6 text-[#bbcabf] hover:bg-[#171f33] transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">payments</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[10px]">Income Details</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-1 pr-4 border-t border-outline-variant/10 pt-6">
+<a class="flex items-center gap-4 py-3 px-6 text-[#bbcabf] hover:bg-[#171f33] transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">settings</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[10px]">Settings</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-6 text-[#bbcabf] hover:bg-[#171f33] transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">logout</span>
+<span class="font-['Inter'] uppercase tracking-[0.05em] text-[10px]">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center px-8 py-4 h-16 bg-[#131b2e]">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary placeholder:text-on-surface-variant/50" placeholder="Search requests..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#bbcabf] hover:text-[#4edea3] transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="text-[#bbcabf] hover:text-[#4edea3] transition-colors">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+<div class="flex items-center gap-3 ml-2 pl-6 border-l border-outline-variant/20">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface tracking-tight">Ustadz Ahmad Fauzi</p>
+<p class="text-[10px] text-primary font-medium">Senior Imam</p>
+</div>
+<img class="w-10 h-10 rounded-full object-cover border-2 border-surface-container-high" data-alt="Portrait of a distinguished middle-aged man with a neat beard wearing traditional Islamic attire, soft studio lighting on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnwNIU3dS-05KmYD1PAOpQB0bhwbb5olbLV2QfsI7f3ZfMvMX0qWAem3F16C8NedoDoLu81diApFXbX75iGRxv8PdO07lqlVGw8UTC3T3bq7NE5nyruZbggTDwnjS0TNl1R4FJT3M919DXVMyAyyFm2h1aiad-jmjaMHXNkhB2FeytIDXtuqplJOw5sxlv9R4_FN5wik7kD3SB1bmgojtyy7sUNx1pXYBg23RLEL1yPYGimd1wr0LC8bODtaYQJmPayptGNWXVsfk"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-10 space-y-8">
+<!-- Page Header Section -->
+<div class="flex items-end justify-between">
+<div class="space-y-1">
+<h2 class="text-3xl font-extrabold tracking-tighter text-on-surface">Permintaan Swap Masuk</h2>
+<p class="text-on-surface-variant text-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        Ada 3 permintaan tukar jadwal yang menunggu respon Anda.
+                    </p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 rounded-xl bg-surface-container text-on-surface-variant text-xs font-bold uppercase tracking-widest hover:bg-surface-container-high transition-colors">
+                        Filter
+                    </button>
+<button class="px-5 py-2.5 rounded-xl bg-surface-container text-on-surface-variant text-xs font-bold uppercase tracking-widest hover:bg-surface-container-high transition-colors">
+                        Riwayat
+                    </button>
+</div>
+</div>
+<!-- Bento-style Grid for Requests -->
+<div class="grid grid-cols-1 gap-6">
+<!-- Request Card 1 -->
+<div class="group relative bg-surface-container-low rounded-[2rem] p-8 flex flex-col md:flex-row items-center gap-8 border border-outline-variant/5 hover:border-primary/20 transition-all duration-500 overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl">sync_alt</span>
+</div>
+<!-- Imam Pengaju -->
+<div class="flex items-center gap-6 min-w-[280px]">
+<div class="relative">
+<img class="w-20 h-20 rounded-3xl object-cover" data-alt="Close-up portrait of a friendly man with a short beard and spectacles, warm natural lighting, professional headshot style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN6jDWW8bKaujFcamHq48-iVso1L4SbDy0f6PK9lMjELrp-B_gIkh4zRdppgTNPjq14D2M30ccYFiXhNKrV-_-x1je4PIorw5Icp9HV828L63wnCAbhicKGfmbWpkyO5Mm5t1h30uvmAvcigsi3tcPO8iu5yYu9gFIhbdcpXSgYhYT7HGiPvVDRysiHreJjL3hsEbiCiVF4SA70QaJcAEVnvTf5lXaDmjNf1dZbdYZcWmORRi89Sef2ZTk7Kv3bJbwWCHOxGi6i30"/>
+<div class="absolute -bottom-2 -right-2 bg-surface-container-highest p-1.5 rounded-xl border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold tracking-tight text-on-surface">Ustadz Hasan Ali</h3>
+<p class="text-xs text-on-surface-variant font-medium mt-1">Imam Pengaju</p>
+<div class="flex gap-1 mt-3">
+<span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[9px] font-bold uppercase tracking-tighter">Gold Tier</span>
+<span class="px-2 py-0.5 rounded-md bg-secondary-container/30 text-secondary text-[9px] font-bold uppercase tracking-tighter">98% Success</span>
+</div>
+</div>
+</div>
+<!-- Vertical Tonal Divider -->
+<div class="hidden md:block w-[1px] h-16 bg-outline-variant/10"></div>
+<!-- Jadwal Detil -->
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 py-2">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-primary-fixed-dim">
+<span class="material-symbols-outlined">event_upcoming</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Tanggal &amp; Waktu</p>
+<p class="text-on-surface font-semibold">Senin, 24 Mei 2024</p>
+<p class="text-primary text-sm font-medium">Shalat Maghrib (18:05)</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Lokasi Masjid</p>
+<p class="text-on-surface font-semibold">Masjid Istiqlal</p>
+<p class="text-on-surface-variant text-sm font-medium">Ruang Utama, Lantai 1</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+<button class="px-8 py-4 rounded-2xl bg-outline-variant/5 border border-outline-variant/30 text-on-surface text-sm font-bold hover:bg-error/10 hover:border-error/30 hover:text-error transition-all active:scale-95 duration-200">
+                            Tolak
+                        </button>
+<button class="px-8 py-4 rounded-2xl emerald-gradient text-on-primary text-sm font-bold shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:brightness-110 transition-all active:scale-95 duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                            Terima
+                        </button>
+</div>
+</div>
+<!-- Request Card 2 -->
+<div class="group relative bg-surface-container-low rounded-[2rem] p-8 flex flex-col md:flex-row items-center gap-8 border border-outline-variant/5 hover:border-primary/20 transition-all duration-500 overflow-hidden">
+<div class="flex items-center gap-6 min-w-[280px]">
+<div class="relative">
+<img class="w-20 h-20 rounded-3xl object-cover" data-alt="Close-up of a young man with a slight smile, clear skin, and observant eyes, soft natural backlighting, high-end editorial feel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8jrGLUBg85U4tY4obmwVjXh9AKD8x6pDDd_ZUwrWs4BJtn84MiPiYJSQSvPj7zHyIqeLG4WRR7nOTdlI4J5E_hp5pSedDTUt4nG3mkOyfv6RiqlJJXx0oLp0PfCheUBPwtfaLw_kSqpyiTDf3E_2tm5KB_ILN5yfb_QG4ajPv0F5LfGI5fLZiZ4DhjPR47x6eIPEMkGagZASlkI5H9LAAAfhpK19HhOds_heTE3sCVYUt6D9swWxPH9J27xlwifjWnL39vrKFa7c"/>
+</div>
+<div>
+<h3 class="text-xl font-bold tracking-tight text-on-surface">Ustadz Rizky Pratama</h3>
+<p class="text-xs text-on-surface-variant font-medium mt-1">Imam Pengaju</p>
+<div class="flex gap-1 mt-3">
+<span class="px-2 py-0.5 rounded-md bg-secondary-container/30 text-secondary text-[9px] font-bold uppercase tracking-tighter">Silver Tier</span>
+</div>
+</div>
+</div>
+<div class="hidden md:block w-[1px] h-16 bg-outline-variant/10"></div>
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 py-2">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-primary-fixed-dim">
+<span class="material-symbols-outlined">event_upcoming</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Tanggal &amp; Waktu</p>
+<p class="text-on-surface font-semibold">Selasa, 25 Mei 2024</p>
+<p class="text-primary text-sm font-medium">Shalat Isya (19:15)</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Lokasi Masjid</p>
+<p class="text-on-surface font-semibold">Masjid Al-Azhar</p>
+<p class="text-on-surface-variant text-sm font-medium">Kebayoran Baru, Jaksel</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+<button class="px-8 py-4 rounded-2xl bg-outline-variant/5 border border-outline-variant/30 text-on-surface text-sm font-bold hover:bg-error/10 hover:border-error/30 hover:text-error transition-all active:scale-95 duration-200">
+                            Tolak
+                        </button>
+<button class="px-8 py-4 rounded-2xl emerald-gradient text-on-primary text-sm font-bold shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:brightness-110 transition-all active:scale-95 duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                            Terima
+                        </button>
+</div>
+</div>
+<!-- Request Card 3 -->
+<div class="group relative bg-surface-container-low rounded-[2rem] p-8 flex flex-col md:flex-row items-center gap-8 border border-outline-variant/5 hover:border-primary/20 transition-all duration-500 overflow-hidden">
+<div class="flex items-center gap-6 min-w-[280px]">
+<div class="relative">
+<img class="w-20 h-20 rounded-3xl object-cover" data-alt="Portrait of a contemplative man looking slightly away, deep tones, sophisticated lighting casting soft shadows, professional aesthetics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDenDkx1wEKEu4AJF3w0YdWmongx5_N-R3CsW7dFdWiIZAeg82rOtIIaSP3vecDB0i2GVo5gKXKAs3Il3QuyFyLm6d0HeOvURl9ZNTW8KuMtD0BJn8ctuYZtCT3ZX4aXNWV8JS7eqNlgP7OQ7A05EzdZytx9hJN5OlkipwxvYQocOpZi8wvCzHpg_k_Pez09WIczx4oLiS6ZxZd0kgXG7hurrpG2TeXjC14wk5lx4gmhW3uxOJv9ZL4vZP1KgyEsAQABZDex5Tdaa0"/>
+</div>
+<div>
+<h3 class="text-xl font-bold tracking-tight text-on-surface">Ustadz Lukman Hakim</h3>
+<p class="text-xs text-on-surface-variant font-medium mt-1">Imam Pengaju</p>
+<div class="flex gap-1 mt-3">
+<span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[9px] font-bold uppercase tracking-tighter">Elite Tier</span>
+<span class="px-2 py-0.5 rounded-md bg-secondary-container/30 text-secondary text-[9px] font-bold uppercase tracking-tighter">100% Success</span>
+</div>
+</div>
+</div>
+<div class="hidden md:block w-[1px] h-16 bg-outline-variant/10"></div>
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 py-2">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-primary-fixed-dim">
+<span class="material-symbols-outlined">event_upcoming</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Tanggal &amp; Waktu</p>
+<p class="text-on-surface font-semibold">Kamis, 27 Mei 2024</p>
+<p class="text-primary text-sm font-medium">Shalat Subuh (04:35)</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mb-1">Lokasi Masjid</p>
+<p class="text-on-surface font-semibold">Masjid Sunda Kelapa</p>
+<p class="text-on-surface-variant text-sm font-medium">Menteng, Jakarta Pusat</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+<button class="px-8 py-4 rounded-2xl bg-outline-variant/5 border border-outline-variant/30 text-on-surface text-sm font-bold hover:bg-error/10 hover:border-error/30 hover:text-error transition-all active:scale-95 duration-200">
+                            Tolak
+                        </button>
+<button class="px-8 py-4 rounded-2xl emerald-gradient text-on-primary text-sm font-bold shadow-[0px_0px_15px_rgba(16,185,129,0.3)] hover:brightness-110 transition-all active:scale-95 duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                            Terima
+                        </button>
+</div>
+</div>
+</div>
+<!-- Dashboard Insight / Bottom Card -->
+<div class="mt-12 p-8 rounded-[2.5rem] bg-surface-container-high border-outline-variant/5 relative overflow-hidden flex flex-col md:flex-row items-center gap-8">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,#10b981_0%,transparent_50%)]"></div>
+</div>
+<div class="w-full md:w-2/3 space-y-4 relative">
+<span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-[10px] font-black uppercase tracking-[0.2em]">Swap Policy</span>
+<h4 class="text-2xl font-bold tracking-tight">Butuh Bantuan?</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed max-w-xl">
+                        Setiap permintaan swap yang diterima akan otomatis memperbarui kalender Anda dan mengirimkan notifikasi ke pengelola masjid terkait. Pastikan jadwal yang Anda ambil tidak bertabrakan dengan komitmen lainnya.
+                    </p>
+<div class="flex gap-4 pt-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">schedule</span>
+<span class="text-xs font-semibold text-on-surface">Auto-Sync Calendar</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">notifications_active</span>
+<span class="text-xs font-semibold text-on-surface">Instal Admin Alerts</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/3 flex justify-end">
+<button class="w-full md:w-auto px-10 py-5 bg-surface rounded-[1.5rem] text-primary text-xs font-bold uppercase tracking-[0.2em] border border-primary/20 hover:bg-primary hover:text-on-primary transition-all duration-300">
+                        Pusat Bantuan
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>
