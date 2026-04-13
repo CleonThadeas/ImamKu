@@ -7,13 +7,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        DB::statement("ALTER TABLE notification_logs MODIFY COLUMN channel VARCHAR(255)");
-        DB::statement("ALTER TABLE notification_logs MODIFY COLUMN status VARCHAR(50)");
+        DB::statement("ALTER TABLE notification_logs ALTER COLUMN channel TYPE VARCHAR(255)");
+        DB::statement("ALTER TABLE notification_logs ALTER COLUMN status TYPE VARCHAR(50)");
     }
 
     public function down(): void
     {
-        DB::statement("ALTER TABLE notification_logs MODIFY COLUMN channel ENUM('email', 'whatsapp')");
-        DB::statement("ALTER TABLE notification_logs MODIFY COLUMN status ENUM('sent', 'failed', 'pending') DEFAULT 'pending'");
+        // PostgreSQL tidak mendukung ENUM seperti MySQL secara langsung
+        // jadi kita fallback ke VARCHAR saja (safe rollback)
+
+        DB::statement("ALTER TABLE notification_logs ALTER COLUMN channel TYPE VARCHAR(50)");
+        DB::statement("ALTER TABLE notification_logs ALTER COLUMN status TYPE VARCHAR(50)");
     }
 };
