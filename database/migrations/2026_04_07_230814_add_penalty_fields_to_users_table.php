@@ -9,8 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('penalty_points')->default(0)->after('is_active');
-            $table->boolean('is_restricted')->default(false)->after('penalty_points');
+            $table->integer('penalty_points')->default(0); // Removed after() for PostgreSQL compatibility
+            $table->boolean('is_restricted')->default(false); // Removed after() for PostgreSQL compatibility
         });
     }
 

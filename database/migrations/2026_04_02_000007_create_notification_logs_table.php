@@ -12,10 +12,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('schedule_id')->nullable()->constrained('schedules')->nullOnDelete();
-            $table->enum('channel', ['email', 'whatsapp']);
+            $table->string('channel'); // PostgreSQL compatible: using string instead of enum
             $table->string('type');
             $table->json('payload')->nullable();
-            $table->enum('status', ['sent', 'failed', 'pending'])->default('pending');
+            $table->string('status')->default('pending'); // PostgreSQL compatible: using string instead of enum
             $table->text('error_message')->nullable();
             $table->dateTime('sent_at')->nullable();
             $table->timestamps();

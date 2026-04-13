@@ -12,7 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("ALTER TABLE penalty_logs MODIFY COLUMN event_type ENUM('attendance_ontime', 'attendance_late', 'no_show', 'swap_expired', 'admin_reset') NOT NULL");
+        // PostgreSQL compatible: This migration is redundant as Enum was converted to string in creation.
+        // DB::statement("ALTER TABLE penalty_logs MODIFY COLUMN event_type ENUM('attendance_ontime', 'attendance_late', 'no_show', 'swap_expired', 'admin_reset') NOT NULL");
     }
 
     /**
@@ -20,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement("ALTER TABLE penalty_logs MODIFY COLUMN event_type ENUM('attendance_ontime', 'attendance_late', 'no_show', 'swap_expired') NOT NULL");
+        // DB::statement("ALTER TABLE penalty_logs MODIFY COLUMN event_type ENUM('attendance_ontime', 'attendance_late', 'no_show', 'swap_expired') NOT NULL");
     }
 };

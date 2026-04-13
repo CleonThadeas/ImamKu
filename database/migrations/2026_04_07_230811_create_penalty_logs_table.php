@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('schedule_id')->nullable()->constrained('schedules')->nullOnDelete();
             $table->foreignId('swap_request_id')->nullable()->constrained('swap_requests')->nullOnDelete();
-            $table->string('event_type', 50);
+            $table->string('event_type'); // PostgreSQL compatible: using string instead of enum
             $table->integer('points');
             $table->text('description')->nullable();
             $table->timestamps();

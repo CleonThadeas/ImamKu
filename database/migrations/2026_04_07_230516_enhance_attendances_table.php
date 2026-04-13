@@ -9,12 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('attendances', function (Blueprint $table) {
-            $table->decimal('latitude', 10, 8)->nullable()->after('proof_path');
-            $table->decimal('longitude', 11, 8)->nullable()->after('latitude');
-            $table->unsignedInteger('distance_meters')->nullable()->after('longitude');
-            $table->boolean('is_within_radius')->default(false)->after('distance_meters');
-            $table->boolean('is_within_time_window')->default(false)->after('is_within_radius');
-            $table->timestamp('checked_in_at')->nullable()->after('is_within_time_window');
+            // Removed after() for PostgreSQL compatibility
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
+            $table->unsignedInteger('distance_meters')->nullable();
+            $table->boolean('is_within_radius')->default(false);
+            $table->boolean('is_within_time_window')->default(false);
+            $table->timestamp('checked_in_at')->nullable();
         });
     }
 

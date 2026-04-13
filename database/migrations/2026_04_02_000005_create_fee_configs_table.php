@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('fee_configs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('season_id')->constrained('ramadan_seasons')->cascadeOnDelete();
-            $table->enum('mode', ['per_schedule', 'per_day'])->default('per_schedule');
+            $table->string('mode')->default('per_schedule'); // PostgreSQL compatible: using string instead of enum
             $table->boolean('is_enabled')->default(false);
             $table->timestamps();
         });

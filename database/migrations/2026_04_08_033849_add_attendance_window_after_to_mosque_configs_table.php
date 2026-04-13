@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('mosque_configs', function (Blueprint $table) {
-            $table->integer('attendance_window_after_minutes')->default(30)->after('attendance_window_minutes');
+            $table->integer('attendance_window_after_minutes')->default(30); // Removed after() for PostgreSQL compatibility
         });
     }
 

@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('prayer_times', function (Blueprint $table) {
-            $table->boolean('is_manual')->default(false)->after('override_time');
+            $table->boolean('is_manual')->default(false); // Removed after() for PostgreSQL compatibility
         });
     }
 

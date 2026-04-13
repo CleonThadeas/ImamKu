@@ -11,9 +11,10 @@ return new class extends Migration
         Schema::create('swap_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedules')->cascadeOnDelete();
-            $table->foreignId('target_schedule_id')->constrained('schedules')->cascadeOnDelete();
+            // PostgreSQL compatible: made nullable directly instead of using separate migration with ->change()
+            $table->foreignId('target_schedule_id')->nullable()->constrained('schedules')->cascadeOnDelete();
             $table->foreignId('requester_id')->constrained('users')->cascadeOnDelete();
-            $table->enum('status', ['pending', 'accepted', 'rejected', 'expired'])->default('pending');
+            $table->string('status')->default('pending'); // PostgreSQL compatible: using string instead of enum
             $table->dateTime('processed_at')->nullable();
             $table->timestamps();
         });

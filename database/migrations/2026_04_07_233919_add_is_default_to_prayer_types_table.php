@@ -9,8 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('prayer_types', function (Blueprint $table) {
-            $table->boolean('is_default')->default(false)->after('sort_order');
-            $table->string('api_key')->nullable()->after('is_default');
+            $table->boolean('is_default')->default(false); // Removed after() for PostgreSQL compatibility
+            $table->string('api_key')->nullable(); // Removed after() for PostgreSQL compatibility
         });
     }
 
