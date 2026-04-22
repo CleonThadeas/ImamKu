@@ -67,6 +67,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('exports/download', [Admin\ExportController::class, 'download'])->name('exports.download');
 
     // Log & Broadcast
+    Route::get('notifications', [Admin\NotificationController::class, 'index'])->name('notifications.index');
     Route::get('notification-logs', [Admin\NotificationLogController::class, 'index'])->name('notification-logs.index');
     Route::get('broadcast', [Admin\BroadcastNotificationController::class, 'index'])->name('broadcast.index');
     Route::post('broadcast', [Admin\BroadcastNotificationController::class, 'store'])->name('broadcast.send');

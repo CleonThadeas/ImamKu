@@ -23,7 +23,7 @@
 <div class="card" style="margin-bottom:20px;padding:16px">
     <form method="GET" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
         <label class="form-label" style="margin:0;white-space:nowrap">Tanggal:</label>
-        <input type="date" name="date" class="form-input" style="max-width:200px"
+        <input type="date" name="date" class="form-input" style="max-width:200px; background-color: #111827 !important; color: #E5E7EB !important; color-scheme: dark !important;"
                value="{{ $selectedDate }}"
                min="{{ $season->start_date->format('Y-m-d') }}"
                max="{{ $season->end_date->format('Y-m-d') }}"
@@ -131,7 +131,7 @@
             @csrf @method('PATCH')
             <div class="form-group">
                 <label class="form-label">Waktu Baru (HH:MM)</label>
-                <input type="time" name="override_time" id="overrideTime" class="form-input" required>
+                <input type="time" name="override_time" id="overrideTime" class="form-input" style="background-color: #111827 !important; color: #E5E7EB !important; color-scheme: dark !important;" required>
             </div>
             <div style="display:flex;gap:8px">
                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -157,7 +157,7 @@
             <input type="hidden" name="season_id" value="{{ $season->id }}">
             <div class="form-group">
                 <label class="form-label">Tanggal</label>
-                <input type="date" name="date" class="form-input" value="{{ $selectedDate }}"
+                <input type="date" name="date" class="form-input" style="background-color: #111827 !important; color: #E5E7EB !important; color-scheme: dark !important;" value="{{ $selectedDate }}"
                        min="{{ $season->start_date->format('Y-m-d') }}"
                        max="{{ $season->end_date->format('Y-m-d') }}" required>
             </div>
@@ -226,7 +226,7 @@
             <!-- Custom Time Input (hidden by default) -->
             <div class="form-group" id="customTimeGroup" style="display:none">
                 <label class="form-label">Waktu Kustom (HH:MM)</label>
-                <input type="time" name="time" id="manualTimeInput" class="form-input">
+                <input type="time" name="time" id="manualTimeInput" class="form-input" style="background-color: #111827 !important; color: #E5E7EB !important; color-scheme: dark !important;">
             </div>
 
             <div style="display:flex;gap:8px">

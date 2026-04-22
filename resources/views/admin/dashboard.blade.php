@@ -35,6 +35,31 @@
     </div>
 </div>
 
+@php
+    $mosqueConfig = \App\Models\MosqueConfig::first();
+    $missingCoordinates = !$mosqueConfig || empty($mosqueConfig->latitude) || empty($mosqueConfig->longitude);
+@endphp
+
+@if($missingCoordinates)
+<div class="bg-error/10 border border-error/20 p-5 rounded-3xl mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm relative overflow-hidden">
+    <div class="absolute -right-10 -top-10 w-40 h-40 bg-error/10 blur-[40px] rounded-full pointer-events-none"></div>
+    <div class="flex items-start gap-4 relative z-10">
+        <div class="w-12 h-12 rounded-xl bg-error/20 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-error text-2xl">location_off</span>
+        </div>
+        <div>
+            <h4 class="text-[13px] font-bold text-error uppercase tracking-widest mb-1.5">Peringatan Kritis: Koordinat Masjid Kosong</h4>
+            <p class="text-[13px] text-on-surface-variant leading-relaxed max-w-3xl">
+                Fitur absensi berbasis GPS <strong>tidak akan berfungsi</strong>. Sistem membutuhkan koordinat titik pusat Masjid untuk menvalidasi jangkauan radius (Haversine) check-in Imam. Segera atur koordinat agar fitur absen dapat digunakan!
+            </p>
+        </div>
+    </div>
+    <a href="{{ route('admin.mosque-config.index') }}" class="px-5 py-3 bg-error text-white text-xs font-bold rounded-xl shadow-[0_0_15px_rgba(239,68,68,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(239,68,68,0.5)] transition-all whitespace-nowrap relative z-10">
+        Tetapkan Koordinat
+    </a>
+</div>
+@endif
+
 <!-- Stats -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 mt-5">
     <x-stat-card title="Total Imam Aktif" :value="$stats['total_imams']" icon="person_book" color="primary" />

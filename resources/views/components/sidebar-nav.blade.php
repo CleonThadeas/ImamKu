@@ -73,8 +73,11 @@
     <div>
         <p class="px-4 mb-2 mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant/40">SISTEM</p>
         <div class="space-y-1">
-            <a href="{{ route('admin.broadcast.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 {{ request()->routeIs('admin.broadcast.*') || request()->routeIs('admin.notification-logs.*') ? 'bg-surface-container text-primary font-semibold border-r-4 border-primary' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-white group' }}">
-                <span class="material-symbols-outlined text-lg {{ request()->routeIs('admin.broadcast.*') || request()->routeIs('admin.notification-logs.*') ? '' : 'opacity-70 group-hover:opacity-100' }}">forum</span>
+            <a href="{{ route('admin.broadcast.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 relative {{ request()->routeIs('admin.broadcast.*') || request()->routeIs('admin.notification-logs.*') || request()->routeIs('admin.notifications.*') ? 'bg-surface-container text-primary font-semibold border-r-4 border-primary' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-white group' }}">
+                <span class="material-symbols-outlined text-lg {{ request()->routeIs('admin.broadcast.*') || request()->routeIs('admin.notification-logs.*') || request()->routeIs('admin.notifications.*') ? '' : 'opacity-70 group-hover:opacity-100' }}">forum</span>
+                @if(auth()->user()->unreadNotifications->count() > 0)
+                    <span class="absolute top-2 left-6 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-low"></span>
+                @endif
                 <span>Komunikasi</span>
             </a>
             <a href="{{ route('admin.exports.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 {{ request()->routeIs('admin.exports.*') ? 'bg-surface-container text-primary font-semibold border-r-4 border-primary' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-white group' }}">
@@ -91,10 +94,6 @@
             <a href="{{ route('guidelines') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 {{ request()->routeIs('guidelines') ? 'bg-surface-container text-primary font-semibold border-r-4 border-primary' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-white group' }}">
                 <span class="material-symbols-outlined text-lg {{ request()->routeIs('guidelines') ? '' : 'opacity-70 group-hover:opacity-100' }}">help_center</span>
                 <span>Panduan</span>
-            </a>
-            <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 {{ request()->routeIs('profile.*') ? 'bg-surface-container text-primary font-semibold border-r-4 border-primary' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-white group' }}">
-                <span class="material-symbols-outlined text-lg {{ request()->routeIs('profile.*') ? '' : 'opacity-70 group-hover:opacity-100' }}">account_circle</span>
-                <span>Profile</span>
             </a>
         </div>
     </div>
@@ -138,27 +137,9 @@
     <div>
         <p class="px-4 mb-2 mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant/40">INFORMASI</p>
         <div class="space-y-1">
-            <a href="{{ route('imam.notifications.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 relative {{ request()->routeIs('imam.notifications.*') ? 'bg-surface-container text-primary font-semibold border-r-4 border-primary' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-white group' }}">
-                <span class="material-symbols-outlined text-lg {{ request()->routeIs('imam.notifications.*') ? '' : 'opacity-70 group-hover:opacity-100' }}">notifications</span>
-                @if(auth()->user()->unreadNotifications->count() > 0)
-                    <span class="absolute top-2 left-6 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-low"></span>
-                @endif
-                <span>Notifikasi</span>
-            </a>
             <a href="{{ route('guidelines') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 {{ request()->routeIs('guidelines') ? 'bg-surface-container text-primary font-semibold border-r-4 border-primary' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-white group' }}">
                 <span class="material-symbols-outlined text-lg {{ request()->routeIs('guidelines') ? '' : 'opacity-70 group-hover:opacity-100' }}">help_center</span>
                 <span>Panduan</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- AKUN Group -->
-    <div>
-        <p class="px-4 mb-2 mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant/40">AKUN</p>
-        <div class="space-y-1">
-            <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 {{ request()->routeIs('profile.*') ? 'bg-surface-container text-primary font-semibold border-r-4 border-primary' : 'text-on-surface-variant hover:bg-surface-container-high hover:text-white group' }}">
-                <span class="material-symbols-outlined text-lg {{ request()->routeIs('profile.*') ? '' : 'opacity-70 group-hover:opacity-100' }}">account_circle</span>
-                <span>Profile</span>
             </a>
         </div>
     </div>

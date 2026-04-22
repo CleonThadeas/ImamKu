@@ -10,12 +10,18 @@
 </div>
 
 <!-- TABS -->
-<div class="flex items-center gap-2 border-b border-outline-variant/20 mb-8 pb-4">
-    <a href="{{ route('admin.broadcast.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-on-surface-variant hover:bg-surface-container hover:text-on-surface">
+<div class="flex items-baseline gap-2 border-b border-outline-variant/20 mb-8 pb-4" style="overflow-x:auto;">
+    <a href="{{ route('admin.broadcast.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 {{ request()->routeIs('admin.broadcast.*') ? 'bg-primary/20 text-primary border border-primary/30' : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface min-w-max' }}">
         <span class="material-symbols-outlined text-[18px]">campaign</span> Broadcast Pesan
     </a>
-    <a href="{{ route('admin.notification-logs.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-primary/20 text-primary border border-primary/30">
+    <a href="{{ route('admin.notification-logs.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 {{ request()->routeIs('admin.notification-logs.*') ? 'bg-primary/20 text-primary border border-primary/30' : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface min-w-max' }}">
         <span class="material-symbols-outlined text-[18px]">notifications_active</span> Log Notifikasi
+    </a>
+    <a href="{{ route('admin.notifications.index') }}" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 relative {{ request()->routeIs('admin.notifications.*') ? 'bg-primary/20 text-primary border border-primary/30' : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface min-w-max' }}">
+        <span class="material-symbols-outlined text-[18px]">warning</span> Notifikasi Sistem
+        @if(auth()->user()->unreadNotifications->count() > 0)
+            <span class="absolute top-2 left-4 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-low"></span>
+        @endif
     </a>
 </div>
 

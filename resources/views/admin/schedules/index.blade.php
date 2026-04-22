@@ -52,6 +52,17 @@
         <span class="text-[10px] text-on-surface-variant/60 italic ml-auto flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">touch_app</span> Klik slot untuk mengubah imam</span>
     </div>
 
+    <!-- System Rule Warning -->
+    <div class="bg-primary/5 border border-primary/20 p-5 rounded-2xl mb-8 flex items-start gap-4">
+        <span class="material-symbols-outlined text-primary mt-1 text-2xl">rule</span>
+        <div>
+            <h4 class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Peraturan Sistem Penjadwalan</h4>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
+                <strong>Sistem melarang Imam bertugas secara berturut-turut.</strong> Imam harus dijadwalkan secara selang-seling (contoh: Imam 1 Subuh, maka Imam 1 <b>TIDAK BOLEH</b> lanjut di Dzuhur). Jadwal wajib diberikan jeda pergantian antar Imam untuk memastikan rotasi yang adil, kecuali sholat dalam rentang waktu yang sama (contoh: Isya & Tarawih).
+            </p>
+        </div>
+    </div>
+
     <!-- STRICT SCHEDULE UI GRID: Preserving existing generic classes and HTML structure -->
     <div class="bg-surface-container rounded-3xl p-6 overflow-x-auto shadow-sm border border-outline-variant/10 mb-12 custom-scrollbar">
         <!-- We keep schedule-grid class to inherit old table grid css, but override colors -->
@@ -160,7 +171,10 @@
             <div class="p-2 bg-primary/10 rounded-lg text-primary"><span class="material-symbols-outlined">person_add</span></div> 
             Assign Imam
         </h3>
-        <p id="assignInfo" class="text-sm font-mono text-primary mb-6 pb-6 border-b border-outline-variant/10 tracking-tight"></p>
+        <p id="assignInfo" class="text-sm font-mono text-primary mb-2 pb-2 tracking-tight"></p>
+        <p class="text-[10px] text-on-surface-variant/80 italic mb-6 pb-6 border-b border-outline-variant/10 leading-snug">
+            * Hindari penugasan berurutan tanpa jeda, sistem akan otomatis menolak jika Imam melanggar aturan selang-seling.
+        </p>
         
         <form method="POST" action="{{ route('admin.schedules.assign') }}" id="assignForm">
             @csrf
@@ -215,6 +229,32 @@ function openAssignModal(scheduleId, date, prayerName, prayerTypeId, currentUser
     } else {
         removeSection.style.display = 'none';
     }
+
+    // Connect to Backend to check consecutive rule / availability
+    const select = document.getElementById('assignUserId');
+    Array.from(select.options).forEach(opt => {
+        if (opt.value) {
+            opt.disabled = true; // Temporary disable while loading
+            opt.textContent = opt.textContent.replace(' (Tidak bisa berurutan)', '');
+        }
+    });
+
+    fetch(`/admin/schedules/available-imams?date=${date}&prayer_type_id=${prayerTypeId}`)
+        .then(res => res.json())
+        .then(availableImams => {
+            const availableIds = availableImams.map(i => i.id.toString());
+            Array.from(select.options).forEach(opt => {
+                if (opt.value) {
+                    if (availableIds.includes(opt.value) || opt.value == currentUserId) {
+                        opt.disabled = false;
+                    } else {
+                        opt.disabled = true;
+                        opt.textContent += ' (Tidak bisa berurutan)';
+                    }
+                }
+            });
+        })
+        .catch(err => console.error(err));
 }
 
 function closeAssignModal() {

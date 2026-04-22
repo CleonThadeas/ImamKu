@@ -25,6 +25,9 @@ class AttendanceService
             $mosqueConfig = MosqueConfig::where('season_id', $schedule->season_id)->first();
 
             if (!$mosqueConfig || empty($mosqueConfig->latitude) || empty($mosqueConfig->longitude)) {
+                $errorMsg = "PAGGIILAN SISTEM DARURAT: Sistem Koordinat/GPS Lokasi Masjid belum dikonfigurasi! Seorang Imam bernama {$schedule->user->name} gagal memproses absensinya.";
+                $admins = \App\Models\User::where('role', 'admin')->where('is_active', true)->get();
+                \Illuminate\Support\Facades\Notification::send($admins, new \App\Notifications\SystemAlertNotification($errorMsg));
                 throw new \Exception('Absensi tidak dapat dilakukan karena admin belum mengatur target koordinat lokasi masjid.');
             }
 
@@ -81,7 +84,13 @@ class AttendanceService
             ->first();
 
         if (!$prayerTime || !$prayerTime->effective_time) {
-            return false;
+            $formattedDate = $schedule->date->format('d M Y');
+            $prayerName = $schedule->prayerType->name ?? 'Sholat';
+            $errorMsg = "PAGGIILAN SISTEM DARURAT: Data Waktu Sholat ({$prayerName}) untuk tanggal {$formattedDate} belum dikonfigurasi/sinkron! Sistem terhenti saat mendapat panggilan absensi.";
+            $admins = \App\Models\User::where('role', 'admin')->where('is_active', true)->get();
+            \Illuminate\Support\Facades\Notification::send($admins, new \App\Notifications\SystemAlertNotification($errorMsg));
+            
+            throw new \Exception("Absensi tidak dapat diproses: Waktu Sholat sistem belum disinkronisasi oleh Admin.");
         }
 
         $prayerDateTime = Carbon::parse($schedule->date->toDateString() . ' ' . $prayerTime->effective_time);

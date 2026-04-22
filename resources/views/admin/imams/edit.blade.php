@@ -14,25 +14,25 @@
         @csrf @method('PUT')
         <div class="form-group">
             <label class="form-label">Nama Lengkap</label>
-            <input type="text" name="name" class="form-input" value="{{ old('name', $imam->name) }}" required>
+            <input type="text" name="name" class="form-input" style="background-color: #111827 !important; color: #E5E7EB !important; color-scheme: dark !important;" value="{{ old('name', $imam->name) }}" required>
         </div>
         <div class="form-group">
             <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-input" value="{{ old('email', $imam->email) }}" placeholder="contoh@gmail.com" required>
+            <input type="email" name="email" class="form-input" style="background-color: #111827 !important; color: #E5E7EB !important; color-scheme: dark !important;" value="{{ old('email', $imam->email) }}" placeholder="contoh@gmail.com" required>
             <small style="color:var(--clr-text-muted);font-size:0.7rem">Hanya @gmail.com atau @yahoo.com</small>
         </div>
         <div class="form-group">
             <label class="form-label">No. HP (WhatsApp)</label>
-            <input type="tel" name="phone" class="form-input" value="{{ old('phone', $imam->phone) }}" placeholder="628xxxxxxxxxx" pattern="[0-9]*" inputmode="numeric" minlength="10" maxlength="15">
+            <input type="tel" name="phone" class="form-input" style="background-color: #111827 !important; color: #E5E7EB !important; color-scheme: dark !important;" value="{{ old('phone', $imam->phone) }}" placeholder="628xxxxxxxxxx" pattern="[0-9]*" inputmode="numeric" minlength="10" maxlength="15">
             <small style="color:var(--clr-text-muted);font-size:0.7rem">Hanya angka, 10-15 digit</small>
         </div>
         <div class="form-group">
             <label class="form-label">Password Baru (kosongkan jika tidak berubah)</label>
-            <input type="password" name="password" class="form-input" minlength="8">
+            <input type="password" name="password" class="form-input" style="background-color: #111827 !important; color: #E5E7EB !important; color-scheme: dark !important;" minlength="8">
         </div>
         <div class="form-group">
             <label class="form-label">Konfirmasi Password Baru</label>
-            <input type="password" name="password_confirmation" class="form-input">
+            <input type="password" name="password_confirmation" class="form-input" style="background-color: #111827 !important; color: #E5E7EB !important; color-scheme: dark !important;">
         </div>
         <div class="form-group">
             <div class="form-checkbox-wrapper">
